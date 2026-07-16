@@ -12,35 +12,35 @@
     </div>
 </section>
 
-<section class="py-20 px-[5%] bg-navy-mid">
+<section class="py-20 px-[5%] bg-white">
     <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-5 gap-12">
 
         <div class="lg:col-span-3">
             <p class="text-[11px] font-bold text-gold tracking-[3px] uppercase mb-3">Send a Message</p>
-            <h2 class="font-serif font-semibold text-white text-[28px] mb-6">We'd love to hear from you</h2>
+            <h2 class="font-serif font-semibold text-navy text-[28px] mb-6">We'd love to hear from you</h2>
             <form action="#" method="POST" class="space-y-4">
                 @csrf
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                        <label class="block text-[12px] font-semibold text-cloud/55 tracking-[1.5px] uppercase mb-2">First Name</label>
+                        <label class="block text-[12px] font-semibold text-gray-500 tracking-[1.5px] uppercase mb-2">First Name</label>
                         <input type="text" name="first_name" required placeholder="Your first name"
-                               class="w-full px-4 py-3 bg-navy border border-gold/15 rounded-lg text-[14px] text-white placeholder-cloud/25 focus:outline-none focus:border-gold/50 transition-colors">
+                               class="w-full px-4 py-3 bg-gray-50 border border-gray-300 rounded-lg text-[14px] text-navy placeholder-gray-400 focus:outline-none focus:border-gold/60 transition-colors">
                     </div>
                     <div>
-                        <label class="block text-[12px] font-semibold text-cloud/55 tracking-[1.5px] uppercase mb-2">Last Name</label>
+                        <label class="block text-[12px] font-semibold text-gray-500 tracking-[1.5px] uppercase mb-2">Last Name</label>
                         <input type="text" name="last_name" required placeholder="Your last name"
-                               class="w-full px-4 py-3 bg-navy border border-gold/15 rounded-lg text-[14px] text-white placeholder-cloud/25 focus:outline-none focus:border-gold/50 transition-colors">
+                               class="w-full px-4 py-3 bg-gray-50 border border-gray-300 rounded-lg text-[14px] text-navy placeholder-gray-400 focus:outline-none focus:border-gold/60 transition-colors">
                     </div>
                 </div>
                 <div>
-                    <label class="block text-[12px] font-semibold text-cloud/55 tracking-[1.5px] uppercase mb-2">Email Address</label>
+                    <label class="block text-[12px] font-semibold text-gray-500 tracking-[1.5px] uppercase mb-2">Email Address</label>
                     <input type="email" name="email" required placeholder="your@email.com"
-                           class="w-full px-4 py-3 bg-navy border border-gold/15 rounded-lg text-[14px] text-white placeholder-cloud/25 focus:outline-none focus:border-gold/50 transition-colors">
+                           class="w-full px-4 py-3 bg-gray-50 border border-gray-300 rounded-lg text-[14px] text-navy placeholder-gray-400 focus:outline-none focus:border-gold/60 transition-colors">
                 </div>
                 <div>
-                    <label class="block text-[12px] font-semibold text-cloud/55 tracking-[1.5px] uppercase mb-2">Subject</label>
+                    <label class="block text-[12px] font-semibold text-gray-500 tracking-[1.5px] uppercase mb-2">Subject</label>
                     <select name="subject"
-                            class="w-full px-4 py-3 bg-navy border border-gold/15 rounded-lg text-[14px] text-cloud/75 focus:outline-none focus:border-gold/50 transition-colors">
+                            class="w-full px-4 py-3 bg-gray-50 border border-gray-300 rounded-lg text-[14px] text-navy/80 focus:outline-none focus:border-gold/60 transition-colors">
                         <option value="">Select a subject</option>
                         <option>Pre-Bar Course Enquiry</option>
                         <option>LPTC Admissions</option>
@@ -50,9 +50,9 @@
                     </select>
                 </div>
                 <div>
-                    <label class="block text-[12px] font-semibold text-cloud/55 tracking-[1.5px] uppercase mb-2">Message</label>
+                    <label class="block text-[12px] font-semibold text-gray-500 tracking-[1.5px] uppercase mb-2">Message</label>
                     <textarea name="message" rows="5" required placeholder="How can we help you?"
-                              class="w-full px-4 py-3 bg-navy border border-gold/15 rounded-lg text-[14px] text-white placeholder-cloud/25 focus:outline-none focus:border-gold/50 transition-colors resize-none"></textarea>
+                              class="w-full px-4 py-3 bg-gray-50 border border-gray-300 rounded-lg text-[14px] text-navy placeholder-gray-400 focus:outline-none focus:border-gold/60 transition-colors resize-none"></textarea>
                 </div>
                 <button type="submit"
                         class="inline-flex items-center gap-2 px-8 py-3.5 text-[14px] font-semibold bg-gold text-navy rounded hover:bg-gold-light hover:-translate-y-0.5 transition-all">
@@ -66,18 +66,18 @@
             <div>
                 <p class="text-[11px] font-bold text-gold tracking-[3px] uppercase mb-4">Our Offices</p>
                 @foreach([['Accra (Main Campus)','Independence Avenue, Makola, Accra','+233 307 003 231 / 30','enquiries@gslaw.edu.gh'],['Kumasi Campus','KNUST Campus Area, Kumasi','+233 322 000 000','kumasi@gslaw.edu.gh']] as $o)
-                <div class="mb-3 p-5 rounded-xl bg-navy border border-gold/10">
+                <div class="mb-3 p-5 rounded-xl bg-gray-50 border border-gray-200">
                     <p class="text-[13px] font-bold text-gold mb-2">{{ $o[0] }}</p>
-                    <p class="text-[13px] text-cloud/58 leading-snug mb-0.5">{{ $o[1] }}</p>
-                    <p class="text-[13px] text-cloud/58 mb-0.5">{{ $o[2] }}</p>
-                    <p class="text-[13px] text-cloud/58">{{ $o[3] }}</p>
+                    <p class="text-[13px] text-gray-600 leading-snug mb-0.5">{{ $o[1] }}</p>
+                    <p class="text-[13px] text-gray-600 mb-0.5">{{ $o[2] }}</p>
+                    <p class="text-[13px] text-gray-600">{{ $o[3] }}</p>
                 </div>
                 @endforeach
             </div>
-            <div class="p-5 rounded-xl bg-gold/8 border border-gold/18">
+            <div class="p-5 rounded-xl bg-gold/8 border border-gold/25">
                 <p class="text-[11px] font-bold text-gold tracking-[2px] uppercase mb-2">Admissions Hotline</p>
-                <p class="font-serif font-semibold text-white text-[22px] mb-1">+233 246 006 210</p>
-                <p class="text-[13px] text-cloud/55">Monday – Friday, 8:00am – 5:00pm</p>
+                <p class="font-serif font-semibold text-navy text-[22px] mb-1">+233 246 006 210</p>
+                <p class="text-[13px] text-gray-600">Monday – Friday, 8:00am – 5:00pm</p>
             </div>
         </div>
 
