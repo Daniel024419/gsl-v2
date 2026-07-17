@@ -74,7 +74,7 @@
             <span
                 class="text-[10px] font-bold tracking-[3px] uppercase bg-gold text-navy px-2.5 py-1 flex-shrink-0 rounded-sm">BREAKING</span>
             <div class="overflow-hidden flex-1">
-                <span class="animate-marquee text-[13px] italic text-cloud/60 whitespace-nowrap">
+                <span class="animate-marquee text-[14px] italic text-cloud/60 whitespace-nowrap">
                     Pre-Bar Course 2026/2027 applications now open &nbsp;&mdash;&nbsp;
                     961 lawyers called to the Ghana Bar in 2025 - 513 female, a historic milestone &nbsp;&mdash;&nbsp;
                     GSL formally transitions under CLET Act 1170 &nbsp;&mdash;&nbsp;
@@ -103,7 +103,7 @@
                         </div>
                         <div class="text-center">
                             <p class="text-[10px] font-bold tracking-[4px] uppercase text-gold/40">Ghana School of Law</p>
-                            <p class="text-[13px] text-cloud/20 tracking-[2px] mt-1">Legal Education Act 2026 · Act 1170</p>
+                            <p class="text-[14px] text-cloud/20 tracking-[2px] mt-1">Legal Education Act 2026 · Act 1170</p>
                         </div>
                     </div>
                     <div class="absolute bottom-0 left-0 right-0 h-1/3"
@@ -129,12 +129,12 @@
                             </svg>
                         </div>
                         <div>
-                            <p class="text-[13px] font-medium text-cloud/75">GSL Communications</p>
-                            <p class="text-[13px] text-cloud/35 uppercase tracking-[1px] mt-0.5">January 2026 &bull; 7 Min
+                            <p class="text-[14px] font-medium text-cloud/75">GSL Communications</p>
+                            <p class="text-[14px] text-cloud/35 uppercase tracking-[1px] mt-0.5">January 2026 &bull; 7 Min
                                 Read</p>
                         </div>
                         <a href="#"
-                            class="ml-auto text-[13px] font-bold tracking-[2px] uppercase text-gold border border-gold/25 px-4 py-2 rounded hover:bg-gold/8 transition-colors">
+                            class="ml-auto text-[14px] font-bold tracking-[2px] uppercase text-gold border border-gold/25 px-4 py-2 rounded hover:bg-gold/8 transition-colors">
                             READ MORE &rarr;
                         </a>
                     </div>
@@ -158,7 +158,7 @@
                                     class="font-serif font-semibold text-[15px] text-white leading-snug group-hover:text-gold transition-colors duration-200">
                                     {{ $mr['title'] }}
                                 </h4>
-                                <p class="text-[12px] text-cloud/45 leading-[1.6] mt-1.5 line-clamp-2">{{ $mr['excerpt'] }}
+                                <p class="text-[13px] text-cloud/45 leading-[1.6] mt-1.5 line-clamp-2">{{ $mr['excerpt'] }}
                                 </p>
                                 <p class="text-[10px] font-bold tracking-[2px] uppercase text-cloud/30 mt-2">
                                     {{ $mr['cat'] }}</p>
@@ -175,13 +175,13 @@
                     </h3>
                     <div class="w-full flex">
                         <input type="email" placeholder="Your email address"
-                            class="flex-grow min-w-0 bg-white/5 border border-gold/20 border-r-0 text-white placeholder-cloud/30 px-4 py-3 text-[13px] rounded-l focus:outline-none focus:border-gold/40" />
+                            class="flex-grow min-w-0 bg-white/5 border border-gold/20 border-r-0 text-white placeholder-cloud/30 px-4 py-3 text-[14px] rounded-l focus:outline-none focus:border-gold/40" />
                         <button
                             class="bg-gold text-navy px-4 py-3 text-[10px] font-bold tracking-[2px] uppercase rounded-r hover:bg-gold-light transition-colors flex-shrink-0">
                             JOIN
                         </button>
                     </div>
-                    <p class="mt-4 text-[13px] text-cloud/30 leading-snug">By subscribing you agree to our privacy policy.
+                    <p class="mt-4 text-[14px] text-cloud/30 leading-snug">By subscribing you agree to our privacy policy.
                     </p>
                 </div>
 
@@ -227,12 +227,12 @@
                                         class="font-serif font-semibold text-[18px] text-navy leading-snug mb-3 group-hover:text-gold transition-colors duration-200">
                                         {{ $fa['title'] }}
                                     </h3>
-                                    <p class="text-[13px] text-gray-600 leading-[1.7] mb-4">{{ $fa['excerpt'] }}</p>
+                                    <p class="text-[14px] text-gray-600 leading-[1.7] mb-4">{{ $fa['excerpt'] }}</p>
                                     <div class="flex items-center gap-4 border-t border-gray-200 pt-3">
                                         <span
-                                            class="text-[13px] text-gray-400 uppercase tracking-[1px]">{{ $fa['date'] }}</span>
+                                            class="text-[14px] text-gray-400 uppercase tracking-[1px]">{{ $fa['date'] }}</span>
                                         <span
-                                            class="text-[13px] text-gray-400 uppercase tracking-[1px]">{{ $fa['read'] }}</span>
+                                            class="text-[14px] text-gray-400 uppercase tracking-[1px]">{{ $fa['read'] }}</span>
                                         <a href="#"
                                             class="ml-auto text-[10px] font-bold tracking-[2px] uppercase text-gold hover:underline">
                                             READ MORE &rarr;
@@ -259,12 +259,12 @@
                                         class="font-serif font-semibold text-[15px] text-navy leading-snug group-hover:text-gold transition-colors duration-200">
                                         {{ $bc['title'] }}
                                     </h3>
-                                    <p class="mt-2 text-[13px] text-gray-500 leading-[1.65] line-clamp-2">
+                                    <p class="mt-2 text-[14px] text-gray-500 leading-[1.65] line-clamp-2">
                                         {{ $bc['excerpt'] }}
                                     </p>
                                     <div class="mt-3 flex items-center justify-between">
                                         <span
-                                            class="text-[13px] text-gray-400 uppercase tracking-[1px]">{{ $bc['date'] }}
+                                            class="text-[14px] text-gray-400 uppercase tracking-[1px]">{{ $bc['date'] }}
                                             &bull; {{ $bc['read'] }}</span>
                                         <a href="#"
                                             class="text-[10px] font-bold tracking-[2px] uppercase text-gold hover:underline">READ
@@ -299,7 +299,7 @@
                                     </div>
                                     <div>
                                         <p
-                                            class="text-[13px] font-medium text-navy leading-snug group-hover:text-gold transition-colors duration-200">
+                                            class="text-[14px] font-medium text-navy leading-snug group-hover:text-gold transition-colors duration-200">
                                             {{ $ann[0] }}</p>
                                         <p class="text-[10px] font-bold tracking-[2px] uppercase text-gray-400 mt-1">
                                             {{ $ann[1] }}</p>
@@ -325,7 +325,7 @@
                                 style="font-size:clamp(18px,2vw,22px)">
                                 Pre-Bar Course<br>2026 &ndash; 2027
                             </h3>
-                            <p class="text-[13px] text-cloud/50 mb-6 leading-[1.65]">
+                            <p class="text-[14px] text-cloud/50 mb-6 leading-[1.65]">
                                 Applications open.<br>Deadline: July 2026.
                             </p>
                             <a href="https://forms.gslaw.school/surveys/23"
@@ -344,7 +344,7 @@
                                     <span
                                         class="text-[22px] font-serif font-bold text-gold/25 leading-none mt-0.5 flex-shrink-0 w-6 text-right">{{ $i + 1 }}</span>
                                     <span
-                                        class="text-[13px] text-gray-600 leading-snug group-hover:text-gold transition-colors duration-200">{{ $trend }}</span>
+                                        class="text-[14px] text-gray-600 leading-snug group-hover:text-gold transition-colors duration-200">{{ $trend }}</span>
                                 </li>
                             @endforeach
                         </ol>

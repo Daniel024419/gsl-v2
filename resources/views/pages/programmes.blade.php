@@ -5,10 +5,10 @@
     Specialised Development.')
 @section('content')
 
-    <section class="relative pt-[72px] min-h-[300px] flex items-end pb-14 px-[5%]"
+    <section class="relative pt-[97px] md:pt-[133px] min-h-[300px] flex items-end pb-14 px-[5%]"
         style="background:linear-gradient(135deg,#030f1a 0%,#0c4a6e 50%,#051b2c 100%)">
         <div class="max-w-6xl mx-auto w-full">
-            <p class="text-[13px] font-bold text-gold/70 tracking-[3px] uppercase mb-3">Our Programmes</p>
+            <p class="text-[14px] font-bold text-gold/70 tracking-[3px] uppercase mb-3">Our Programmes</p>
             <h1 class="font-serif font-semibold text-white leading-[1.1] mb-4" style="font-size:clamp(32px,5vw,58px)">Four
                 Pathways to<br><span class='text-gold'>Legal Excellence</span></h1>
             <p class="text-[16px] text-cloud/62 max-w-xl leading-[1.7]">From the flagship LPTC to the exclusively
@@ -26,8 +26,8 @@
                         <div class="flex items-start gap-4 p-4 rounded-lg bg-gray-50 border border-gray-200">
                             <div class="w-2 h-2 rounded-full bg-gold flex-shrink-0 mt-1.5"></div>
                             <div>
-                                <p class="text-[14px] font-semibold text-navy mb-0.5">{{ $c[0] }}</p>
-                                <p class="text-[13px] text-gray-600">{{ $c[1] }}</p>
+                                <p class="text-[15px] font-semibold text-navy mb-0.5">{{ $c[0] }}</p>
+                                <p class="text-[14px] text-gray-600">{{ $c[1] }}</p>
                             </div>
                         </div>
                     @endforeach
@@ -40,7 +40,7 @@
     <section class="py-20 px-[5%] bg-navy" id="post-call">
         <div class="max-w-6xl mx-auto">
             <div class="flex items-center gap-3 mb-6">
-                <p class="text-[13px] font-bold text-gold/50 tracking-[3px] uppercase">Programme 02</p>
+                <p class="text-[14px] font-bold text-gold/50 tracking-[3px] uppercase">Programme 02</p>
                 <span class="px-2.5 py-1 text-[10px] font-bold bg-gold text-navy rounded-full tracking-[1px] uppercase">Only
                     at GSL</span>
             </div>
@@ -56,13 +56,13 @@
                     <div class="grid grid-cols-1 gap-3 mb-6">
                         @foreach ([['Category A: Foreign Lawyers', 'Qualified and licensed in an analogous legal system (e.g. UK, Nigeria, South Africa). Country must have a reciprocal arrangement with Ghana.'], ['Category B: Reciprocal Jurisdiction Citizens', 'Citizens who have met educational requirements in a reciprocal jurisdiction and seek Ghana Roll of Lawyers enrolment.']] as $cat)
                             <div class="p-5 rounded-lg bg-navy-mid border border-gold/12">
-                                <p class="text-[13px] font-bold text-gold mb-1.5">{{ $cat[0] }}</p>
-                                <p class="text-[13px] text-cloud/60 leading-[1.65]">{{ $cat[1] }}</p>
+                                <p class="text-[14px] font-bold text-gold mb-1.5">{{ $cat[0] }}</p>
+                                <p class="text-[14px] text-cloud/60 leading-[1.65]">{{ $cat[1] }}</p>
                             </div>
                         @endforeach
                     </div>
                     <a href="{{ route('admissions') }}"
-                        class="inline-flex items-center gap-2 px-7 py-3.5 text-[14px] font-semibold bg-gold text-navy rounded hover:bg-gold-light hover:-translate-y-0.5 transition-all">
+                        class="inline-flex items-center gap-2 px-7 py-3.5 text-[15px] font-semibold bg-gold text-navy rounded hover:bg-gold-light hover:-translate-y-0.5 transition-all">
                         Apply for Post-Call Course
                     </a>
                 </div>
@@ -72,14 +72,14 @@
                             <div class="px-4 py-3 rounded-lg bg-navy-mid border border-gold/10">
                                 <p class="text-[10px] font-bold text-gold tracking-[2px] uppercase mb-1">{{ $m[0] }}
                                 </p>
-                                <p class="text-[13px] text-cloud/80">{{ $m[1] }}</p>
+                                <p class="text-[14px] text-cloud/80">{{ $m[1] }}</p>
                             </div>
                         @endforeach
                     </div>
-                    <h4 class="font-semibold text-[14px] text-white mb-3">Content Covers</h4>
+                    <h4 class="font-semibold text-[15px] text-white mb-3">Content Covers</h4>
                     <ul class="space-y-2">
                         @foreach (["Ghana's legal system and constitution", 'Civil and criminal procedure in Ghana', 'Ghanaian substantive law', 'Professional conduct standards in Ghana', 'Practical experience with Ghana courts and lawyers'] as $c)
-                            <li class="flex items-start gap-2.5 text-[13px] text-cloud/65"><span
+                            <li class="flex items-start gap-2.5 text-[14px] text-cloud/65"><span
                                     class="text-gold mt-0.5">›</span>{{ $c }}</li>
                         @endforeach
                     </ul>
@@ -91,7 +91,7 @@
     {{-- Remedial --}}
     <section class="py-20 px-[5%] bg-white" id="remedial">
         <div class="max-w-6xl mx-auto">
-            <p class="text-[13px] font-bold text-gold/70 tracking-[3px] uppercase mb-2">Programme 03</p>
+            <p class="text-[14px] font-bold text-gold/70 tracking-[3px] uppercase mb-2">Programme 03</p>
             <h2 class="font-serif font-semibold text-navy text-[32px] leading-[1.2] mb-2">Bar Examination Remedial Courses
             </h2>
             <div class="w-10 h-[3px] bg-gold rounded-full mb-8"></div>
@@ -102,9 +102,9 @@
                             class="w-9 h-9 rounded-full border border-gold bg-gold/10 flex items-center justify-center font-serif font-bold text-gold mb-4">
                             {{ $opt[0] }}</div>
                         <h4 class="font-serif font-semibold text-[16px] text-navy mb-1">{{ $opt[1] }}</h4>
-                        <p class="text-[13px] font-bold text-gold/70 tracking-[1.5px] uppercase mb-3">{{ $opt[2] }}
+                        <p class="text-[14px] font-bold text-gold/70 tracking-[1.5px] uppercase mb-3">{{ $opt[2] }}
                         </p>
-                        <p class="text-[13px] text-gray-600 leading-[1.65]">{{ $opt[3] }}</p>
+                        <p class="text-[14px] text-gray-600 leading-[1.65]">{{ $opt[3] }}</p>
                     </div>
                 @endforeach
             </div>
@@ -114,7 +114,7 @@
     {{-- Specialised --}}
     <section class="py-20 px-[5%] bg-navy" id="specialised">
         <div class="max-w-6xl mx-auto">
-            <p class="text-[13px] font-bold text-gold/50 tracking-[3px] uppercase mb-2">Programme 04</p>
+            <p class="text-[14px] font-bold text-gold/50 tracking-[3px] uppercase mb-2">Programme 04</p>
             <h2 class="font-serif font-semibold text-white text-[32px] leading-[1.2] mb-2">Specialised Professional
                 Development</h2>
             <div class="w-10 h-[3px] bg-gold rounded-full mb-8"></div>
@@ -125,7 +125,7 @@
                             {{ $cat[0] }}</h4>
                         <ul class="space-y-2.5">
                             @foreach ($cat[1] as $course)
-                                <li class="flex items-center gap-2.5 text-[13px] text-cloud/65">
+                                <li class="flex items-center gap-2.5 text-[14px] text-cloud/65">
                                     <span
                                         class="w-1.5 h-1.5 rounded-full bg-gold/60 flex-shrink-0"></span>{{ $course }}
                                 </li>

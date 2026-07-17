@@ -65,7 +65,8 @@
     @endphp
 
     {{-- ══ HERO ══════════════════════════════════════════════════════════ --}}
-    <section class="pt-[72px] pb-16 px-[5%]" style="background:linear-gradient(160deg,#030f1a 0%,#051b2c 60%,#071e2f 100%)">
+    <section class="pt-[97px] md:pt-[133px] pb-16 px-[5%]"
+        style="background:linear-gradient(160deg,#030f1a 0%,#051b2c 60%,#071e2f 100%)">
         <div class="max-w-6xl mx-auto">
             <div class="max-w-3xl pt-20 pb-4">
                 <span class="text-[10px] font-bold tracking-[4px] uppercase text-gold/65 block mb-7">Upcoming
@@ -88,7 +89,7 @@
     </section>
 
     {{-- ══ EVENTS GRID ════════════════════════════════════════════════════ --}}
-    <section class="px-[5%] pb-28 bg-white">
+    <section class="px-[5%] pt-[45px] pb-28 bg-white">
         <div class="max-w-6xl mx-auto">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 @foreach ($events as $ev)
@@ -120,7 +121,7 @@
                             </h3>
 
                             {{-- Description --}}
-                            <p class="text-[13px] text-gray-600 leading-[1.75] flex-grow mb-10">{{ $ev[5] }}</p>
+                            <p class="text-[14px] text-gray-600 leading-[1.75] flex-grow mb-10">{{ $ev[5] }}</p>
 
                             {{-- Location --}}
                             <div class="flex items-center gap-2.5 text-gray-400 pt-5 border-t border-gray-200">
@@ -140,7 +141,7 @@
                                     </svg>
                                 @endif
                                 <span
-                                    class="text-[13px] font-bold tracking-[2px] uppercase text-gray-500">{{ $ev[6] }}</span>
+                                    class="text-[14px] font-bold tracking-[2px] uppercase text-gray-500">{{ $ev[6] }}</span>
                             </div>
 
                         </div>

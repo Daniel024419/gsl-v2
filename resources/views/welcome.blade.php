@@ -6,7 +6,8 @@
 @section('content')
 
     {{-- HERO --}}
-    <section class="relative min-h-screen flex flex-col justify-center pt-[72px] pb-16 px-[5%] overflow-hidden bg-navy-dark">
+    <section
+        class="relative min-h-screen flex flex-col justify-center pt-[97px] md:pt-[133px] pb-16 px-[5%] overflow-hidden bg-navy-dark">
         {{-- Blurred building photo --}}
         <div class="absolute inset-0 scale-110"
             style="background:url('/GSL.png') center/cover no-repeat; filter:blur(5px) brightness(0.32);">
@@ -21,7 +22,7 @@
         </div>
         <div class="relative z-10 max-w-6xl mx-auto w-full">
 
-            <p class="text-[13px] text-gold/70 tracking-[3px] uppercase mb-3 font-light">Ghana School of Law</p>
+            <p class="text-[14px] text-gold/70 tracking-[3px] uppercase mb-3 font-light">Ghana School of Law</p>
             <h1 class="font-serif font-semibold text-white leading-[1.08] mb-6 max-w-[860px]"
                 style="font-size:clamp(44px,7vw,88px)">
                 Your Journey to<br>the <span class="text-gold">Bar</span> Starts Here
@@ -32,7 +33,7 @@
             </p>
             <div class="flex gap-4 flex-wrap items-center">
                 <a href="https://forms.gslaw.school/surveys/23" target="_blank" rel="noopener"
-                    class="inline-flex items-center gap-2 px-7 py-3.5 text-[14px] font-semibold
+                    class="inline-flex items-center gap-2 px-7 py-3.5 text-[15px] font-semibold
                       bg-gold text-navy rounded hover:bg-gold-light hover:-translate-y-0.5 transition-all duration-200">
                     Apply Now
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -42,7 +43,7 @@
                     </svg>
                 </a>
                 <a href="{{ route('programmes') }}"
-                    class="inline-flex items-center gap-2 px-7 py-[13px] text-[14px] font-medium
+                    class="inline-flex items-center gap-2 px-7 py-[13px] text-[15px] font-medium
                       border border-cloud/30 text-cloud rounded hover:border-gold hover:text-gold transition-all duration-200">
                     Explore Programmes
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -66,8 +67,8 @@
                     <span class="font-serif font-bold text-gold leading-none mb-2"
                         style="font-size:clamp(40px,5vw,64px)">{{ $stat[0] }}</span>
                     <span
-                        class="text-[12px] font-semibold text-navy tracking-[1.5px] uppercase mb-1">{{ $stat[1] }}</span>
-                    <span class="text-[12px] text-navy/40">{{ $stat[2] }}</span>
+                        class="text-[13px] font-semibold text-navy tracking-[1.5px] uppercase mb-1">{{ $stat[1] }}</span>
+                    <span class="text-[13px] text-navy/40">{{ $stat[2] }}</span>
                 </div>
             @endforeach
         </div>
@@ -82,7 +83,7 @@
                     <p class="text-[10px] font-bold text-gold/60 tracking-[3px] uppercase mb-3">Ghana School of Law</p>
                     <p class="font-serif text-[22px] font-semibold text-white/70">Centre of Excellence</p>
                     <div class="w-10 h-0.5 bg-gold rounded-full my-4"></div>
-                    <p class="text-[12px] text-cloud/40">Accra · Kumasi</p>
+                    <p class="text-[13px] text-cloud/40">Accra · Kumasi</p>
                 </div>
                 <div class="absolute -bottom-5 -right-5 bg-gold text-navy px-6 py-5 rounded-lg shadow-lg">
                     <span class="block font-serif font-bold text-[34px] leading-none">1963</span>
@@ -90,7 +91,7 @@
                 </div>
             </div>
             <div>
-                <p class="text-[13px] font-bold text-gold tracking-[3px] uppercase mb-3">Our New Role Under Act 1170</p>
+                <p class="text-[14px] font-bold text-gold tracking-[3px] uppercase mb-3">Our New Role Under Act 1170</p>
                 <h2 class="font-serif font-semibold text-navy leading-[1.2] mb-4" style="font-size:clamp(28px,3.5vw,44px)">
                     Shape Ghana's<br><span class="text-gold">Legal Future</span>
                 </h2>
@@ -102,7 +103,7 @@
                 </p>
                 <ul class="flex flex-col gap-3 mb-8">
                     @foreach (['Delivers the Law Practice Training Course as an accredited provider', 'Exclusively offers the Post-Call Course for foreign lawyers', 'Provides National Bar Examination remedial courses', 'Designs specialised professional development programmes', 'Operates under CLET accreditation with annual inspections'] as $pt)
-                        <li class="flex items-start gap-3 text-[14px] text-navy/70 leading-[1.6]">
+                        <li class="flex items-start gap-3 text-[15px] text-navy/70 leading-[1.6]">
                             <span
                                 class="mt-1 w-5 h-5 rounded-full border border-gold bg-gold/10 flex items-center justify-center flex-shrink-0">
                                 <svg class="w-2.5 h-2.5" fill="none" stroke="#b8960c" stroke-width="2.5"
@@ -115,7 +116,7 @@
                     @endforeach
                 </ul>
                 <a href="{{ route('about') }}"
-                    class="inline-flex items-center gap-2 px-7 py-3.5 text-[14px] font-semibold
+                    class="inline-flex items-center gap-2 px-7 py-3.5 text-[15px] font-semibold
                       bg-gold text-navy rounded hover:bg-gold-light hover:-translate-y-0.5 transition-all duration-200">
                     Learn More About GSL
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -137,7 +138,7 @@
                         <div
                             class="w-12 h-12 rounded-full border-2 border-gold flex items-center justify-center font-serif font-bold text-[18px] text-gold mb-3">
                             {{ $s[0] }}</div>
-                        <p class="text-[13px] font-bold text-white mb-1">{{ $s[1] }}</p>
+                        <p class="text-[14px] font-bold text-white mb-1">{{ $s[1] }}</p>
                         <p class="text-[10px] font-bold text-gold/65 tracking-[1.5px] uppercase">{{ $s[2] }}</p>
                     </div>
                 @else
@@ -154,7 +155,7 @@
             {{-- Header with inline nav --}}
             <div class="flex flex-wrap items-end justify-between gap-4 mb-10">
                 <div>
-                    <p class="text-[13px] font-bold text-gold tracking-[3px] uppercase mb-3">Our Programmes</p>
+                    <p class="text-[14px] font-bold text-gold tracking-[3px] uppercase mb-3">Our Programmes</p>
                     <h2 class="font-serif font-semibold text-navy leading-[1.2]" style="font-size:clamp(28px,3.5vw,44px)">
                         Four Pathways to <span class="text-gold">Legal Excellence</span>
                     </h2>
@@ -177,7 +178,7 @@
                         </svg>
                     </button>
                     <a href="{{ route('admissions') }}"
-                        class="ml-1 px-5 py-2.5 text-[13px] font-medium border border-navy/20 text-navy/55 rounded hover:border-gold hover:text-gold transition-all duration-200">
+                        class="ml-1 px-5 py-2.5 text-[14px] font-medium border border-navy/20 text-navy/55 rounded hover:border-gold hover:text-gold transition-all duration-200">
                         Admissions
                     </a>
                 </div>
@@ -200,7 +201,7 @@
                                 class="absolute top-4 right-5 text-[10px] font-bold bg-gold text-navy px-2.5 py-1 rounded-full tracking-[1px] uppercase">Only
                                 at GSL</span>
                         @endif
-                        <p class="text-[13px] font-bold text-gold/45 tracking-[3px] uppercase mb-4">Programme
+                        <p class="text-[14px] font-bold text-gold/45 tracking-[3px] uppercase mb-4">Programme
                             {{ $p[0] }}</p>
                         <div
                             class="w-12 h-12 rounded-lg bg-gold/8 border border-gold/20 flex items-center justify-center mb-5">
@@ -209,16 +210,16 @@
                         </div>
                         <h3 class="font-serif font-semibold text-[20px] text-white mb-3 leading-snug">{{ $p[1] }}
                         </h3>
-                        <p class="text-[14px] text-cloud/60 leading-[1.75] mb-6">{{ $p[2] }}</p>
+                        <p class="text-[15px] text-cloud/60 leading-[1.75] mb-6">{{ $p[2] }}</p>
                         <div class="flex flex-wrap gap-x-4 gap-y-1 mb-6">
                             @foreach ([['Duration', $p[3]], ['Start', $p[4]], ['For', $p[5]]] as $m)
-                                <span class="text-[12px] text-cloud/45"><strong
+                                <span class="text-[13px] text-cloud/45"><strong
                                         class="text-cloud/65 font-semibold">{{ $m[0] }}:</strong>
                                     {{ $m[1] }}</span>
                             @endforeach
                         </div>
                         <a href="{{ route('programmes') }}"
-                            class="inline-flex items-center gap-1.5 text-[13px] font-semibold text-gold hover:gap-3 transition-all duration-200">
+                            class="inline-flex items-center gap-1.5 text-[14px] font-semibold text-gold hover:gap-3 transition-all duration-200">
                             Learn More
                             <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2"
                                 stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
@@ -258,7 +259,7 @@
     <section class="py-24 px-[5%] bg-white">
         <div class="max-w-6xl mx-auto">
             <div class="text-center mb-12">
-                <p class="text-[13px] font-bold text-gold tracking-[3px] uppercase mb-3">Why Choose GSL</p>
+                <p class="text-[14px] font-bold text-gold tracking-[3px] uppercase mb-3">Why Choose GSL</p>
                 <h2 class="font-serif font-semibold text-navy leading-[1.2]" style="font-size:clamp(28px,3.5vw,44px)">
                     Ghana's Premier <span class="text-gold">Legal Training</span> Institution
                 </h2>
@@ -273,13 +274,13 @@
                                 stroke-linejoin="round" viewBox="0 0 24 24">{!! $c[2] !!}</svg>
                         </div>
                         <h3 class="font-serif font-semibold text-[17px] text-navy mb-2.5">{{ $c[0] }}</h3>
-                        <p class="text-[14px] text-navy/58 leading-[1.7]">{{ $c[1] }}</p>
+                        <p class="text-[15px] text-navy/58 leading-[1.7]">{{ $c[1] }}</p>
                     </div>
                 @endforeach
             </div>
             <div class="mt-10 text-center">
                 <a href="{{ route('about') }}"
-                    class="inline-flex items-center gap-2 px-6 py-3 text-[13px] font-semibold
+                    class="inline-flex items-center gap-2 px-6 py-3 text-[14px] font-semibold
                       border border-gold text-gold rounded hover:bg-gold hover:text-navy transition-all duration-200">
                     View All Reasons to Choose GSL
                     <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2"
@@ -296,7 +297,7 @@
     <section class="py-16 px-[5%] border-t border-b border-gold/10 bg-navy-dark/60">
         <div class="max-w-6xl mx-auto flex flex-col lg:flex-row items-start lg:items-center justify-between gap-10">
             <div>
-                <p class="text-[13px] font-bold text-gold tracking-[3px] uppercase mb-3">Admissions Open</p>
+                <p class="text-[14px] font-bold text-gold tracking-[3px] uppercase mb-3">Admissions Open</p>
                 <h2 class="font-serif font-semibold text-white leading-snug mb-3" style="font-size:clamp(22px,3vw,34px)">
                     Pre-Bar Course 2026/2027<br>Applications Now Open
                 </h2>
@@ -307,8 +308,8 @@
                 <div class="flex flex-wrap gap-3 mt-5">
                     <div class="px-4 py-3 rounded-lg bg-gold/7 border border-gold/18">
                         <p class="text-[10px] font-bold text-gold tracking-[2px] uppercase mb-1">Admissions Contact</p>
-                        <p class="text-[13px] text-cloud/75">+233 246 006 210</p>
-                        <p class="text-[13px] text-cloud/75">helpdesk@gslaw.edu.gh</p>
+                        <p class="text-[14px] text-cloud/75">+233 246 006 210</p>
+                        <p class="text-[14px] text-cloud/75">helpdesk@gslaw.edu.gh</p>
                     </div>
                     <div class="px-4 py-3 rounded-lg bg-gold/7 border border-gold/18">
                         <p class="text-[10px] font-bold text-gold tracking-[2px] uppercase mb-1">Programme Starts</p>
@@ -327,7 +328,7 @@
                         <polyline points="12 5 19 12 12 19" />
                     </svg>
                 </a>
-                <p class="text-[13px] text-cloud/30">Or scan QR code at gslaw.edu.gh</p>
+                <p class="text-[14px] text-cloud/30">Or scan QR code at gslaw.edu.gh</p>
             </div>
         </div>
     </section>
@@ -339,7 +340,7 @@
             {{-- Header with nav --}}
             <div class="flex flex-wrap items-end justify-between gap-4 mb-10">
                 <div>
-                    <p class="text-[13px] font-bold text-gold tracking-[3px] uppercase mb-3">Events Calendar</p>
+                    <p class="text-[14px] font-bold text-gold tracking-[3px] uppercase mb-3">Events Calendar</p>
                     <h2 class="font-serif font-semibold text-navy leading-[1.2]" style="font-size:clamp(28px,3.5vw,44px)">
                         Upcoming <span class="text-gold">Events</span>
                     </h2>
@@ -362,7 +363,7 @@
                         </svg>
                     </button>
                     <a href="{{ route('events') }}"
-                        class="ml-1 px-5 py-2 text-[13px] font-medium border border-navy/20 text-navy/55 rounded hover:border-gold hover:text-gold transition-all duration-200">
+                        class="ml-1 px-5 py-2 text-[14px] font-medium border border-navy/20 text-navy/55 rounded hover:border-gold hover:text-gold transition-all duration-200">
                         View All
                     </a>
                 </div>
@@ -378,13 +379,13 @@
                             <span
                                 class="font-serif font-bold text-[38px] text-navy leading-none">{{ $ev[0] }}</span>
                             <span
-                                class="text-[13px] font-bold text-navy uppercase tracking-wide">{{ $ev[1] }}</span>
+                                class="text-[14px] font-bold text-navy uppercase tracking-wide">{{ $ev[1] }}</span>
                         </div>
                         <div class="p-5">
-                            <p class="text-[13px] font-bold text-gold/80 tracking-[1.5px] uppercase mb-2">
+                            <p class="text-[14px] font-bold text-gold/80 tracking-[1.5px] uppercase mb-2">
                                 {{ $ev[2] }}</p>
                             <h4 class="font-serif font-semibold text-[16px] text-navy mb-2">{{ $ev[3] }}</h4>
-                            <p class="text-[13px] text-navy/55 leading-[1.6]">{{ $ev[4] }}</p>
+                            <p class="text-[14px] text-navy/55 leading-[1.6]">{{ $ev[4] }}</p>
                         </div>
                     </div>
                 @endforeach
@@ -402,7 +403,7 @@
             {{-- Header with nav --}}
             <div class="flex flex-wrap items-end justify-between gap-4 mb-10">
                 <div>
-                    <p class="text-[13px] font-bold text-gold tracking-[3px] uppercase mb-3">Latest News</p>
+                    <p class="text-[14px] font-bold text-gold tracking-[3px] uppercase mb-3">Latest News</p>
                     <h2 class="font-serif font-semibold text-navy leading-[1.2]" style="font-size:clamp(28px,3.5vw,44px)">
                         From the <span class="text-gold">School</span>
                     </h2>
@@ -425,7 +426,7 @@
                         </svg>
                     </button>
                     <a href="{{ route('news') }}"
-                        class="ml-1 px-5 py-2 text-[13px] font-medium border border-navy/20 text-navy/55 rounded hover:border-gold hover:text-gold transition-all duration-200">
+                        class="ml-1 px-5 py-2 text-[14px] font-medium border border-navy/20 text-navy/55 rounded hover:border-gold hover:text-gold transition-all duration-200">
                         All News
                     </a>
                 </div>
@@ -447,8 +448,8 @@
                             </p>
                             <h4 class="font-serif font-semibold text-[16px] text-navy leading-snug mb-2 flex-1">
                                 {{ $art[1] }}</h4>
-                            <p class="text-[13px] text-navy/55 leading-[1.65] mb-3">{{ $art[2] }}</p>
-                            <p class="text-[12px] text-navy/35">{{ $art[3] }}</p>
+                            <p class="text-[14px] text-navy/55 leading-[1.65] mb-3">{{ $art[2] }}</p>
+                            <p class="text-[13px] text-navy/35">{{ $art[3] }}</p>
                         </div>
                     </div>
                 @endforeach
@@ -462,7 +463,7 @@
     {{-- CTA BANNER --}}
     <section class="py-20 px-[5%] text-center border-t border-b border-gold/15"
         style="background:linear-gradient(135deg,#0c4a6e 0%,#051b2c 100%)">
-        <p class="text-[13px] font-bold text-gold tracking-[3px] uppercase mb-4">Your Legal Career Awaits</p>
+        <p class="text-[14px] font-bold text-gold tracking-[3px] uppercase mb-4">Your Legal Career Awaits</p>
         <h2 class="font-serif font-semibold text-white mb-4" style="font-size:clamp(28px,3.5vw,44px)">
             Ready to Join Ghana's Legal Profession?
         </h2>
