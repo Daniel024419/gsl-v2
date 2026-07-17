@@ -55,11 +55,11 @@
     "APP_NAME": "GSL Website",
     "APP_ENV": "production",
     "APP_DEBUG": "false",
-    "APP_URL": "https://gsl.vercel.app",
+    "APP_URL": "https://gsl-one.vercel.app",
 
     "APP_KEY": "base64:DA+epACypI9WGOzF4dRaaDgtrIyX6YIYy6Vhx5TXcKM=",
 
-    "ASSET_URL": "https://gsl.vercel.app",
+    "ASSET_URL": "https://gsl-one.vercel.app",
 
     "DB_CONNECTION": "sqlite",
 
