@@ -1,6 +1,7 @@
 @extends('layouts.app')
 @section('title', 'Events – Ghana School of Law')
-@section('description', 'Upcoming events at the Ghana School of Law - inductions, orientations, Call to the Bar
+@section('description',
+    'Upcoming events at the Ghana School of Law - inductions, orientations, Call to the Bar
     ceremonies, and more.')
 @section('content')
 
@@ -139,7 +140,7 @@
                                     </svg>
                                 @endif
                                 <span
-                                    class="text-[11px] font-bold tracking-[2px] uppercase text-gray-500">{{ $ev[6] }}</span>
+                                    class="text-[13px] font-bold tracking-[2px] uppercase text-gray-500">{{ $ev[6] }}</span>
                             </div>
 
                         </div>

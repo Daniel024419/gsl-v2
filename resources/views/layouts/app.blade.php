@@ -41,7 +41,7 @@
             <div class="hidden sm:block leading-tight">
                 <span class="block text-[12px] font-black text-navy tracking-[2px] uppercase">Ghana School of
                     Law</span>
-                <span class="block text-[11px] text-navy/60">A Directorate of CLET</span>
+                <span class="block text-[13px] text-navy/60">A Directorate of CLET</span>
             </div>
         </a>
 
@@ -49,7 +49,7 @@
             @foreach ($navItems as $item)
                 <li>
                     <a href="{{ route($item['route']) }}"
-                        class="nav-link hover-sleek text-[13px] font-medium tracking-wide transition-colors duration-200
+                        class="nav-link hover-sleek text-[14px] font-medium tracking-wide transition-colors duration-200
                       {{ request()->routeIs($item['route']) ? 'text-navy active' : 'text-navy/60 hover:text-navy' }}">
                         {{ $item['label'] }}
                     </a>
@@ -97,9 +97,9 @@
             <div class="flex items-center gap-2.5">
                 <div
                     class="w-8 h-8 rounded-full border border-gold bg-gold/10 flex items-center justify-center
-                        font-serif font-bold text-[11px] text-gold">
+                        font-serif font-bold text-[13px] text-gold">
                     GSL</div>
-                <span class="text-[11px] font-bold text-gold/80 tracking-[2px] uppercase">Navigation</span>
+                <span class="text-[13px] font-bold text-gold/80 tracking-[2px] uppercase">Navigation</span>
             </div>
             <button id="mob-close" aria-label="Close menu"
                 class="w-9 h-9 flex items-center justify-center rounded border border-gold/20
@@ -198,7 +198,7 @@
                             <a href="{{ $s[0] }}" target="_blank" rel="noopener"
                                 aria-label="{{ $s[2] }}"
                                 class="w-8 h-8 rounded-full border border-gold/15 flex items-center justify-center
-                              text-[11px] text-cloud/40 hover:border-gold/50 hover:text-gold transition-all duration-200">
+                              text-[13px] text-cloud/40 hover:border-gold/50 hover:text-gold transition-all duration-200">
                                 {{ $s[1] }}
                             </a>
                         @endforeach
@@ -206,7 +206,7 @@
                 </div>
 
                 <div>
-                    <h4 class="text-[11px] font-bold text-gold tracking-[2px] uppercase mb-5">Programmes</h4>
+                    <h4 class="text-[13px] font-bold text-gold tracking-[2px] uppercase mb-5">Programmes</h4>
                     <ul class="space-y-2.5">
                         @foreach ([['programmes', 'Law Practice Training'], ['programmes', 'Post-Call Law Course'], ['programmes', 'Bar Exam Remedial'], ['programmes', 'Specialised Development'], ['admissions', 'Pre-Bar Course']] as $l)
                             <li><a href="{{ route($l[0]) }}"
@@ -217,7 +217,7 @@
                 </div>
 
                 <div>
-                    <h4 class="text-[11px] font-bold text-gold tracking-[2px] uppercase mb-5">Quick Links</h4>
+                    <h4 class="text-[13px] font-bold text-gold tracking-[2px] uppercase mb-5">Quick Links</h4>
                     <ul class="space-y-2.5">
                         @foreach ([['https://sms.gslaw.school/portal', 'Student Portal'], ['https://sms.gslaw.school/faculty', 'Lecturer Portal'], ['https://sms.gslaw.school/admin', 'Staff Portal'], ['https://forms.gslaw.school/surveys/23', 'Apply Now']] as $l)
                             <li><a href="{{ $l[0] }}" target="_blank" rel="noopener"
@@ -228,7 +228,7 @@
                 </div>
 
                 <div>
-                    <h4 class="text-[11px] font-bold text-gold tracking-[2px] uppercase mb-5">Contact</h4>
+                    <h4 class="text-[13px] font-bold text-gold tracking-[2px] uppercase mb-5">Contact</h4>
                     <ul class="space-y-3 text-[13px] text-cloud/55">
                         <li class="flex items-start gap-2.5 leading-snug">
                             <svg class="w-3.5 h-3.5 flex-shrink-0 mt-0.5 stroke-gold fill-none" stroke-width="1.5"
@@ -282,11 +282,13 @@
                   w-[340px] max-w-[90vw] h-[460px] max-h-[70vh] bg-white rounded-2xl shadow-2xl
                   border border-gray-200 flex flex-col overflow-hidden">
 
-            <div class="flex items-center justify-between gap-3 px-4 py-3 bg-navy border-b border-gold/15 flex-shrink-0">
+            <div
+                class="flex items-center justify-between gap-3 px-4 py-3 bg-navy border-b border-gold/15 flex-shrink-0">
                 <div class="flex items-center gap-2.5">
                     <div
                         class="w-8 h-8 rounded-full border border-gold bg-gold/10 flex items-center justify-center
-                              font-serif font-bold text-[11px] text-gold">GSL</div>
+                              font-serif font-bold text-[13px] text-gold">
+                        GSL</div>
                     <div>
                         <p class="text-[13px] font-semibold text-white leading-tight">GSL Assistant</p>
                         <p class="text-[10px] text-cloud/50">Ask about admissions &amp; programmes</p>
@@ -298,29 +300,33 @@
             </div>
 
             <div id="chat-messages" class="flex-1 overflow-y-auto px-4 py-4 space-y-3 bg-gray-50">
-                <div class="max-w-[85%] bg-white border border-gray-200 text-navy text-[13px] leading-snug rounded-xl rounded-bl-sm px-3.5 py-2.5">
-                    Hi, I'm the GSL Assistant. Ask me about admissions, programmes, fees, or how to get in touch - or tap an option below.
+                <div
+                    class="max-w-[85%] bg-white border border-gray-200 text-navy text-[13px] leading-snug rounded-xl rounded-bl-sm px-3.5 py-2.5">
+                    Hi, I'm the GSL Assistant. Ask me about admissions, programmes, fees, or how to get in touch - or
+                    tap an option below.
                 </div>
             </div>
 
-            <div id="chat-quick-replies" class="flex flex-wrap gap-2 px-4 py-3 border-t border-gray-200 bg-white flex-shrink-0">
+            <div id="chat-quick-replies"
+                class="flex flex-wrap gap-2 px-4 py-3 border-t border-gray-200 bg-white flex-shrink-0">
                 @foreach (['Admissions', 'Programmes', 'Fees', 'Contact'] as $q)
                     <button type="button"
-                        class="chat-quick px-3 py-1.5 text-[11px] font-semibold rounded-full border border-gold/30 text-gold hover:bg-gold/10 transition-colors">
+                        class="chat-quick px-3 py-1.5 text-[13px] font-semibold rounded-full border border-gold/30 text-gold hover:bg-gold/10 transition-colors">
                         {{ $q }}
                     </button>
                 @endforeach
             </div>
 
-            <form id="chat-form" class="flex items-center gap-2 px-3 py-3 border-t border-gray-200 bg-white flex-shrink-0">
+            <form id="chat-form"
+                class="flex items-center gap-2 px-3 py-3 border-t border-gray-200 bg-white flex-shrink-0">
                 <input id="chat-input" type="text" placeholder="Type your question..." autocomplete="off"
                     class="flex-1 min-w-0 px-3 py-2 text-[13px] text-navy bg-gray-50 border border-gray-300 rounded-lg
                           focus:outline-none focus:border-gold/60 transition-colors">
                 <button type="submit" aria-label="Send"
                     class="w-9 h-9 flex-shrink-0 rounded-lg bg-gold text-navy flex items-center justify-center
                           hover:bg-gold-light transition-colors">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round" viewBox="0 0 24 24">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
                         <line x1="22" y1="2" x2="11" y2="13" />
                         <polygon points="22 2 15 22 11 13 2 9 22 2" />
                     </svg>
@@ -333,7 +339,8 @@
                   hover:bg-gold-light hover:-translate-y-0.5 transition-all duration-200">
             <svg id="chat-icon-open" class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2"
                 stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
-                <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
+                <path
+                    d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
             </svg>
             <svg id="chat-icon-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" stroke-width="2"
                 stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
@@ -503,11 +510,11 @@
 
     <script>
         /* ── scroll flip reveal ──────────────────────────────────────────
-           Works on every page automatically.
-           • Each top-level section/div inside <main> (except the hero) gets
-             a flip-in effect as it enters the viewport.
-           • Direct grid/flex children of those blocks get staggered delays.
-        ──────────────────────────────────────────────────────────────── */
+                   Works on every page automatically.
+                   • Each top-level section/div inside <main> (except the hero) gets
+                     a flip-in effect as it enters the viewport.
+                   • Direct grid/flex children of those blocks get staggered delays.
+                ──────────────────────────────────────────────────────────────── */
         (function() {
             'use strict';
             if (!window.IntersectionObserver) return;

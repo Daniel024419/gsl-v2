@@ -1,6 +1,7 @@
 @extends('layouts.app')
 @section('title', 'Ghana School of Law – Your Journey to the Bar Starts Here')
-@section('description', 'Ghana School of Law – Your official pathway to the Ghana Bar. LPTC, Post-Call Course, Bar Exam
+@section('description',
+    'Ghana School of Law – Your official pathway to the Ghana Bar. LPTC, Post-Call Course, Bar Exam
     Preparation and Specialised Professional Development under CLET Act 1170.')
 @section('content')
 
@@ -89,7 +90,7 @@
                 </div>
             </div>
             <div>
-                <p class="text-[11px] font-bold text-gold tracking-[3px] uppercase mb-3">Our New Role Under Act 1170</p>
+                <p class="text-[13px] font-bold text-gold tracking-[3px] uppercase mb-3">Our New Role Under Act 1170</p>
                 <h2 class="font-serif font-semibold text-navy leading-[1.2] mb-4" style="font-size:clamp(28px,3.5vw,44px)">
                     Shape Ghana's<br><span class="text-gold">Legal Future</span>
                 </h2>
@@ -153,7 +154,7 @@
             {{-- Header with inline nav --}}
             <div class="flex flex-wrap items-end justify-between gap-4 mb-10">
                 <div>
-                    <p class="text-[11px] font-bold text-gold tracking-[3px] uppercase mb-3">Our Programmes</p>
+                    <p class="text-[13px] font-bold text-gold tracking-[3px] uppercase mb-3">Our Programmes</p>
                     <h2 class="font-serif font-semibold text-navy leading-[1.2]" style="font-size:clamp(28px,3.5vw,44px)">
                         Four Pathways to <span class="text-gold">Legal Excellence</span>
                     </h2>
@@ -199,7 +200,7 @@
                                 class="absolute top-4 right-5 text-[10px] font-bold bg-gold text-navy px-2.5 py-1 rounded-full tracking-[1px] uppercase">Only
                                 at GSL</span>
                         @endif
-                        <p class="text-[11px] font-bold text-gold/45 tracking-[3px] uppercase mb-4">Programme
+                        <p class="text-[13px] font-bold text-gold/45 tracking-[3px] uppercase mb-4">Programme
                             {{ $p[0] }}</p>
                         <div
                             class="w-12 h-12 rounded-lg bg-gold/8 border border-gold/20 flex items-center justify-center mb-5">
@@ -257,7 +258,7 @@
     <section class="py-24 px-[5%] bg-white">
         <div class="max-w-6xl mx-auto">
             <div class="text-center mb-12">
-                <p class="text-[11px] font-bold text-gold tracking-[3px] uppercase mb-3">Why Choose GSL</p>
+                <p class="text-[13px] font-bold text-gold tracking-[3px] uppercase mb-3">Why Choose GSL</p>
                 <h2 class="font-serif font-semibold text-navy leading-[1.2]" style="font-size:clamp(28px,3.5vw,44px)">
                     Ghana's Premier <span class="text-gold">Legal Training</span> Institution
                 </h2>
@@ -295,7 +296,7 @@
     <section class="py-16 px-[5%] border-t border-b border-gold/10 bg-navy-dark/60">
         <div class="max-w-6xl mx-auto flex flex-col lg:flex-row items-start lg:items-center justify-between gap-10">
             <div>
-                <p class="text-[11px] font-bold text-gold tracking-[3px] uppercase mb-3">Admissions Open</p>
+                <p class="text-[13px] font-bold text-gold tracking-[3px] uppercase mb-3">Admissions Open</p>
                 <h2 class="font-serif font-semibold text-white leading-snug mb-3" style="font-size:clamp(22px,3vw,34px)">
                     Pre-Bar Course 2026/2027<br>Applications Now Open
                 </h2>
@@ -326,7 +327,7 @@
                         <polyline points="12 5 19 12 12 19" />
                     </svg>
                 </a>
-                <p class="text-[11px] text-cloud/30">Or scan QR code at gslaw.edu.gh</p>
+                <p class="text-[13px] text-cloud/30">Or scan QR code at gslaw.edu.gh</p>
             </div>
         </div>
     </section>
@@ -338,7 +339,7 @@
             {{-- Header with nav --}}
             <div class="flex flex-wrap items-end justify-between gap-4 mb-10">
                 <div>
-                    <p class="text-[11px] font-bold text-gold tracking-[3px] uppercase mb-3">Events Calendar</p>
+                    <p class="text-[13px] font-bold text-gold tracking-[3px] uppercase mb-3">Events Calendar</p>
                     <h2 class="font-serif font-semibold text-navy leading-[1.2]" style="font-size:clamp(28px,3.5vw,44px)">
                         Upcoming <span class="text-gold">Events</span>
                     </h2>
@@ -380,7 +381,7 @@
                                 class="text-[13px] font-bold text-navy uppercase tracking-wide">{{ $ev[1] }}</span>
                         </div>
                         <div class="p-5">
-                            <p class="text-[11px] font-bold text-gold/80 tracking-[1.5px] uppercase mb-2">
+                            <p class="text-[13px] font-bold text-gold/80 tracking-[1.5px] uppercase mb-2">
                                 {{ $ev[2] }}</p>
                             <h4 class="font-serif font-semibold text-[16px] text-navy mb-2">{{ $ev[3] }}</h4>
                             <p class="text-[13px] text-navy/55 leading-[1.6]">{{ $ev[4] }}</p>
@@ -401,7 +402,7 @@
             {{-- Header with nav --}}
             <div class="flex flex-wrap items-end justify-between gap-4 mb-10">
                 <div>
-                    <p class="text-[11px] font-bold text-gold tracking-[3px] uppercase mb-3">Latest News</p>
+                    <p class="text-[13px] font-bold text-gold tracking-[3px] uppercase mb-3">Latest News</p>
                     <h2 class="font-serif font-semibold text-navy leading-[1.2]" style="font-size:clamp(28px,3.5vw,44px)">
                         From the <span class="text-gold">School</span>
                     </h2>
@@ -461,7 +462,7 @@
     {{-- CTA BANNER --}}
     <section class="py-20 px-[5%] text-center border-t border-b border-gold/15"
         style="background:linear-gradient(135deg,#0c4a6e 0%,#051b2c 100%)">
-        <p class="text-[11px] font-bold text-gold tracking-[3px] uppercase mb-4">Your Legal Career Awaits</p>
+        <p class="text-[13px] font-bold text-gold tracking-[3px] uppercase mb-4">Your Legal Career Awaits</p>
         <h2 class="font-serif font-semibold text-white mb-4" style="font-size:clamp(28px,3.5vw,44px)">
             Ready to Join Ghana's Legal Profession?
         </h2>

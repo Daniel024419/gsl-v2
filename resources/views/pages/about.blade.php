@@ -1,13 +1,14 @@
 @extends('layouts.app')
 @section('title', 'About Ghana School of Law')
-@section('description', 'Learn about GSL - history, transformation under CLET Act 1170, vision, mission, and
+@section('description',
+    'Learn about GSL - history, transformation under CLET Act 1170, vision, mission, and
     governance.')
 @section('content')
 
     <section class="relative pt-[72px] min-h-[300px] flex items-end pb-14 px-[5%]"
         style="background:linear-gradient(135deg,#030f1a 0%,#0c4a6e 50%,#051b2c 100%)">
         <div class="max-w-6xl mx-auto w-full">
-            <p class="text-[11px] font-bold text-gold/70 tracking-[3px] uppercase mb-3">About Ghana School of Law</p>
+            <p class="text-[13px] font-bold text-gold/70 tracking-[3px] uppercase mb-3">About Ghana School of Law</p>
             <h1 class="font-serif font-semibold text-white leading-[1.1] mb-4" style="font-size:clamp(32px,5vw,58px)">Ghana's
                 Premier<br><span class='text-gold'>Legal Training</span> Institution</h1>
             <p class="text-[16px] text-cloud/62 max-w-xl leading-[1.7]">Established in 1963, the Ghana School of Law now
@@ -19,7 +20,7 @@
     <section class="py-20 px-[5%] bg-white">
         <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div>
-                <p class="text-[11px] font-bold text-gold tracking-[3px] uppercase mb-3">Our History</p>
+                <p class="text-[13px] font-bold text-gold tracking-[3px] uppercase mb-3">Our History</p>
                 <h2 class="font-serif font-semibold text-navy text-[34px] leading-[1.2] mb-5">
                     Over Six Decades of<br><span class="text-gold">Legal Excellence</span>
                 </h2>
@@ -39,7 +40,7 @@
                 @foreach ([['1963', 'GSL Founded'], ['12,226+', 'Lawyers Enrolled'], ['3', 'Campuses'], ['2026', 'Act 1170']] as $f)
                     <div class="p-6 rounded-xl bg-gray-50 border border-gray-200 text-center">
                         <p class="font-serif font-bold text-gold text-[32px] mb-1">{{ $f[0] }}</p>
-                        <p class="text-[11px] text-gray-500 uppercase tracking-[1.5px] font-semibold">{{ $f[1] }}
+                        <p class="text-[13px] text-gray-500 uppercase tracking-[1.5px] font-semibold">{{ $f[1] }}
                         </p>
                     </div>
                 @endforeach
@@ -51,13 +52,13 @@
     <section class="py-20 px-[5%] bg-navy">
         <div class="max-w-6xl mx-auto">
             <div class="text-center mb-12">
-                <p class="text-[11px] font-bold text-gold tracking-[3px] uppercase mb-3">Act 1170 Transformation</p>
+                <p class="text-[13px] font-bold text-gold tracking-[3px] uppercase mb-3">Act 1170 Transformation</p>
                 <h2 class="font-serif font-semibold text-white text-[34px]">What Changed Under <span class="text-gold">Act
                         1170</span></h2>
             </div>
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
                 <div class="p-8 rounded-xl border border-red-500/20 bg-red-500/5">
-                    <p class="text-[11px] font-bold text-red-400 tracking-[2px] uppercase mb-5">Before (Pre-Act 1170)</p>
+                    <p class="text-[13px] font-bold text-red-400 tracking-[2px] uppercase mb-5">Before (Pre-Act 1170)</p>
                     @foreach (['Sole provider of professional legal education in Ghana', 'Set own standards and regulations independently', 'Operated autonomously with own Board of Governors', 'No external quality assurance or accreditation review', 'Delivered only the Law Practice Training Course'] as $b)
                         <div class="flex items-start gap-3 mb-3 text-[14px] text-cloud/60">
                             <span class="text-red-400 mt-0.5 flex-shrink-0">&#10005;</span>{{ $b }}
@@ -65,7 +66,7 @@
                     @endforeach
                 </div>
                 <div class="p-8 rounded-xl border border-gold/20 bg-gold/5">
-                    <p class="text-[11px] font-bold text-gold tracking-[2px] uppercase mb-5">After (Under Act 1170)</p>
+                    <p class="text-[13px] font-bold text-gold tracking-[2px] uppercase mb-5">After (Under Act 1170)</p>
                     @foreach (['Directorate of CLET - part of national legal education system', 'Operates under CLET accreditation and quality standards', 'Reports to CLET Director-General; governed by CLET Board', 'Annual mandatory inspections by CLET', 'Four distinct programmes including two new statutory roles'] as $a)
                         <div class="flex items-start gap-3 mb-3 text-[14px] text-cloud/75">
                             <span class="text-gold mt-0.5 flex-shrink-0">&#10003;</span>{{ $a }}
@@ -80,7 +81,7 @@
     <section class="py-20 px-[5%] bg-white">
         <div class="max-w-6xl mx-auto">
             <div class="text-center mb-12">
-                <p class="text-[11px] font-bold text-gold tracking-[3px] uppercase mb-3">Our Identity</p>
+                <p class="text-[13px] font-bold text-gold tracking-[3px] uppercase mb-3">Our Identity</p>
                 <h2 class="font-serif font-semibold text-navy text-[34px]">Vision, Mission <span class="text-gold">&amp;
                         Values</span></h2>
             </div>
@@ -99,7 +100,7 @@
     {{-- CLET Governance --}}
     <section class="py-20 px-[5%] bg-navy">
         <div class="max-w-2xl mx-auto text-center">
-            <p class="text-[11px] font-bold text-gold tracking-[3px] uppercase mb-3">Governance Structure</p>
+            <p class="text-[13px] font-bold text-gold tracking-[3px] uppercase mb-3">Governance Structure</p>
             <h2 class="font-serif font-semibold text-white text-[34px] mb-10">GSL within <span class="text-gold">CLET</span>
             </h2>
             <div class="flex flex-col items-center gap-2">

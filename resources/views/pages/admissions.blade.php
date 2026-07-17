@@ -1,13 +1,14 @@
 @extends('layouts.app')
 @section('title', 'Admissions – Ghana School of Law')
-@section('description', 'Apply to the Ghana School of Law. Requirements, application process, key dates, and contact
+@section('description',
+    'Apply to the Ghana School of Law. Requirements, application process, key dates, and contact
     information for all programmes.')
 @section('content')
 
     <section class="relative pt-[72px] min-h-[300px] flex items-end pb-14 px-[5%]"
         style="background:linear-gradient(135deg,#030f1a 0%,#0c4a6e 50%,#051b2c 100%)">
         <div class="max-w-6xl mx-auto w-full">
-            <p class="text-[11px] font-bold text-gold/70 tracking-[3px] uppercase mb-3">Admissions</p>
+            <p class="text-[13px] font-bold text-gold/70 tracking-[3px] uppercase mb-3">Admissions</p>
             <h1 class="font-serif font-semibold text-white leading-[1.1] mb-4" style="font-size:clamp(32px,5vw,58px)">Start
                 Your Journey<br><span class='text-gold'>to the Bar</span></h1>
             <p class="text-[16px] text-cloud/62 max-w-xl leading-[1.7]">Applications for the September 2026 intake are now
@@ -75,7 +76,7 @@
     <section class="py-20 px-[5%] bg-navy">
         <div class="max-w-6xl mx-auto">
             <div class="text-center mb-12">
-                <p class="text-[11px] font-bold text-gold tracking-[3px] uppercase mb-3">How to Apply</p>
+                <p class="text-[13px] font-bold text-gold tracking-[3px] uppercase mb-3">How to Apply</p>
                 <h2 class="font-serif font-semibold text-white text-[34px]">Application Process</h2>
             </div>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -95,7 +96,7 @@
     <section class="py-20 px-[5%] bg-white">
         <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12">
             <div>
-                <p class="text-[11px] font-bold text-gold tracking-[3px] uppercase mb-3">Key Dates</p>
+                <p class="text-[13px] font-bold text-gold tracking-[3px] uppercase mb-3">Key Dates</p>
                 <h2 class="font-serif font-semibold text-navy text-[28px] mb-6">Important Deadlines</h2>
                 <div class="space-y-3">
                     @foreach ([['Applications Open', 'Now - 2026', 'border-gold/25 bg-gold/8 text-gold'], ['Application Deadline', 'July 2026', 'border-gray-200 bg-gray-50 text-gray-600'], ['Entrance Examination', 'August 2026', 'border-gray-200 bg-gray-50 text-gray-600'], ['Programme Commences', 'September 2026', 'border-gray-200 bg-gray-50 text-gray-600']] as $d)
@@ -107,7 +108,7 @@
                 </div>
             </div>
             <div>
-                <p class="text-[11px] font-bold text-gold tracking-[3px] uppercase mb-3">Need Help?</p>
+                <p class="text-[13px] font-bold text-gold tracking-[3px] uppercase mb-3">Need Help?</p>
                 <h2 class="font-serif font-semibold text-navy text-[28px] mb-6">Contact Admissions</h2>
                 <div class="space-y-3">
                     @foreach ([['+233 246 006 210', 'Phone'], ['+233 531 003 918', 'Phone'], ['helpdesk@gslaw.edu.gh', 'Email'], ['admissions@gslaw.edu.gh', 'Email']] as $c)
@@ -115,7 +116,7 @@
                             <div
                                 class="w-9 h-9 rounded-lg bg-gold/10 border border-gold/20 flex items-center justify-center flex-shrink-0">
                                 <span
-                                    class="text-gold font-bold text-[11px] tracking-[1px]">{{ strtoupper(substr($c[1], 0, 2)) }}</span>
+                                    class="text-gold font-bold text-[13px] tracking-[1px]">{{ strtoupper(substr($c[1], 0, 2)) }}</span>
                             </div>
                             <div>
                                 <p class="text-[10px] font-bold text-gold/70 tracking-[2px] uppercase">{{ $c[1] }}
