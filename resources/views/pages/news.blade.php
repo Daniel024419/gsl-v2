@@ -5,69 +5,6 @@
     announcements.')
 @section('content')
 
-    @php
-        $articles = [
-            [
-                'cat' => 'Institutional',
-                'title' => 'Orientation 2025',
-                'excerpt' =>
-                    'The Ghana School of Law successfully held its 2025/2026 orientation for new students across all three campuses.',
-                'date' => 'June 2025',
-                'read' => '5 min read',
-                'icon' =>
-                    '<path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>',
-            ],
-            [
-                'cat' => 'Events',
-                'title' => 'Call to the Bar 2025',
-                'excerpt' =>
-                    '961 lawyers were called to the Ghana Bar in 2025 - 513 female, marking a historic milestone for gender inclusion.',
-                'date' => 'November 2025',
-                'read' => '3 min read',
-                'icon' => '<circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/>',
-            ],
-            [
-                'cat' => 'Academic',
-                'title' => 'Act 1170 Transformation',
-                'excerpt' =>
-                    'GSL formally transitions to its new role as a Directorate of CLET under the Legal Education Act, 2026 (Act 1170).',
-                'date' => 'January 2026',
-                'read' => '7 min read',
-                'icon' => '<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>',
-            ],
-            [
-                'cat' => 'Admissions',
-                'title' => 'Pre-Bar Course Applications Open',
-                'excerpt' =>
-                    'Applications are now open for the official Pre-Bar Course for the 2026/2027 academic year.',
-                'date' => 'June 2026',
-                'read' => '2 min read',
-                'icon' =>
-                    '<path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/>',
-            ],
-            [
-                'cat' => 'Academic',
-                'title' => 'CLET Board Announced',
-                'excerpt' =>
-                    'The Council for Legal Education and Training officially constituted its inaugural Board, marking a new era for legal education governance.',
-                'date' => 'March 2026',
-                'read' => '4 min read',
-                'icon' =>
-                    '<rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>',
-            ],
-            [
-                'cat' => 'Events',
-                'title' => 'Induction Ceremony 2025',
-                'excerpt' =>
-                    'The 2025/2026 academic year began with a vibrant induction ceremony welcoming new students to the GSL community.',
-                'date' => 'September 2025',
-                'read' => '3 min read',
-                'icon' =>
-                    '<path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>',
-            ],
-        ];
-    @endphp
-
     {{-- ══ BREAKING TICKER ══════════════════════════════════════════════ --}}
     <div class="bg-navy-dark border-y border-gold/15 py-2.5 overflow-hidden mt-[72px]">
         <div class="max-w-6xl mx-auto px-[5%] flex items-center gap-4">
@@ -90,23 +27,18 @@
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
 
             {{-- Featured Article --}}
-            <div class="lg:col-span-8 group cursor-pointer">
-                <div class="aspect-[16/9] w-full overflow-hidden rounded-xl relative"
-                    style="background:linear-gradient(135deg,#030f1a 0%,#071e2f 45%,#0c4a6e 100%)">
-                    <div class="absolute inset-0 flex flex-col items-center justify-center gap-4 p-8">
-                        <div
-                            class="w-20 h-20 rounded-full bg-gold/8 border border-gold/20 flex items-center justify-center">
-                            <svg class="w-9 h-9 stroke-gold/50 fill-none" stroke-width="1.2" stroke-linecap="round"
-                                stroke-linejoin="round" viewBox="0 0 24 24">
-                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-                            </svg>
-                        </div>
-                        <div class="text-center">
-                            <p class="text-[10px] font-bold tracking-[4px] uppercase text-gold/40">Ghana School of Law</p>
-                            <p class="text-[14px] text-cloud/20 tracking-[2px] mt-1">Legal Education Act 2026 · Act 1170</p>
-                        </div>
+            <a href="{{ route('news.show', $articles[2]['slug']) }}" class="lg:col-span-8 group block">
+                <div class="aspect-[16/9] w-full overflow-hidden rounded-xl relative">
+                    <img src="{{ asset('assets/images/homehero.png') }}" alt="Ghana School of Law campus"
+                        loading="lazy" class="absolute inset-0 w-full h-full object-cover">
+                    <div class="absolute inset-0"
+                        style="background:linear-gradient(135deg,rgba(3,15,26,0.75) 0%,rgba(7,30,47,0.55) 45%,rgba(12,74,110,0.3) 100%)">
                     </div>
-                    <div class="absolute bottom-0 left-0 right-0 h-1/3"
+                    <div class="absolute top-5 left-5">
+                        <img src="{{ asset('assets/clet-gsl-logo.png') }}" alt="Ghana School of Law"
+                            loading="lazy" class="h-14 w-auto opacity-90">
+                    </div>
+                    <div class="absolute bottom-0 left-0 right-0 h-1/2"
                         style="background:linear-gradient(to top,#030f1a,transparent)"></div>
                 </div>
                 <div class="mt-7">
@@ -133,13 +65,13 @@
                             <p class="text-[14px] text-cloud/35 uppercase tracking-[1px] mt-0.5">January 2026 &bull; 7 Min
                                 Read</p>
                         </div>
-                        <a href="#"
-                            class="ml-auto text-[14px] font-bold tracking-[2px] uppercase text-gold border border-gold/25 px-4 py-2 rounded hover:bg-gold/8 transition-colors">
+                        <span
+                            class="ml-auto text-[14px] font-bold tracking-[2px] uppercase text-gold border border-gold/25 px-4 py-2 rounded group-hover:bg-gold/8 transition-colors">
                             READ MORE &rarr;
-                        </a>
+                        </span>
                     </div>
                 </div>
-            </div>
+            </a>
 
             {{-- Hero Sidebar --}}
             <div class="lg:col-span-4 flex flex-col gap-6">
@@ -153,15 +85,17 @@
                     </div>
                     <div class="space-y-6">
                         @foreach ([$articles[0], $articles[1], $articles[4]] as $mr)
-                            <article class="group cursor-pointer">
-                                <h4
-                                    class="font-serif font-semibold text-[15px] text-white leading-snug group-hover:text-gold transition-colors duration-200">
-                                    {{ $mr['title'] }}
-                                </h4>
-                                <p class="text-[13px] text-cloud/45 leading-[1.6] mt-1.5 line-clamp-2">{{ $mr['excerpt'] }}
-                                </p>
-                                <p class="text-[10px] font-bold tracking-[2px] uppercase text-cloud/30 mt-2">
-                                    {{ $mr['cat'] }}</p>
+                            <article class="group">
+                                <a href="{{ route('news.show', $mr['slug']) }}">
+                                    <h4
+                                        class="font-serif font-semibold text-[15px] text-white leading-snug group-hover:text-gold transition-colors duration-200">
+                                        {{ $mr['title'] }}
+                                    </h4>
+                                    <p class="text-[13px] text-cloud/45 leading-[1.6] mt-1.5 line-clamp-2">
+                                        {{ $mr['excerpt'] }}</p>
+                                    <p class="text-[10px] font-bold tracking-[2px] uppercase text-cloud/30 mt-2">
+                                        {{ $mr['cat'] }}</p>
+                                </a>
                             </article>
                         @endforeach
                     </div>
@@ -198,27 +132,34 @@
                 <div class="lg:col-span-8">
 
                     {{-- Tab Bar --}}
-                    <div class="flex gap-8 border-b border-gray-200 mb-10">
-                        <button
+                    <div class="flex gap-8 border-b border-gray-200 mb-10" data-news-tabs>
+                        <button type="button" data-news-tab="recent"
                             class="text-[10px] font-bold tracking-[3px] uppercase text-navy py-4 border-b-2 border-gold -mb-px">RECENT
                             POSTS</button>
-                        <button
-                            class="text-[10px] font-bold tracking-[3px] uppercase text-gray-400 py-4 hover:text-navy/60 transition-colors">ALL
+                        <button type="button" data-news-tab="all"
+                            class="text-[10px] font-bold tracking-[3px] uppercase text-gray-400 py-4 border-b-2 border-transparent -mb-px hover:text-navy/60 transition-colors">ALL
                             CATEGORIES</button>
                     </div>
 
-                    <div class="space-y-12">
+                    <div data-news-panel="recent" class="space-y-12">
 
                         {{-- Feed: horizontal article cards (articles 3 & 5) --}}
                         @foreach ([$articles[3], $articles[5]] as $fa)
-                            <article
+                            <a href="{{ route('news.show', $fa['slug']) }}"
                                 class="flex flex-col md:flex-row gap-6 group p-4 -mx-4 hover:bg-gray-50 rounded-xl transition-colors duration-200">
-                                <div class="md:w-1/3 aspect-[4/3] overflow-hidden rounded-lg flex-shrink-0 flex items-center justify-center"
-                                    style="background:linear-gradient(135deg,#071e2f,#0c4a6e)">
-                                    <svg class="w-10 h-10 stroke-gold/25 fill-none" stroke-width="1" stroke-linecap="round"
-                                        stroke-linejoin="round" viewBox="0 0 24 24">
-                                        {!! $fa['icon'] !!}
-                                    </svg>
+                                <div class="md:w-1/3 aspect-[4/3] overflow-hidden rounded-lg flex-shrink-0">
+                                    @if (!empty($fa['image']))
+                                        <img src="{{ asset($fa['image']) }}" alt="{{ $fa['title'] }}" loading="lazy"
+                                            class="w-full h-full object-cover">
+                                    @else
+                                        <div class="w-full h-full flex items-center justify-center"
+                                            style="background:linear-gradient(135deg,#071e2f,#0c4a6e)">
+                                            <svg class="w-10 h-10 stroke-gold/25 fill-none" stroke-width="1"
+                                                stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                                                {!! $fa['icon'] !!}
+                                            </svg>
+                                        </div>
+                                    @endif
                                 </div>
                                 <div class="md:w-2/3 flex flex-col justify-center">
                                     <span
@@ -233,25 +174,32 @@
                                             class="text-[14px] text-gray-400 uppercase tracking-[1px]">{{ $fa['date'] }}</span>
                                         <span
                                             class="text-[14px] text-gray-400 uppercase tracking-[1px]">{{ $fa['read'] }}</span>
-                                        <a href="#"
-                                            class="ml-auto text-[10px] font-bold tracking-[2px] uppercase text-gold hover:underline">
+                                        <span
+                                            class="ml-auto text-[10px] font-bold tracking-[2px] uppercase text-gold group-hover:underline">
                                             READ MORE &rarr;
-                                        </a>
+                                        </span>
                                     </div>
                                 </div>
-                            </article>
+                            </a>
                         @endforeach
 
                         {{-- Bento: 2-col mini-cards (articles 0 & 1) --}}
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 border-t border-gray-200 pt-12">
                             @foreach ([$articles[0], $articles[1]] as $bc)
-                                <article class="group cursor-pointer">
-                                    <div class="w-full aspect-video rounded-lg overflow-hidden mb-4 flex items-center justify-center"
-                                        style="background:linear-gradient(135deg,#051b2c,#0c4a6e)">
-                                        <svg class="w-8 h-8 stroke-gold/20 fill-none" stroke-width="1"
-                                            stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
-                                            {!! $bc['icon'] !!}
-                                        </svg>
+                                <a href="{{ route('news.show', $bc['slug']) }}" class="group block">
+                                    <div class="w-full aspect-video rounded-lg overflow-hidden mb-4">
+                                        @if (!empty($bc['image']))
+                                            <img src="{{ asset($bc['image']) }}" alt="{{ $bc['title'] }}"
+                                                loading="lazy" class="w-full h-full object-cover">
+                                        @else
+                                            <div class="w-full h-full flex items-center justify-center"
+                                                style="background:linear-gradient(135deg,#051b2c,#0c4a6e)">
+                                                <svg class="w-8 h-8 stroke-gold/20 fill-none" stroke-width="1"
+                                                    stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                                                    {!! $bc['icon'] !!}
+                                                </svg>
+                                            </div>
+                                        @endif
                                     </div>
                                     <span
                                         class="text-[10px] font-bold tracking-[3px] uppercase text-gold mb-1.5 block">{{ $bc['cat'] }}</span>
@@ -266,14 +214,55 @@
                                         <span
                                             class="text-[14px] text-gray-400 uppercase tracking-[1px]">{{ $bc['date'] }}
                                             &bull; {{ $bc['read'] }}</span>
-                                        <a href="#"
-                                            class="text-[10px] font-bold tracking-[2px] uppercase text-gold hover:underline">READ
-                                            &rarr;</a>
+                                        <span
+                                            class="text-[10px] font-bold tracking-[2px] uppercase text-gold group-hover:underline">READ
+                                            &rarr;</span>
                                     </div>
-                                </article>
+                                </a>
                             @endforeach
                         </div>
 
+                    </div>
+
+                    {{-- All Categories: every article --}}
+                    <div data-news-panel="all" class="hidden">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        @foreach ($articles as $a)
+                            <a href="{{ route('news.show', $a['slug']) }}"
+                                class="group block p-4 -mx-4 rounded-xl hover:bg-gray-50 transition-colors duration-200">
+                                <div class="w-full aspect-video rounded-lg overflow-hidden mb-4">
+                                    @if (!empty($a['image']))
+                                        <img src="{{ asset($a['image']) }}" alt="{{ $a['title'] }}" loading="lazy"
+                                            class="w-full h-full object-cover">
+                                    @else
+                                        <div class="w-full h-full flex items-center justify-center"
+                                            style="background:linear-gradient(135deg,#051b2c,#0c4a6e)">
+                                            <svg class="w-8 h-8 stroke-gold/20 fill-none" stroke-width="1"
+                                                stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                                                {!! $a['icon'] !!}
+                                            </svg>
+                                        </div>
+                                    @endif
+                                </div>
+                                <span
+                                    class="text-[10px] font-bold tracking-[3px] uppercase text-gold mb-1.5 block">{{ $a['cat'] }}</span>
+                                <h3
+                                    class="font-serif font-semibold text-[15px] text-navy leading-snug group-hover:text-gold transition-colors duration-200">
+                                    {{ $a['title'] }}
+                                </h3>
+                                <p class="mt-2 text-[14px] text-gray-500 leading-[1.65] line-clamp-2">
+                                    {{ $a['excerpt'] }}
+                                </p>
+                                <div class="mt-3 flex items-center justify-between">
+                                    <span class="text-[14px] text-gray-400 uppercase tracking-[1px]">{{ $a['date'] }}
+                                        &bull; {{ $a['read'] }}</span>
+                                    <span
+                                        class="text-[10px] font-bold tracking-[2px] uppercase text-gold group-hover:underline">READ
+                                        &rarr;</span>
+                                </div>
+                            </a>
+                        @endforeach
+                        </div>
                     </div>
                 </div>
 
@@ -356,3 +345,33 @@
     </section>
 
 @endsection
+
+@push('scripts')
+    <script>
+        (function() {
+            'use strict';
+
+            const ACTIVE = 'text-[10px] font-bold tracking-[3px] uppercase text-navy py-4 border-b-2 border-gold -mb-px';
+            const INACTIVE = 'text-[10px] font-bold tracking-[3px] uppercase text-gray-400 py-4 border-b-2 border-transparent -mb-px hover:text-navy/60 transition-colors';
+
+            document.querySelectorAll('[data-news-tabs]').forEach(function(tabs) {
+                const buttons = Array.from(tabs.querySelectorAll('[data-news-tab]'));
+                const panels = Array.from(document.querySelectorAll('[data-news-panel]'));
+
+                buttons.forEach(function(btn) {
+                    btn.addEventListener('click', function() {
+                        const target = btn.getAttribute('data-news-tab');
+
+                        buttons.forEach(function(b) {
+                            b.className = b === btn ? ACTIVE : INACTIVE;
+                        });
+
+                        panels.forEach(function(p) {
+                            p.classList.toggle('hidden', p.getAttribute('data-news-panel') !== target);
+                        });
+                    });
+                });
+            });
+        }());
+    </script>
+@endpush

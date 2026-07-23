@@ -91,24 +91,19 @@
                 'desc' => 'All GSL programmes at a glance',
                 'children' => [
                     [
-                        'label' => 'Programmes',
-                        'children' => [
-                            [
-                                'route' => 'programmes.statutory',
-                                'label' => 'Statutory Programme',
-                                'desc' => 'LPTC and Post-Call Law Course',
-                            ],
-                            [
-                                'route' => 'programmes.non-statutory',
-                                'label' => 'Non-Statutory Programme',
-                                'desc' => 'Remedial and specialised development',
-                            ],
-                            [
-                                'route' => 'programmes.pre-bar-course',
-                                'label' => 'Pre-Bar Course',
-                                'desc' => 'Preparatory course for LLB graduates',
-                            ],
-                        ],
+                        'route' => 'programmes.pre-bar-course',
+                        'label' => 'Pre-Bar Course',
+                        'desc' => 'Transitional preparatory course for LLB graduates',
+                    ],
+                    [
+                        'route' => 'programmes.law-practice-training',
+                        'label' => 'Law Practice Training (LPT)',
+                        'desc' => 'The 1-year professional training programme',
+                    ],
+                    [
+                        'route' => 'programmes.post-call-law-course',
+                        'label' => 'Post-Call Law Course',
+                        'desc' => 'For lawyers called to the Bar in other Common Law jurisdictions',
                     ],
                     [
                         'route' => 'examinations',
@@ -123,7 +118,6 @@
                 ],
             ],
             [
-                'route' => 'admissions',
                 'label' => 'Admissions',
                 'desc' => 'Entry requirements and how to apply',
                 'children' => [
@@ -151,6 +145,7 @@
                     ],
                 ],
             ],
+            ['route' => 'student-life', 'label' => 'Student Life', 'desc' => 'Campus life, community, and student experience'],
             ['route' => 'events', 'label' => 'Events', 'desc' => 'Upcoming GSL events and ceremonies'],
             ['route' => 'news', 'label' => 'News', 'desc' => 'Latest institutional news and updates'],
             ['route' => 'alumni', 'label' => 'Alumni', 'desc' => 'GSL alumni network and community'],
@@ -654,9 +649,9 @@
     {{-- ══ FOOTER ══════════════════════════════════════════════════ --}}
     <footer class="bg-navy-dark border-t border-gold/10 pt-16 pb-8 px-[5%]">
         <div class="max-w-6xl mx-auto">
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-10 mb-12">
 
-                <div>
+                <div class="lg:col-span-2">
                     <div class="flex items-center gap-3 mb-4">
                         <div
                             class="w-11 h-11 rounded-full border-2 border-gold bg-gold/10 flex items-center justify-center
@@ -687,9 +682,20 @@
                 <div>
                     <h4 class="text-[14px] font-bold text-gold tracking-[2px] uppercase mb-5">Programmes</h4>
                     <ul class="space-y-2.5">
-                        @foreach ([['programmes', 'Law Practice Training'], ['programmes', 'Post-Call Law Course'], ['programmes', 'Bar Exam Remedial'], ['programmes', 'Specialised Development'], ['admissions', 'Pre-Bar Course']] as $l)
+                        @foreach ([['programmes.pre-bar-course', 'Pre-Bar Course'], ['programmes.law-practice-training', 'Law Practice Training (LPT)'], ['programmes.post-call-law-course', 'Post-Call Law Course'], ['programmes', 'Bar Exam Remedial'], ['programmes', 'Specialised Development']] as $l)
                             <li><a href="{{ route($l[0]) }}"
                                     class="text-[14px] text-cloud/55 hover:text-gold transition-colors">{{ $l[1] }}</a>
+                            </li>
+                        @endforeach
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-[14px] font-bold text-gold tracking-[2px] uppercase mb-5">Latest News</h4>
+                    <ul class="space-y-2.5">
+                        @foreach (collect(config('news.articles'))->take(5) as $n)
+                            <li><a href="{{ route('news.show', $n['slug']) }}"
+                                    class="text-[14px] text-cloud/55 hover:text-gold transition-colors line-clamp-1">{{ $n['title'] }}</a>
                             </li>
                         @endforeach
                     </ul>
@@ -1004,7 +1010,7 @@
         (function() {
             'use strict';
 
-            /* ── 1. Pages — auto-generated server-side from $navItems ── */
+            /* ── 1. Pages - auto-generated server-side from $navItems ── */
             var PAGES = {!! json_encode($searchPages) !!};
 
             /* ── 2. DOM refs ─────────────────────────────────────────── */
@@ -1155,11 +1161,11 @@
 
     <script>
         /* ── scroll flip reveal ──────────────────────────────────────────
-                                           Works on every page automatically.
-                                           • Each top-level section/div inside <main> (except the hero) gets
-                                             a flip-in effect as it enters the viewport.
-                                           • Direct grid/flex children of those blocks get staggered delays.
-                                        ──────────────────────────────────────────────────────────────── */
+                                               Works on every page automatically.
+                                               • Each top-level section/div inside <main> (except the hero) gets
+                                                 a flip-in effect as it enters the viewport.
+                                               • Direct grid/flex children of those blocks get staggered delays.
+                                            ──────────────────────────────────────────────────────────────── */
         (function() {
             'use strict';
             if (!window.IntersectionObserver) return;

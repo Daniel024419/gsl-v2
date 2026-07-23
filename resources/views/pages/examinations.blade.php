@@ -37,7 +37,7 @@
                     subject-specific remedial, mock exams, and one-on-one tutoring - support candidates preparing to
                     sit or resit the examination.
                 </p>
-                <a href="{{ route('programmes.non-statutory') }}"
+                <a href="{{ route('programmes') }}#remedial"
                     class="text-[11px] font-bold tracking-[2px] uppercase text-gold hover:underline">See Remedial
                     Courses &rarr;</a>
             </div>

@@ -76,12 +76,36 @@
                         </svg>
                     </button>
                 </form>
+
+                <div class="flex items-center gap-5 mt-10 pt-8 border-t border-gray-200">
+                    <a href="https://www.facebook.com/gslawofficial" target="_blank" rel="noopener noreferrer"
+                        aria-label="Ghana School of Law on Facebook"
+                        class="text-navy hover:text-gold transition-colors text-[20px]"><i class="bi bi-facebook"></i></a>
+                    <a href="https://x.com/gslaw_official" target="_blank" rel="noopener noreferrer"
+                        aria-label="Ghana School of Law on Twitter/X"
+                        class="text-navy hover:text-gold transition-colors text-[20px]"><i class="bi bi-twitter-x"></i></a>
+                    <a href="https://www.youtube.com/@gslawofficial" target="_blank" rel="noopener noreferrer"
+                        aria-label="Ghana School of Law on YouTube"
+                        class="text-navy hover:text-gold transition-colors text-[20px]"><i class="bi bi-youtube"></i></a>
+                    <a href="https://www.instagram.com/gslaw_official/" target="_blank" rel="noopener noreferrer"
+                        aria-label="Ghana School of Law on Instagram"
+                        class="text-navy hover:text-gold transition-colors text-[20px]"><i class="bi bi-instagram"></i></a>
+                </div>
             </div>
 
             <div class="lg:col-span-2 flex flex-col gap-5">
+                <div class="p-5 rounded-xl bg-gray-50 border border-gray-200">
+                    <p class="text-[14px] font-bold text-gold tracking-[2px] uppercase mb-3">General Enquiries</p>
+                    <p class="text-[15px] text-gray-600 mb-0.5">(233) 307 003 231</p>
+                    <p class="text-[15px] text-gray-600 mb-3">(233) 307 003 230</p>
+                    <p class="text-[14px] text-gray-600 mb-0.5">admissions@gslaw.edu.gh</p>
+                    <p class="text-[14px] text-gray-600 mb-0.5">enquiries@gslaw.edu.gh</p>
+                    <p class="text-[14px] text-gray-600">postcall@gslaw.edu.gh</p>
+                </div>
+
                 <div>
-                    <p class="text-[14px] font-bold text-gold tracking-[3px] uppercase mb-4">Our Offices</p>
-                    @foreach ([['Accra (Main Campus)', 'Independence Avenue, Makola, Accra', '+233 307 003 231 / 30', 'enquiries@gslaw.edu.gh'], ['Kumasi Campus', 'KNUST Campus Area, Kumasi', '+233 322 000 000', 'kumasi@gslaw.edu.gh']] as $o)
+                    <p class="text-[14px] font-bold text-gold tracking-[3px] uppercase mb-4">Other Campus Contacts</p>
+                    @foreach ([['Kumasi Campus', 'ICIL Building', '+233 245 619 568', 'kumasicampus@gslaw.edu.gh'], ['Greenhill Campus', 'GIMPA Law Faculty', '+233 207 376 549', 'greenhillcampus@gslaw.edu.gh'], ['UPSA Campus', 'UPSA Campus', '+233 244 925 844', 'upsacampus@gslaw.edu.gh']] as $o)
                         <div class="mb-3 p-5 rounded-xl bg-gray-50 border border-gray-200">
                             <p class="text-[14px] font-bold text-gold mb-2">{{ $o[0] }}</p>
                             <p class="text-[14px] text-gray-600 leading-snug mb-0.5">{{ $o[1] }}</p>
@@ -90,13 +114,53 @@
                         </div>
                     @endforeach
                 </div>
-                <div class="p-5 rounded-xl bg-gold/8 border border-gold/25">
-                    <p class="text-[14px] font-bold text-gold tracking-[2px] uppercase mb-2">Admissions Hotline</p>
-                    <p class="font-serif font-semibold text-navy text-[22px] mb-1">+233 246 006 210</p>
-                    <p class="text-[14px] text-gray-600">Monday – Friday, 8:00am – 5:00pm</p>
-                </div>
             </div>
 
+        </div>
+    </section>
+
+    {{-- Map --}}
+    <section class="py-20 px-[5%] bg-gray-50">
+        <div class="max-w-6xl mx-auto">
+            <p class="text-[14px] font-bold text-gold tracking-[3px] uppercase mb-3 text-center">Find Us</p>
+            <h2 class="font-serif font-semibold text-navy text-[30px] mb-8 text-center">Ghana School of Law, Makola
+            </h2>
+            <div class="rounded-xl overflow-hidden shadow-lg">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3971.1403515878214!2d-0.2054207!3d5.546199199999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xfdf9096014dfb45%3A0xeb8706d378993279!2sGhana%20School%20Of%20Law!5e0!3m2!1sen!2sgh!4v1761896613186!5m2!1sen!2sgh"
+                    width="100%" height="420" style="border:0" allowfullscreen loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade" title="Ghana School of Law location"></iframe>
+            </div>
+        </div>
+    </section>
+
+    {{-- Departmental Directory --}}
+    <section class="py-20 px-[5%] bg-white">
+        <div class="max-w-6xl mx-auto">
+            <p class="text-[14px] font-bold text-gold tracking-[3px] uppercase mb-3 text-center">Directory</p>
+            <h2 class="font-serif font-semibold text-navy text-[30px] mb-10 text-center">Departmental Directory</h2>
+            <div class="overflow-x-auto rounded-xl border border-gray-200">
+                <table class="w-full text-left border-collapse">
+                    <thead class="bg-navy">
+                        <tr>
+                            <th class="p-4 text-[13px] font-bold text-white tracking-[1px] uppercase">Department/Unit
+                            </th>
+                            <th class="p-4 text-[13px] font-bold text-white tracking-[1px] uppercase">Email</th>
+                            <th class="p-4 text-[13px] font-bold text-white tracking-[1px] uppercase">Phone Number
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ([['Accounts Office', 'bleaccounts@gslaw.edu.gh', '0201163170'], ['IT Office', 'it.support@gslaw.edu.gh', '0246006210'], ['Library', 'library@gslaw.edu.gh', ''], ['Records Office', 'records@gslaw.edu.gh', '0246941879'], ['Registry', 'registry@gslaw.edu.gh', '0307003231 / 0307003230 / 0553302485'], ['Student Affairs', 'studentaffairs@gslaw.edu.gh', '']] as $d)
+                            <tr class="border-t border-gray-200 hover:bg-gray-50 transition-colors">
+                                <td class="p-4 text-[14px] text-navy font-semibold">{{ $d[0] }}</td>
+                                <td class="p-4 text-[14px] text-gray-600">{{ $d[1] }}</td>
+                                <td class="p-4 text-[14px] text-gray-600">{{ $d[2] ?: '-' }}</td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
         </div>
     </section>
 

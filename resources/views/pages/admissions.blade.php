@@ -16,58 +16,180 @@
         </div>
     </section>
 
-    <section class="py-20 px-[5%] bg-white">
+    {{-- Admission Requirements --}}
+    <section class="py-20 px-[5%] bg-white" id="requirements">
         <div class="max-w-6xl mx-auto">
-            <div class="flex flex-wrap items-center justify-between gap-4 mb-10">
-                <div>
-                    <div
-                        class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-gold/10 border border-gold/25 mb-3">
-                        <span class="w-1.5 h-1.5 rounded-full bg-gold"></span>
-                        <span class="text-[10px] font-bold text-gold tracking-[2px] uppercase">Applications Open</span>
+            <p class="text-[14px] font-bold text-gold tracking-[3px] uppercase mb-3">Eligibility</p>
+            <h2 class="font-serif font-semibold text-navy text-[34px] mb-14">Admission Requirements</h2>
+
+            <div class="flex flex-col gap-10">
+
+                {{-- Professional Law Course --}}
+                <div class="p-8 lg:p-10 rounded-2xl border border-gray-200 bg-gray-50">
+                    <h3 class="font-serif font-semibold text-navy text-[24px] mb-2">Professional Law Course</h3>
+                    <div class="w-10 h-[3px] bg-gold rounded-full mb-6"></div>
+                    <p class="text-[15px] text-gray-600 leading-[1.8] mb-6">
+                        Applicant must first pass the Entrance Examination. The following are eligible to apply:
+                    </p>
+
+                    <div class="p-5 rounded-lg bg-gold/8 border border-gold/20 mb-8">
+                        <p class="text-[11px] font-bold text-gold tracking-[2px] uppercase mb-2">Additional
+                            Requirement</p>
+                        <p class="text-[14px] text-gray-600 mb-3">Applicant must also have passed at least one of
+                            the following elective subjects:</p>
+                        <div class="flex flex-wrap gap-2">
+                            @foreach (['Natural Resources Law', 'Environmental Law', 'Intellectual Property Law', 'Law of Taxation'] as $e)
+                                <span
+                                    class="px-3 py-1.5 rounded-full bg-white border border-gold/25 text-[13px] text-navy">{{ $e }}</span>
+                            @endforeach
+                        </div>
                     </div>
-                    <h2 class="font-serif font-semibold text-navy text-[30px]">Pre-Bar Course 2026/2027</h2>
+
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                        <div>
+                            <h4 class="font-semibold text-[15px] text-navy mb-3">Local Applicant</h4>
+                            <div class="space-y-3">
+                                @foreach (['LLB graduates from Public Universities in Ghana (UG, KNUST, GIMPA) approved by the General Legal Council (GLC) and National Accreditation Board (NAB)', 'LLB graduates from Private Universities in Ghana accredited by the GLC and NAB'] as $r)
+                                    <div class="flex items-start gap-3 p-4 rounded-lg bg-white border border-gray-200">
+                                        <div class="w-2 h-2 rounded-full bg-gold flex-shrink-0 mt-1.5"></div>
+                                        <p class="text-[14px] text-gray-600 leading-[1.65]">{{ $r }}</p>
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-[15px] text-navy mb-3">Foreign Applicants (Ghanaian
+                                Citizens)</h4>
+                            <p class="text-[14px] text-gray-600 leading-[1.7] mb-3">
+                                Ghanaian LLB graduates or holders of equivalent law degrees from UK, USA, Canada or
+                                other Common Law jurisdictions, who have passed the following subjects:
+                            </p>
+                            <div class="grid grid-cols-2 gap-2">
+                                @foreach (['Ghana Constitutional Law', 'Ghana Legal System and Methods', 'Criminal Law', 'Law of Equity and Succession', 'Law of Torts', 'Law of Contract', 'Law of Immovable Property', 'Company Law', 'Commercial Law'] as $s)
+                                    <div class="px-3 py-2 rounded-lg bg-white border border-gray-200 text-[13px] text-gray-600">
+                                        {{ $s }}</div>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+
+                    <p class="text-[14px] text-gray-500 leading-[1.7] mt-8 pt-6 border-t border-gray-200">
+                        <span class="font-bold text-navy">Outcome:</span> Successful candidates are enrolled in
+                        the Professional Law Course and, upon completion, are called to the Bar as
+                        Barristers-at-Law and Solicitors of the Supreme Court.
+                    </p>
                 </div>
-                <a href="https://forms.gslaw.school/surveys/23" target="_blank" rel="noopener"
-                    class="inline-flex items-center gap-2 px-6 py-3 text-[15px] font-semibold bg-gold text-navy rounded hover:bg-gold-light hover:-translate-y-0.5 transition-all">
-                    Apply Online Now
-                </a>
-            </div>
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
-                <div>
-                    <h3 class="font-serif font-semibold text-[20px] text-navy mb-5">Who Can Apply?</h3>
-                    <div class="space-y-3">
-                        @foreach (['LLB Graduates - Class of 2026', 'Existing LLB graduates (all years)', 'Ghanaian nationals with LLB from common law jurisdictions', 'Graduates from GTEC/GLC-accredited law faculties'] as $e)
-                            <div class="flex items-center gap-3 p-4 rounded-lg bg-gray-50 border border-gray-200">
-                                <div
-                                    class="w-8 h-8 rounded-full border border-gold bg-gold/10 flex items-center justify-center flex-shrink-0">
-                                    <svg class="w-3.5 h-3.5" fill="none" stroke="#b8960c" stroke-width="2.5"
-                                        stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
-                                        <polyline points="20 6 9 17 4 12" />
-                                    </svg>
-                                </div>
-                                <p class="text-[15px] text-gray-700">{{ $e }}</p>
+
+                {{-- Post-Call Law Course --}}
+                <div class="p-8 lg:p-10 rounded-2xl border border-gray-200 bg-gray-50">
+                    <h3 class="font-serif font-semibold text-navy text-[24px] mb-2">Post-Call Law Course for
+                        Lawyers from Other Common Law Jurisdictions</h3>
+                    <div class="w-10 h-[3px] bg-gold rounded-full mb-6"></div>
+                    <p class="text-[15px] text-gray-600 leading-[1.8] mb-8">
+                        For lawyers trained in other Common Law jurisdictions.
+                    </p>
+
+                    <h4 class="font-semibold text-[15px] text-navy mb-3">Who Can Apply</h4>
+                    <div class="space-y-3 mb-8">
+                        @foreach (['Ghanaian citizens qualified to practice law abroad in jurisdictions analogous to Ghana', 'Non-Ghanaian lawyers from countries with reciprocal arrangements with Ghana'] as $w)
+                            <div class="flex items-start gap-3 p-4 rounded-lg bg-white border border-gray-200">
+                                <div class="w-2 h-2 rounded-full bg-gold flex-shrink-0 mt-1.5"></div>
+                                <p class="text-[14px] text-gray-600 leading-[1.65]">{{ $w }}</p>
                             </div>
                         @endforeach
                     </div>
-                </div>
-                <div>
-                    <h3 class="font-serif font-semibold text-[20px] text-navy mb-5">Course Modules</h3>
-                    <div class="grid grid-cols-2 gap-2.5 mb-6">
-                        @foreach (['Company Law', 'Commercial Law', 'Alternative Dispute Resolution', 'Family Law', 'Interpretation of Deeds & Statutes', 'Approved Electives'] as $m)
-                            <div class="px-4 py-3 rounded-lg bg-gray-50 border border-gray-200 text-[14px] text-gray-600">
-                                {{ $m }}</div>
-                        @endforeach
-                    </div>
-                    <div class="grid grid-cols-2 gap-3">
-                        @foreach ([['Starts', 'September 2026'], ['Deadline', 'July 2026'], ['Phone', '+233 246 006 210'], ['Email', 'helpdesk@gslaw.edu.gh']] as $d)
-                            <div class="px-4 py-3 rounded-lg bg-gold/8 border border-gold/20">
-                                <p class="text-[10px] font-bold text-gold tracking-[2px] uppercase mb-1">{{ $d[0] }}
-                                </p>
-                                <p class="text-[14px] text-gray-700">{{ $d[1] }}</p>
+
+                    <h4 class="font-semibold text-[15px] text-navy mb-3">Requirements</h4>
+                    <p class="text-[14px] text-gray-600 leading-[1.7] mb-4">
+                        Applicants should have studied (or their equivalents of) the following subjects:
+                    </p>
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-4">
+                        <div>
+                            <p class="text-[11px] font-bold text-gold tracking-[2px] uppercase mb-3">Core
+                                Subjects</p>
+                            <div class="grid grid-cols-2 gap-2">
+                                @foreach (['Law of Contract', 'Law of Torts', 'Criminal Law', 'Law of Immovable Property', 'Equity of Succession', 'Company Law', 'Commercial Law'] as $s)
+                                    <div class="px-3 py-2 rounded-lg bg-white border border-gray-200 text-[13px] text-gray-600">
+                                        {{ $s }}</div>
+                                @endforeach
                             </div>
-                        @endforeach
+                        </div>
+                        <div>
+                            <p class="text-[11px] font-bold text-gold tracking-[2px] uppercase mb-3">Plus One
+                                Elective</p>
+                            <div class="grid grid-cols-2 gap-2">
+                                @foreach (['Natural Resources Law', 'Law of Taxation', 'Intellectual Property Law', 'Environmental Law', 'Labour Law'] as $s)
+                                    <div class="px-3 py-2 rounded-lg bg-white border border-gray-200 text-[13px] text-gray-600">
+                                        {{ $s }}</div>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-[13px] text-gray-400 mb-8">Course titles may differ depending on jurisdiction.
+                    </p>
+
+                    <p class="text-[14px] text-gray-500 leading-[1.7] pt-6 border-t border-gray-200">
+                        <span class="font-bold text-navy">Outcome:</span> Admission as a Barrister-at-Law and
+                        Solicitor of the Supreme Court.
+                    </p>
+                </div>
+
+                {{-- Pre-Bar Course --}}
+                <div class="p-8 lg:p-10 rounded-2xl border border-gray-200 bg-gray-50">
+                    <h3 class="font-serif font-semibold text-navy text-[24px] mb-2">The Transitional Pre-Bar
+                        Course</h3>
+                    <div class="w-10 h-[3px] bg-gold rounded-full mb-6"></div>
+
+                    <div class="flex flex-col gap-5 text-[15px] text-gray-600 leading-[1.8] mb-8">
+                        <p>
+                            The Director of Legal Education and the Ghana School of Law, Professor Raymond
+                            Atuguba, issued directives on behalf of the Attorney-General and the Minister for
+                            Justice of the Republic of Ghana introducing the Pre-Bar Course, which serves as a
+                            transitional arrangement following the passage of the Legal Education Act, 2026 (Act
+                            1170). Under the reforms, accredited universities may retain graduating LLB students
+                            for an additional year to undertake a Pre-Bar Course covering core theoretical
+                            subjects. Graduates who complete the course become eligible for the Law Practice
+                            Training (LPT) Programme and the National Bar Examinations.
+                        </p>
+                        <p>
+                            The reforms also abolish the previous entrance examination system administered by the
+                            Independent Examinations Committee (IEC). Existing LLB graduates may now apply
+                            directly to accredited law faculties or the Ghana School of Law for admission into the
+                            transitional programme. Universities that are unable to offer the Pre-Bar Course may
+                            collaborate with or transfer students to the Ghana School of Law.
+                        </p>
+                    </div>
+
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                        <div>
+                            <h4 class="font-semibold text-[15px] text-navy mb-3">Core Theoretical Subjects</h4>
+                            <div class="space-y-2">
+                                @foreach (['Company Law', 'Commercial Law', 'Alternative Dispute Resolution (ADR)', 'Family Law', 'Interpretation of Deeds and Statutes', 'Any other relevant elective subjects (including those faculties may add to meet minimum credit requirements)'] as $m)
+                                    <div class="px-4 py-2.5 rounded-lg bg-white border border-gray-200 text-[14px] text-gray-600">
+                                        {{ $m }}</div>
+                                @endforeach
+                            </div>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-[15px] text-navy mb-3">Who Is Eligible</h4>
+                            <div class="space-y-2">
+                                @foreach (['LLB Graduates - Class of 2026', 'Existing LLB Graduates', 'Graduates from Any GTEC/GLC Accredited Law Faculty', 'Ghanaian Nationals with LLB from Common Law Jurisdictions'] as $e)
+                                    <div class="flex items-center gap-3 p-3 rounded-lg bg-white border border-gray-200">
+                                        <div
+                                            class="w-7 h-7 rounded-full border border-gold bg-gold/10 flex items-center justify-center flex-shrink-0">
+                                            <svg class="w-3 h-3" fill="none" stroke="#b8960c" stroke-width="2.5"
+                                                stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                                                <polyline points="20 6 9 17 4 12" />
+                                            </svg>
+                                        </div>
+                                        <p class="text-[14px] text-gray-700">{{ $e }}</p>
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
                     </div>
                 </div>
+
             </div>
         </div>
     </section>

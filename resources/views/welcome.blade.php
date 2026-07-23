@@ -8,13 +8,22 @@
     {{-- HERO --}}
     <section
         class="relative min-h-screen flex flex-col justify-center pt-[97px] md:pt-[133px] pb-16 px-[5%] overflow-hidden bg-navy-dark">
-        {{-- Blurred building photo --}}
-        <div class="absolute inset-0 scale-110"
-            style="background:url('/GSL.png') center/cover no-repeat; filter:blur(5px) brightness(0.32);">
+        {{-- Background image --}}
+        <div class="absolute inset-0 scale-100" style="
+        background:url('/GSL.png') center/cover no-repeat;
+        filter: blur(1px) brightness(0.4); ">
         </div>
-        {{-- Dark navy/teal gradient overlay for brand tone --}}
+
+        {{-- Brand overlay --}}
         <div class="absolute inset-0"
-            style="background:linear-gradient(135deg,rgba(3,15,26,0.72) 0%,rgba(12,74,110,0.45) 55%,rgba(5,27,44,0.72) 100%)">
+            style="
+        background:linear-gradient(
+            135deg,
+            rgba(3, 15, 26, 0.378) 0%,
+            rgba(12,74,110,0.30) 55%,
+            rgba(6,29,47,0.35) 100%
+        );
+    ">
         </div>
         {{-- Subtle gold grid texture --}}
         <div class="absolute inset-0 opacity-[0.10]"
@@ -25,30 +34,31 @@
             <p class="text-[14px] text-gold/70 tracking-[3px] uppercase mb-3 font-light">Ghana School of Law</p>
             <h1 class="font-serif font-semibold text-white leading-[1.08] mb-6 max-w-[860px]"
                 style="font-size:clamp(44px,7vw,88px)">
-                Your Journey to<br>the <span class="text-gold">Bar</span> Starts Here
+                Your Journey to<br> <span class="text-gold">The Bar</span><br> Starts Here
             </h1>
             <p class="font-light text-cloud/80 leading-[1.75] max-w-[560px] mb-11" style="font-size:clamp(16px,1.8vw,20px)">
                 Statutory administration, professional legal training, and the official pathway
-                to Ghana's Bar - now under CLET (Act 1170).
+                to Ghana's Bar, now under the CLET framework (Act 1170).
             </p>
             <div class="flex gap-4 flex-wrap items-center">
-                <a href="https://forms.gslaw.school/surveys/23" target="_blank" rel="noopener"
-                    class="inline-flex items-center gap-2 px-7 py-3.5 text-[15px] font-semibold
+                <a href="{{ route('programmes') }}"
+                    class="inline-flex items-center gap-2 px-7 py-[13px] text-[15px] font-semibold
                       bg-gold text-navy rounded hover:bg-gold-light hover:-translate-y-0.5 transition-all duration-200">
-                    Apply Now
+                    Explore Our Mandate
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                         stroke-linejoin="round" viewBox="0 0 24 24">
                         <line x1="5" y1="12" x2="19" y2="12" />
                         <polyline points="12 5 19 12 12 19" />
                     </svg>
                 </a>
-                <a href="{{ route('programmes') }}"
+                <a href="{{ route('admissions') }}"
                     class="inline-flex items-center gap-2 px-7 py-[13px] text-[15px] font-medium
                       border border-cloud/30 text-cloud rounded hover:border-gold hover:text-gold transition-all duration-200">
-                    Explore Programmes
+                    Apply Now
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                         stroke-linejoin="round" viewBox="0 0 24 24">
-                        <polyline points="6 9 12 15 18 9" />
+                        <line x1="5" y1="12" x2="19" y2="12" />
+                        <polyline points="12 5 19 12 12 19" />
                     </svg>
                 </a>
             </div>
@@ -164,8 +174,8 @@
                     <button data-carousel-prev
                         class="w-10 h-10 rounded-full bg-white border border-gray-200 flex items-center justify-center text-navy/50 hover:border-gold hover:text-gold shadow-sm transition-all duration-200"
                         aria-label="Previous programme">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2"
-                            stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" viewBox="0 0 24 24">
                             <polyline points="15 18 9 12 15 6" />
                         </svg>
                     </button>
@@ -186,7 +196,7 @@
 
             {{-- Track --}}
             <div data-carousel-track
-                class="flex overflow-x-auto hide-scrollbar snap-x snap-mandatory rounded-xl border border-gold/8 bg-gold/8">
+                class="flex overflow-x-auto hide-scrollbar snap-x snap-mandatory rounded-xl border border-gold/25 bg-navy-mid shadow-lg">
                 @foreach ([
             ['01', 'Law Practice Training Course', 'The flagship one-year professional qualification. Bridges academic legal education with the realities of practice - civil procedure, criminal procedure, advocacy, conveyancing, and law of evidence.', '1 Academic Year', 'September 2026', 'Accra · Kumasi', false, '<path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>'],
             ['02', 'Post-Call Law Course', "Ghana's exclusive statutory gateway for foreign lawyers and reciprocal jurisdiction candidates seeking enrolment on Ghana's Roll of Lawyers. Under Section 78, Act 1170 - only GSL delivers this.", '6–12 Months', 'Variable', 'Foreign / Reciprocal Lawyers', true, '<circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>'],
@@ -194,27 +204,27 @@
             ['04', 'Specialised Professional Development', 'Advanced courses for practising lawyers in emerging areas - technology & cyberlaw, ADR, corporate law, environmental law, and more. Masterclasses, certificates and professional diplomas.', 'Masterclass–Diploma', 'Rolling', 'Practising Lawyers', false, '<polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>'],
         ] as $p)
                     <div data-carousel-slide
-                        class="relative bg-navy-mid p-10 hover:bg-teal/20 transition-colors duration-200
-                        flex-shrink-0 w-full md:w-1/2 snap-start border-r border-gold/8 last:border-r-0">
+                        class="relative bg-navy-mid p-10 hover:bg-teal/30 transition-colors duration-200
+                        flex-shrink-0 w-full md:w-1/2 snap-start border-r border-gold/20 last:border-r-0">
                         @if ($p[6])
                             <span
                                 class="absolute top-4 right-5 text-[10px] font-bold bg-gold text-navy px-2.5 py-1 rounded-full tracking-[1px] uppercase">Only
                                 at GSL</span>
                         @endif
-                        <p class="text-[14px] font-bold text-gold/45 tracking-[3px] uppercase mb-4">Programme
+                        <p class="text-[14px] font-bold text-gold tracking-[3px] uppercase mb-4">Programme
                             {{ $p[0] }}</p>
                         <div
-                            class="w-12 h-12 rounded-lg bg-gold/8 border border-gold/20 flex items-center justify-center mb-5">
+                            class="w-12 h-12 rounded-lg bg-gold/12 border border-gold/30 flex items-center justify-center mb-5">
                             <svg class="w-6 h-6 stroke-gold fill-none" stroke-width="1.5" stroke-linecap="round"
                                 stroke-linejoin="round" viewBox="0 0 24 24">{!! $p[7] !!}</svg>
                         </div>
                         <h3 class="font-serif font-semibold text-[20px] text-white mb-3 leading-snug">{{ $p[1] }}
                         </h3>
-                        <p class="text-[15px] text-cloud/60 leading-[1.75] mb-6">{{ $p[2] }}</p>
+                        <p class="text-[15px] text-cloud/80 leading-[1.75] mb-6">{{ $p[2] }}</p>
                         <div class="flex flex-wrap gap-x-4 gap-y-1 mb-6">
                             @foreach ([['Duration', $p[3]], ['Start', $p[4]], ['For', $p[5]]] as $m)
-                                <span class="text-[13px] text-cloud/45"><strong
-                                        class="text-cloud/65 font-semibold">{{ $m[0] }}:</strong>
+                                <span class="text-[13px] text-cloud/75"><strong
+                                        class="text-cloud font-semibold">{{ $m[0] }}:</strong>
                                     {{ $m[1] }}</span>
                             @endforeach
                         </div>
@@ -293,46 +303,6 @@
         </div>
     </section>
 
-    {{-- ADMISSIONS STRIP --}}
-    <section class="py-16 px-[5%] border-t border-b border-gold/10 bg-navy-dark/60">
-        <div class="max-w-6xl mx-auto flex flex-col lg:flex-row items-start lg:items-center justify-between gap-10">
-            <div>
-                <p class="text-[14px] font-bold text-gold tracking-[3px] uppercase mb-3">Admissions Open</p>
-                <h2 class="font-serif font-semibold text-white leading-snug mb-3" style="font-size:clamp(22px,3vw,34px)">
-                    Pre-Bar Course 2026/2027<br>Applications Now Open
-                </h2>
-                <p class="text-[15px] text-cloud/62 leading-[1.7] max-w-[540px]">
-                    Open to LLB Graduates (Class of 2026), existing graduates, Ghanaians with LLB
-                    from common law jurisdictions, and GTEC/GLC-accredited law faculty graduates.
-                </p>
-                <div class="flex flex-wrap gap-3 mt-5">
-                    <div class="px-4 py-3 rounded-lg bg-gold/7 border border-gold/18">
-                        <p class="text-[10px] font-bold text-gold tracking-[2px] uppercase mb-1">Admissions Contact</p>
-                        <p class="text-[14px] text-cloud/75">+233 246 006 210</p>
-                        <p class="text-[14px] text-cloud/75">helpdesk@gslaw.edu.gh</p>
-                    </div>
-                    <div class="px-4 py-3 rounded-lg bg-gold/7 border border-gold/18">
-                        <p class="text-[10px] font-bold text-gold tracking-[2px] uppercase mb-1">Programme Starts</p>
-                        <p class="font-serif font-semibold text-[18px] text-white">September 2026</p>
-                    </div>
-                </div>
-            </div>
-            <div class="flex flex-col items-center gap-3 flex-shrink-0">
-                <a href="https://forms.gslaw.school/surveys/23" target="_blank" rel="noopener"
-                    class="inline-flex items-center gap-2 px-8 py-4 text-[15px] font-semibold
-                      bg-gold text-navy rounded hover:bg-gold-light hover:-translate-y-0.5 transition-all duration-200">
-                    Start Application
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round" viewBox="0 0 24 24">
-                        <line x1="5" y1="12" x2="19" y2="12" />
-                        <polyline points="12 5 19 12 12 19" />
-                    </svg>
-                </a>
-                <p class="text-[14px] text-cloud/30">Or scan QR code at gslaw.edu.gh</p>
-            </div>
-        </div>
-    </section>
-
     {{-- ══ EVENTS CAROUSEL ══════════════════════════════════════════════ --}}
     <section class="py-24 px-[5%] bg-white" data-carousel="events">
         <div class="max-w-6xl mx-auto">
@@ -340,7 +310,16 @@
             {{-- Header with nav --}}
             <div class="flex flex-wrap items-end justify-between gap-4 mb-10">
                 <div>
-                    <p class="text-[14px] font-bold text-gold tracking-[3px] uppercase mb-3">Events Calendar</p>
+                    <p class="flex items-center gap-2 text-[14px] font-bold text-gold tracking-[3px] uppercase mb-3">
+                        <svg class="w-4 h-4 stroke-gold fill-none" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" viewBox="0 0 24 24">
+                            <rect x="3" y="4" width="18" height="18" rx="2" />
+                            <line x1="16" y1="2" x2="16" y2="6" />
+                            <line x1="8" y1="2" x2="8" y2="6" />
+                            <line x1="3" y1="10" x2="21" y2="10" />
+                        </svg>
+                        Events Calendar
+                    </p>
                     <h2 class="font-serif font-semibold text-navy leading-[1.2]" style="font-size:clamp(28px,3.5vw,44px)">
                         Upcoming <span class="text-gold">Events</span>
                     </h2>
@@ -371,21 +350,35 @@
 
             {{-- Track --}}
             <div data-carousel-track class="flex gap-5 overflow-x-auto hide-scrollbar snap-x snap-mandatory pb-2">
-                @foreach ([['14', 'Jan', '10:00 – 12:00', 'Induction Ceremony', 'New student induction for the 2026/2027 academic year.'], ['07', 'Nov', '10:00 – 12:00', 'Orientation – Kumasi', 'Orientation session for students at the Kumasi campus.'], ['10', 'Nov', '10:00 – 12:00', 'Call to the Bar', 'Annual ceremony calling qualified lawyers to the Ghana Bar.']] as $ev)
+                @foreach ([['day' => '14', 'month' => 'Jan', 'time' => '10:00 – 12:00', 'title' => 'Induction Ceremony', 'desc' => 'New student induction for the 2026/2027 academic year.', 'image' => 'assets/images/homepage/induction.png'], ['day' => '07', 'month' => 'Nov', 'time' => '10:00 – 12:00', 'title' => 'Orientation – Kumasi', 'desc' => 'Orientation session for students at the Kumasi campus.', 'image' => 'assets/images/news/orientation.png'], ['day' => '10', 'month' => 'Nov', 'time' => '10:00 – 12:00', 'title' => 'Call to the Bar', 'desc' => 'Annual ceremony calling qualified lawyers to the Ghana Bar.', 'image' => 'assets/images/news/call_to_bar.png']] as $ev)
                     <div data-carousel-slide
                         class="bg-white rounded-xl overflow-hidden border border-gray-100 hover:border-gold/35 hover:shadow-md transition-all duration-300
                         flex-shrink-0 snap-start w-[80vw] sm:w-[55vw] md:w-[42vw] lg:w-[calc(33.333%-14px)]">
-                        <div class="flex items-baseline gap-2.5 bg-gold px-5 py-4">
-                            <span
-                                class="font-serif font-bold text-[38px] text-navy leading-none">{{ $ev[0] }}</span>
-                            <span
-                                class="text-[14px] font-bold text-navy uppercase tracking-wide">{{ $ev[1] }}</span>
+                        <div class="relative aspect-[4/3] overflow-hidden">
+                            <img src="{{ asset($ev['image']) }}" alt="{{ $ev['title'] }}" loading="lazy"
+                                class="w-full h-full object-cover">
+                            {{-- Calendar date badge --}}
+                            <div class="absolute top-4 left-4 w-14 rounded-lg overflow-hidden shadow-lg">
+                                <div
+                                    class="bg-gold text-navy text-[10px] font-bold uppercase tracking-wide text-center py-1">
+                                    {{ $ev['month'] }}</div>
+                                <div
+                                    class="bg-white text-navy font-serif font-bold text-[22px] text-center py-1.5 leading-none">
+                                    {{ $ev['day'] }}</div>
+                            </div>
                         </div>
                         <div class="p-5">
-                            <p class="text-[14px] font-bold text-gold/80 tracking-[1.5px] uppercase mb-2">
-                                {{ $ev[2] }}</p>
-                            <h4 class="font-serif font-semibold text-[16px] text-navy mb-2">{{ $ev[3] }}</h4>
-                            <p class="text-[14px] text-navy/55 leading-[1.6]">{{ $ev[4] }}</p>
+                            <p
+                                class="flex items-center gap-1.5 text-[14px] font-bold text-gold/80 tracking-[1.5px] uppercase mb-2">
+                                <svg class="w-3.5 h-3.5 stroke-gold/80 fill-none shrink-0" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                                    <circle cx="12" cy="12" r="10" />
+                                    <polyline points="12 6 12 12 16 14" />
+                                </svg>
+                                {{ $ev['time'] }}
+                            </p>
+                            <h4 class="font-serif font-semibold text-[16px] text-navy mb-2">{{ $ev['title'] }}</h4>
+                            <p class="text-[14px] text-navy/55 leading-[1.6]">{{ $ev['desc'] }}</p>
                         </div>
                     </div>
                 @endforeach
@@ -434,14 +427,21 @@
 
             {{-- Track --}}
             <div data-carousel-track class="flex gap-5 overflow-x-auto hide-scrollbar snap-x snap-mandatory pb-2">
-                @foreach ([['Institutional', 'Orientation 2025', 'The Ghana School of Law successfully held its 2025/2026 orientation for new students across all three campuses.', 'June 2025'], ['Events', 'Call to the Bar 2025', '961 lawyers were called to the Ghana Bar in 2025 - 513 female, marking a historic milestone for gender inclusion.', 'November 2025'], ['Academic', 'Act 1170 Transformation', 'GSL formally transitions to its new role as a Directorate of CLET under the Legal Education Act, 2026 (Act 1170).', '2026']] as $art)
+                @foreach ([['Institutional', 'Orientation 2025', 'The Ghana School of Law successfully held its 2025/2026 orientation for new students across all three campuses.', 'June 2025', 'assets/images/news/orientation.png'], ['Events', 'Call to the Bar 2025', '961 lawyers were called to the Ghana Bar in 2025 - 513 female, marking a historic milestone for gender inclusion.', 'November 2025', 'assets/images/news/call_to_bar.png'], ['Academic', 'Act 1170 Transformation', 'GSL formally transitions to its new role as a Directorate of CLET under the Legal Education Act, 2026 (Act 1170).', '2026', null]] as $art)
                     <div data-carousel-slide
                         class="bg-white rounded-xl overflow-hidden border border-gray-100 hover:border-gold/35 hover:-translate-y-1 hover:shadow-md transition-all duration-300
                         flex-shrink-0 snap-start w-[80vw] sm:w-[55vw] md:w-[42vw] lg:w-[calc(33.333%-14px)] flex flex-col">
-                        <div class="h-44 flex items-center justify-center flex-shrink-0"
-                            style="background:linear-gradient(135deg,#0c4a6e,#051b2c)">
-                            <span class="text-[10px] font-bold text-gold/50 tracking-[3px] uppercase">Ghana School of
-                                Law</span>
+                        <div class="h-44 shrink-0 overflow-hidden">
+                            @if ($art[4])
+                                <img src="{{ asset($art[4]) }}" alt="{{ $art[1] }}" loading="lazy"
+                                    class="w-full h-full object-cover">
+                            @else
+                                <div class="h-full flex items-center justify-center"
+                                    style="background:linear-gradient(135deg,#0c4a6e,#051b2c)">
+                                    <img src="{{ asset('assets/clet-gsl-logo.png') }}" alt="Ghana School of Law"
+                                        loading="lazy" class="h-20 w-auto opacity-90">
+                                </div>
+                            @endif
                         </div>
                         <div class="p-5 flex flex-col flex-1">
                             <p class="text-[10px] font-bold text-gold tracking-[2px] uppercase mb-2.5">{{ $art[0] }}
