@@ -76,14 +76,55 @@
                     across the judiciary, private practice, government, and academia.</p>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                @foreach ([['The Judiciary', 'Judges and magistrates across all levels of Ghana\'s court system, from Circuit Courts to the Superior Courts.'], ['Private Practice', 'Partners and associates in leading law firms across Accra, Kumasi, and beyond.'], ['Government & Public Service', 'Legal advisors, prosecutors, and policy specialists in government ministries, departments, and agencies.']] as $sector)
-                    <div class="p-8 rounded-xl border border-gray-200 bg-gray-50 text-center">
+                @php
+                    $sectors = [
+                        [
+                            'label' => 'The Judiciary',
+                            'desc' =>
+                                "Judges and magistrates across all levels of Ghana's court system, from Circuit Courts to the Superior Courts.",
+                            'tags' => ['High Court', 'Circuit Court', 'Supreme Court Registry'],
+                            'icon' =>
+                                '<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />',
+                        ],
+                        [
+                            'label' => 'Private Practice',
+                            'desc' =>
+                                'Partners and associates in leading law firms across Accra, Kumasi, and beyond.',
+                            'tags' => ['Corporate Law', 'Litigation', 'In-House Counsel'],
+                            'icon' =>
+                                '<rect x="2" y="7" width="20" height="14" rx="2" ry="2" /><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />',
+                        ],
+                        [
+                            'label' => 'Government & Public Service',
+                            'desc' =>
+                                'Legal advisors, prosecutors, and policy specialists in government ministries, departments, and agencies.',
+                            'tags' => ['Attorney-General\'s Dept', 'Ministries & Agencies', 'State Prosecution'],
+                            'icon' =>
+                                '<line x1="3" y1="22" x2="21" y2="22" /><line x1="6" y1="18" x2="6" y2="11" /><line x1="10" y1="18" x2="10" y2="11" /><line x1="14" y1="18" x2="14" y2="11" /><line x1="18" y1="18" x2="18" y2="11" /><polygon points="12 2 20 7 4 7" />',
+                        ],
+                    ];
+                @endphp
+                @foreach ($sectors as $sector)
+                    <div
+                        class="group p-8 rounded-xl border border-gray-200 bg-gray-50 hover:border-gold/40 hover:bg-white hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
                         <div
-                            class="w-12 h-12 rounded-full border-2 border-gold bg-gold/10 flex items-center justify-center mx-auto mb-5">
-                            <span class="text-gold font-serif font-bold text-[15px]">GSL</span>
+                            class="w-14 h-14 rounded-xl bg-navy group-hover:bg-gold flex items-center justify-center mb-6 transition-colors duration-300">
+                            <svg class="w-6 h-6 text-gold group-hover:text-navy transition-colors duration-300"
+                                fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"
+                                stroke-linejoin="round" viewBox="0 0 24 24">
+                                {!! $sector['icon'] !!}
+                            </svg>
                         </div>
-                        <h3 class="font-serif font-semibold text-[18px] text-navy mb-3">{{ $sector[0] }}</h3>
-                        <p class="text-[14px] text-gray-600 leading-[1.75]">{{ $sector[1] }}</p>
+                        <h3 class="font-serif font-semibold text-[18px] text-navy mb-3">{{ $sector['label'] }}</h3>
+                        <p class="text-[14px] text-gray-600 leading-[1.75]">{{ $sector['desc'] }}</p>
+                        <div class="flex flex-wrap gap-2 mt-6 pt-6 border-t border-gray-200">
+                            @foreach ($sector['tags'] as $tag)
+                                <span
+                                    class="px-3 py-1 rounded-full bg-white border border-gray-200 text-[12px] font-medium text-gray-500 group-hover:border-gold/30 group-hover:text-navy transition-colors duration-300">
+                                    {{ $tag }}
+                                </span>
+                            @endforeach
+                        </div>
                     </div>
                 @endforeach
             </div>

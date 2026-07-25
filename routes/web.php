@@ -17,7 +17,12 @@ Route::get('/programmes/post-call-law-course',  fn() => view('pages.programmes.p
 Route::get('/examinations',                     fn() => view('pages.examinations'))->name('examinations');
 Route::get('/academic-calendar',                fn() => view('pages.academic-calendar'))->name('academic-calendar');
 
-Route::get('/admissions',   fn() => view('pages.admissions'))->name('admissions');
+Route::get('/admissions',              fn() => view('pages.admissions'))->name('admissions');
+Route::get('/admissions/instructions', fn() => view('pages.admissions-instructions'))->name('admissions.instructions');
+
+Route::get('/notices', function () {
+    return view('pages.notices', ['notices' => config('notices.notices')]);
+})->name('notices');
 Route::get('/student-life', fn() => view('pages.student-life'))->name('student-life');
 
 Route::get('/events', function () {

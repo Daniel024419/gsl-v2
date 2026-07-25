@@ -105,6 +105,12 @@
                         'label' => 'Post-Call Law Course',
                         'desc' => 'For lawyers called to the Bar in other Common Law jurisdictions',
                     ],
+                ],
+            ],
+            [
+                'label' => 'Academics',
+                'desc' => 'Examinations, calendar, and legal research resources',
+                'children' => [
                     [
                         'route' => 'examinations',
                         'label' => 'Examinations',
@@ -115,12 +121,52 @@
                         'label' => 'Academic Calendar',
                         'desc' => 'Key dates for the 2026/2027 academic year',
                     ],
+                    [
+                        'route' => 'notices',
+                        'label' => 'Notices',
+                        'desc' => 'Official notices and announcements',
+                    ],
+                    [
+                        'href' => 'https://en.wikipedia.org/wiki/Ghana_School_of_Law',
+                        'label' => 'GSL Wikipedia',
+                        'target' => '_blank',
+                        'desc' => 'Ghana School of Law on Wikipedia',
+                    ],
+                    [
+                        'label' => 'Library & Books',
+                        'desc' => 'Legal research and library resources',
+                        'children' => [
+                            [
+                                'href' => 'https://library.gslaw.school/',
+                                'label' => 'GSL Library',
+                                'target' => '_blank',
+                                'desc' => 'Ghana School of Law library catalogue',
+                            ],
+                            [
+                                'href' => 'https://app.judy.legal/account/login',
+                                'label' => 'Judy Legal',
+                                'target' => '_blank',
+                                'desc' => 'Legal research platform',
+                            ],
+                            [
+                                'href' => 'https://app.dennislawgh.com/login',
+                                'label' => 'Dennis Law',
+                                'target' => '_blank',
+                                'desc' => 'Legal research platform',
+                            ],
+                        ],
+                    ],
                 ],
             ],
             [
                 'label' => 'Admissions',
                 'desc' => 'Entry requirements and how to apply',
                 'children' => [
+                    [
+                        'href' => '/admissions/instructions',
+                        'label' => 'Buy Admission Voucher',
+                        'desc' => 'Online application code',
+                    ],
                     [
                         'href' => 'https://sms.gslaw.school/applicant',
                         'label' => 'Applicant Portal',
@@ -131,17 +177,6 @@
                         'route' => 'admissions',
                         'label' => 'Entry Requirements',
                         'desc' => 'Admission entry requirements',
-                    ],
-                    [
-                        'href' => 'https://forms.gslaw.school/surveys/23',
-                        'label' => 'Apply Online',
-                        'target' => '_blank',
-                        'desc' => 'Online application form',
-                    ],
-                    [
-                        'route' => 'programmes.pre-bar-course',
-                        'label' => 'Apply for Pre-Bar Course',
-                        'desc' => 'Preparatory course application',
                     ],
                 ],
             ],
@@ -297,10 +332,19 @@
                                                 <ul
                                                     class="bg-white rounded-lg shadow-xl border border-gray-200 py-2 overflow-hidden">
                                                     @foreach ($child['children'] as $grandchild)
+                                                        @php
+                                                            $grandchildUrl = isset($grandchild['href'])
+                                                                ? $grandchild['href']
+                                                                : route($grandchild['route']);
+                                                            $grandchildActive =
+                                                                isset($grandchild['route']) &&
+                                                                request()->routeIs($grandchild['route']);
+                                                        @endphp
                                                         <li>
-                                                            <a href="{{ route($grandchild['route']) }}"
+                                                            <a href="{{ $grandchildUrl }}"
+                                                                @if (isset($grandchild['target'])) target="{{ $grandchild['target'] }}" rel="noopener" @endif
                                                                 class="block px-4 py-2.5 text-[14px] font-medium whitespace-nowrap transition-colors duration-150
-                                                                  {{ request()->routeIs($grandchild['route']) ? 'text-gold bg-gold/5' : 'text-navy/70 hover:text-navy hover:bg-gray-50' }}">
+                                                                  {{ $grandchildActive ? 'text-gold bg-gold/5' : 'text-navy/70 hover:text-navy hover:bg-gray-50' }}">
                                                                 {{ $grandchild['label'] }}
                                                             </a>
                                                         </li>
@@ -518,9 +562,18 @@
                                                             <div class="overflow-hidden">
                                                                 <div class="flex flex-col gap-1 pl-4 pt-1 pb-1">
                                                                     @foreach ($child['children'] as $grandchild)
-                                                                        <a href="{{ route($grandchild['route']) }}"
+                                                                        @php
+                                                                            $grandchildUrl = isset($grandchild['href'])
+                                                                                ? $grandchild['href']
+                                                                                : route($grandchild['route']);
+                                                                            $grandchildActive =
+                                                                                isset($grandchild['route']) &&
+                                                                                request()->routeIs($grandchild['route']);
+                                                                        @endphp
+                                                                        <a href="{{ $grandchildUrl }}"
+                                                                            @if (isset($grandchild['target'])) target="{{ $grandchild['target'] }}" rel="noopener" @endif
                                                                             class="mob-link flex items-center gap-3 px-4 py-2 rounded-lg text-[13px] font-medium transition-all duration-200
-                                                                              {{ request()->routeIs($grandchild['route']) ? 'text-gold' : 'text-cloud/50 hover:text-white' }}">
+                                                                              {{ $grandchildActive ? 'text-gold' : 'text-cloud/50 hover:text-white' }}">
                                                                             <span
                                                                                 class="w-1 h-1 rounded-full bg-cloud/20 flex-shrink-0"></span>
                                                                             {{ $grandchild['label'] }}
@@ -694,7 +747,7 @@
                 <div>
                     <h4 class="text-[14px] font-bold text-gold tracking-[2px] uppercase mb-5">Quick Links</h4>
                     <ul class="space-y-2.5">
-                        @foreach ([['https://sms.gslaw.school/portal', 'Student Portal'], ['https://sms.gslaw.school/faculty', 'Lecturer Portal'], ['https://sms.gslaw.school/admin', 'Staff Portal'], ['https://forms.gslaw.school/surveys/23', 'Apply Now']] as $l)
+                        @foreach ([['https://sms.gslaw.school/portal', 'Student Portal'], ['https://sms.gslaw.school/faculty', 'Lecturer Portal'], ['https://sms.gslaw.school/admin', 'Staff Portal'], ['/admissions/instructions', 'Buy Admission Voucher'] , ['https://en.wikipedia.org/wiki/Ghana_School_of_Law' ,'GSL Wikipedia']] as $l)
                             <li><a href="{{ $l[0] }}" target="_blank" rel="noopener"
                                     class="text-[14px] text-cloud/55 hover:text-gold transition-colors">{{ $l[1] }}</a>
                             </li>

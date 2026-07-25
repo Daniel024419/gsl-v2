@@ -190,6 +190,43 @@
                     </div>
                 </div>
 
+                {{-- Law Practice Training (LPT) --}}
+                <div class="p-8 lg:p-10 rounded-2xl border border-gray-200 bg-gray-50">
+                    <h3 class="font-serif font-semibold text-navy text-[24px] mb-2">Law Practice Training (LPT)</h3>
+                    <div class="w-10 h-[3px] bg-gold rounded-full mb-6"></div>
+
+                    <div class="flex flex-col gap-5 text-[15px] text-gray-600 leading-[1.8] mb-8">
+                        <p>
+                            During his June 2025 vetting before Parliament's Appointments Committee as a nominee to
+                            the Supreme Court, Justice Philip Bright Mensah advocated reforms to Ghana's legal
+                            education system to address the growing number of LLB graduates seeking professional
+                            legal training. He proposed that accredited law faculties be permitted to provide
+                            professional legal training in addition to academic legal education, rather than
+                            limiting such training to the Ghana School of Law.
+                        </p>
+                        <p>
+                            Justice Mensah argued that expanding professional training capacity could help reduce
+                            the backlog of graduates awaiting admission, and suggested that candidates who had
+                            already completed their LLB programme be given priority consideration for admission
+                            into professional legal education.
+                        </p>
+                    </div>
+
+                    <h4 class="font-semibold text-[15px] text-navy mb-3">Courses Covered</h4>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
+                        @foreach (['Civil Procedure', 'Criminal Procedure', 'Law of Evidence', 'Conveyancing & Drafting', 'Advocacy & Legal Ethics', 'Law Practice Management', 'Legal Accounting'] as $c)
+                            <div class="px-3 py-2 rounded-lg bg-white border border-gray-200 text-[13px] text-gray-600">
+                                {{ $c }}</div>
+                        @endforeach
+                    </div>
+
+                    <p class="text-[14px] text-gray-500 leading-[1.7] mt-8 pt-6 border-t border-gray-200">
+                        <a href="{{ route('programmes.law-practice-training') }}"
+                            class="text-gold font-semibold hover:underline">Learn more about the LPT Programme
+                            &rarr;</a>
+                    </p>
+                </div>
+
             </div>
         </div>
     </section>
@@ -201,8 +238,8 @@
                 <p class="text-[14px] font-bold text-gold tracking-[3px] uppercase mb-3">How to Apply</p>
                 <h2 class="font-serif font-semibold text-white text-[34px]">Application Process</h2>
             </div>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                @foreach ([['01', 'Complete Online Form', 'Visit forms.gslaw.school and fill in the application form with personal and academic details.'], ['02', 'Upload Documents', 'Submit LLB transcript, certificate, national ID or passport, and passport photograph.'], ['03', 'Entrance Examination', 'Shortlisted candidates are invited to sit the GSL entrance examination.'], ['04', 'Enrolment', 'Successful candidates receive an offer letter and proceed to enrolment.']] as $s)
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
+                @foreach ([['01', 'Complete Form', 'Fill in the application form at forms.gslaw.school.'], ['02', 'Submit', 'Submit your completed application and documents.'], ['03', 'Admission Offer Letter', 'Successful applicants receive an offer letter.'], ['04', 'Get Admitted', 'Accept your offer and proceed to enrolment.']] as $s)
                     <div class="relative p-6 rounded-xl bg-navy-mid border border-gold/10">
                         <span
                             class="absolute -top-3 -left-3 w-9 h-9 rounded-full bg-gold text-navy font-bold text-[15px] flex items-center justify-center">{{ $s[0] }}</span>
@@ -211,6 +248,18 @@
                     </div>
                 @endforeach
             </div>
+            <div class="text-center">
+                <a href="{{ route('admissions.instructions') }}"
+                    class="inline-flex items-center gap-2 px-6 py-3 text-[14px] font-semibold rounded-full
+                           border border-gold/30 text-gold hover:bg-gold/10 transition-colors duration-200">
+                    View Detailed Application Instructions
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" viewBox="0 0 24 24">
+                        <line x1="5" y1="12" x2="19" y2="12" />
+                        <polyline points="12 5 19 12 12 19" />
+                    </svg>
+                </a>
+            </div>
         </div>
     </section>
 
@@ -218,20 +267,8 @@
     <section class="py-20 px-[5%] bg-white">
         <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12">
             <div>
-                <p class="text-[14px] font-bold text-gold tracking-[3px] uppercase mb-3">Key Dates</p>
-                <h2 class="font-serif font-semibold text-navy text-[28px] mb-6">Important Deadlines</h2>
-                <div class="space-y-3">
-                    @foreach ([['Applications Open', 'Now - 2026', 'border-gold/25 bg-gold/8 text-gold'], ['Application Deadline', 'July 2026', 'border-gray-200 bg-gray-50 text-gray-600'], ['Entrance Examination', 'August 2026', 'border-gray-200 bg-gray-50 text-gray-600'], ['Programme Commences', 'September 2026', 'border-gray-200 bg-gray-50 text-gray-600']] as $d)
-                        <div class="flex items-center justify-between px-5 py-4 rounded-lg border {{ $d[2] }}">
-                            <p class="text-[15px] font-medium">{{ $d[0] }}</p>
-                            <p class="text-[14px] font-bold">{{ $d[1] }}</p>
-                        </div>
-                    @endforeach
-                </div>
-            </div>
-            <div>
                 <p class="text-[14px] font-bold text-gold tracking-[3px] uppercase mb-3">Need Help?</p>
-                <h2 class="font-serif font-semibold text-navy text-[28px] mb-6">Contact Admissions</h2>
+                <h2 class="font-serif font-semibold text-navy text-[28px] mb-6">Contact Us</h2>
                 <div class="space-y-3">
                     @foreach ([['+233 246 006 210', 'Phone'], ['+233 531 003 918', 'Phone'], ['helpdesk@gslaw.edu.gh', 'Email'], ['admissions@gslaw.edu.gh', 'Email']] as $c)
                         <div class="flex items-center gap-4 p-4 rounded-lg bg-gray-50 border border-gray-200">
