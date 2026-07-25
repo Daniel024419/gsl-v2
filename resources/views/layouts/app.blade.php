@@ -225,6 +225,7 @@
                     {{ $u[1] }}
                 </a>
             @endforeach
+            <div class="gtranslate_wrapper"></div>
         </nav>
     </div>
 
@@ -236,13 +237,13 @@
         <a href="{{ route('home') }}" class="flex items-center gap-3 flex-shrink-0 group">
             <img class="h-10 w-auto object-contain" src="{{ asset('CLET GSL Logo .png') }}" alt="Ghana School of Law">
             <div class="hidden sm:block leading-tight">
-                <span class="block text-[13px] font-black text-navy tracking-[2px] uppercase">Ghana School of
-                    Law</span>
+                <span class="block text-[13px] font-black text-navy tracking-[2px] uppercase">CLET GHANA</span>
+                <span class="block text-[13px] font-black text-navy tracking-[2px] uppercase">Ghana School of Law</span>
                 <span class="block text-[14px] text-navy/60">A Directorate of CLET</span>
             </div>
         </a>
 
-        <ul class="hidden lg:flex items-center gap-7">
+        <ul class="hidden xl:flex items-center gap-7">
             @foreach ($navItems as $item)
                 @if (isset($item['children']))
                     @php $childActive = $navIsActive($item); @endphp
@@ -350,23 +351,12 @@
                 </svg>
                 <span class="hidden sm:inline text-[13px] font-medium">Search</span>
                 <kbd
-                    class="hidden lg:inline-flex items-center gap-0.5 px-1.5 py-0.5 text-[10px] font-mono
+                    class="hidden xl:inline-flex items-center gap-0.5 px-1.5 py-0.5 text-[10px] font-mono
                             bg-gray-100 border border-gray-300 rounded text-gray-400">⌘K</kbd>
             </button>
 
-            <a href="https://forms.gslaw.school/surveys/23" target="_blank" rel="noopener"
-                class="hidden lg:inline-flex items-center gap-2 px-5 py-2.5 text-[14px] font-semibold
-                        bg-gold text-navy rounded btn-sleek hover:bg-gold-light hover:-translate-y-px transition-all duration-200">
-                Apply Now
-                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2"
-                    stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
-                    <line x1="5" y1="12" x2="19" y2="12" />
-                    <polyline points="12 5 19 12 12 19" />
-                </svg>
-            </a>
-
             <button id="nav-hamburger" aria-label="Open menu" aria-expanded="false"
-                class="lg:hidden flex flex-col justify-center items-center gap-[5px] w-10 h-10
+                class="xl:hidden flex flex-col justify-center items-center gap-[5px] w-10 h-10
                        rounded border border-navy/20 hover:border-gold/50 transition-colors duration-200">
                 <span
                     class="hb block w-5 h-[1.5px] bg-navy/80 rounded-full transition-all duration-300 origin-center"></span>
@@ -1212,5 +1202,35 @@
             });
         }());
     </script>
+
+    <style>
+        .gtranslate_wrapper {
+            line-height: 1;
+        }
+
+        .gtranslate_wrapper select,
+        .gtranslate_wrapper .gt_selector {
+            background-color: transparent;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 11px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .gtranslate_wrapper select:hover {
+            color: #fff;
+        }
+    </style>
+
+    <script>
+        window.gtranslateSettings = {
+            "default_language": "en",
+            "languages": ["en", "fr", "it", "es","ar","da","nl","et"],
+            "wrapper_selector": ".gtranslate_wrapper"
+        }
+    </script>
+    <script src="{{ asset('assets/js/translator.js') }}" defer></script>
+
+</body>
 
 </html>

@@ -1,20 +1,65 @@
 @extends('layouts.app')
-@section('title', 'Ghana School of Law – Your Journey to the Bar Starts Here')
+@section('title', 'CLET – Your Journey to the Bar Starts Here')
 @section('description',
     'Ghana School of Law – Your official pathway to the Ghana Bar. LPTC, Post-Call Course, Bar Exam
     Preparation and Specialised Professional Development under CLET Act 1170.')
 @section('content')
 
-    {{-- HERO --}}
-    <section
-        class="relative min-h-screen flex flex-col justify-center pt-[97px] md:pt-[133px] pb-16 px-[5%] overflow-hidden bg-navy-dark">
-        {{-- Background image --}}
-        <div class="absolute inset-0 scale-100" style="
-        background:url('/GSL.png') center/cover no-repeat;
-        filter: blur(1px) brightness(0.4); ">
-        </div>
+    {{-- HERO SLIDER --}}
+    @php
+        $heroSlides = [
+            [
+                'eyebrow' => 'Ghana School of Law',
+                'heading' => 'Your Journey to<br> <span class="text-gold">The Bar</span><br> Starts Here',
+                'text' =>
+                    "Statutory administration, professional legal training, and the official pathway to Ghana's Bar, now under the CLET framework (Act 1170).",
+                'image' => '/GSL.png',
+                'buttons' => [
+                    ['label' => 'Explore Our Mandate', 'route' => 'programmes', 'style' => 'primary'],
+                    ['label' => 'Apply Now', 'route' => 'admissions', 'style' => 'secondary'],
+                ],
+            ],
+            [
+                'eyebrow' => 'Campus & Community',
+                'heading' => 'Experience<br> <span class="text-gold">Student Life</span><br> at GSL',
+                'text' =>
+                    'From mock courtrooms to moot competitions and student associations, life at GSL builds the community and character behind every call to the Bar.',
+                'image' => 'assets/images/homepage/campuslife.png',
+                'buttons' => [
+                    ['label' => 'Explore Student Life', 'route' => 'student-life', 'style' => 'primary'],
+                ],
+            ],
+            [
+                'eyebrow' => 'Events Calendar',
+                'heading' => 'Join Our<br> <span class="text-gold">Signature Events</span><br> & Ceremonies',
+                'text' =>
+                    'Inductions, orientations, and the annual Call to the Bar - see what\'s coming up across our Accra and Kumasi campuses.',
+                'image' => 'assets/images/news/call_to_bar.png',
+                'buttons' => [['label' => 'View Events', 'route' => 'events', 'style' => 'primary']],
+            ],
+            [
+                'eyebrow' => 'Latest Updates',
+                'heading' => 'Stay Informed<br> <span class="text-gold">With GSL News</span>',
+                'text' =>
+                    'Institutional news, academic milestones, and updates on our transformation as a Directorate of CLET.',
+                'image' => 'assets/images/news/orientation.png',
+                'buttons' => [['label' => 'Read Latest News', 'route' => 'news', 'style' => 'primary']],
+            ],
+        ];
+    @endphp
+    <section id="hero-slider" data-hero-slider
+        class="relative min-h-screen overflow-hidden bg-navy-dark">
 
-        {{-- Brand overlay --}}
+        {{-- Background layer (per-slide, cross-fades) --}}
+        @foreach ($heroSlides as $i => $slide)
+            <div data-hero-bg
+                class="absolute inset-0 transition-opacity duration-1000 ease-in-out {{ $i === 0 ? 'opacity-100' : 'opacity-0' }}"
+                style="background:url('{{ str_starts_with($slide['image'], '/') ? $slide['image'] : asset($slide['image']) }}') center/cover no-repeat;
+                       filter: blur(1px) brightness(0.4);">
+            </div>
+        @endforeach
+
+        {{-- Brand overlay (shared across all slides) --}}
         <div class="absolute inset-0"
             style="
         background:linear-gradient(
@@ -29,42 +74,61 @@
         <div class="absolute inset-0 opacity-[0.10]"
             style="background-image:url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2280%22 height=%2280%22><g fill=%22%23b8960c%22 fill-opacity=%220.15%22><path d=%22M40 46v-6h-3v6h-6v3h6v6h3v-6h6v-3h-6zm0-40V0h-3v6h-6v3h6v6h3V9h6V6h-6z%22/></g></svg>')">
         </div>
-        <div class="relative z-10 max-w-6xl mx-auto w-full">
 
-            <p class="text-[14px] text-gold/70 tracking-[3px] uppercase mb-3 font-light">Ghana School of Law</p>
-            <h1 class="font-serif font-semibold text-white leading-[1.08] mb-6 max-w-[860px]"
-                style="font-size:clamp(44px,7vw,88px)">
-                Your Journey to<br> <span class="text-gold">The Bar</span><br> Starts Here
-            </h1>
-            <p class="font-light text-cloud/80 leading-[1.75] max-w-[560px] mb-11" style="font-size:clamp(16px,1.8vw,20px)">
-                Statutory administration, professional legal training, and the official pathway
-                to Ghana's Bar, now under the CLET framework (Act 1170).
-            </p>
-            <div class="flex gap-4 flex-wrap items-center">
-                <a href="{{ route('programmes') }}"
-                    class="inline-flex items-center gap-2 px-7 py-[13px] text-[15px] font-semibold
-                      bg-gold text-navy rounded hover:bg-gold-light hover:-translate-y-0.5 transition-all duration-200">
-                    Explore Our Mandate
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round" viewBox="0 0 24 24">
-                        <line x1="5" y1="12" x2="19" y2="12" />
-                        <polyline points="12 5 19 12 12 19" />
-                    </svg>
-                </a>
-                <a href="{{ route('admissions') }}"
-                    class="inline-flex items-center gap-2 px-7 py-[13px] text-[15px] font-medium
-                      border border-cloud/30 text-cloud rounded hover:border-gold hover:text-gold transition-all duration-200">
-                    Apply Now
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round" viewBox="0 0 24 24">
-                        <line x1="5" y1="12" x2="19" y2="12" />
-                        <polyline points="12 5 19 12 12 19" />
-                    </svg>
-                </a>
+        {{-- Content layer (per-slide, cross-fades) --}}
+        <div class="relative z-10 min-h-screen flex flex-col justify-center pt-[97px] md:pt-[133px] pb-16 px-[5%]">
+            <div class="grid max-w-6xl mx-auto w-full min-w-0">
+                @foreach ($heroSlides as $i => $slide)
+                    <div data-hero-content
+                        class="[grid-area:1/1] min-w-0 transition-opacity duration-1000 ease-in-out {{ $i === 0 ? 'opacity-100' : 'opacity-0 pointer-events-none' }}">
+                        <p class="text-[14px] text-gold/90 tracking-[3px] uppercase mb-3 font-light">
+                            {{ $slide['eyebrow'] }}</p>
+                        <h1 class="font-serif font-semibold text-white leading-[1.08] mb-6 max-w-[860px]"
+                            style="font-size:clamp(44px,7vw,88px)">
+                            {!! $slide['heading'] !!}
+                        </h1>
+                        <p class="font-light text-cloud/80 leading-[1.75] max-w-[560px] mb-11"
+                            style="font-size:clamp(16px,1.8vw,20px)">
+                            {{ $slide['text'] }}
+                        </p>
+                        <div class="flex gap-4 flex-wrap items-center">
+                            @foreach ($slide['buttons'] as $btn)
+                                <a href="{{ route($btn['route']) }}"
+                                    class="inline-flex items-center gap-2 px-7 py-[13px] text-[15px]
+                                      {{ $btn['style'] === 'primary'
+                                          ? 'font-semibold bg-gold text-navy hover:bg-gold-light hover:-translate-y-0.5'
+                                          : 'font-medium border border-cloud/30 text-cloud hover:border-gold hover:text-gold' }}
+                                      rounded transition-all duration-200">
+                                    {{ $btn['label'] }}
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2"
+                                        stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                                        <line x1="5" y1="12" x2="19" y2="12" />
+                                        <polyline points="12 5 19 12 12 19" />
+                                    </svg>
+                                </a>
+                            @endforeach
+                        </div>
+                    </div>
+                @endforeach
             </div>
-            <div class="flex flex-col items-center gap-2 mt-16 text-cloud/35 text-[10px] tracking-[3px] uppercase">
-                <div class="w-px h-11 bg-gradient-to-b from-gold/60 to-transparent scroll-pulse"></div>
-                <span>Scroll</span>
+
+            {{-- Slider controls --}}
+            <div class="relative z-20 flex items-center justify-center gap-5 mt-16">
+                <button data-hero-prev aria-label="Previous slide"
+                    class="w-9 h-9 rounded-full border border-white/25 flex items-center justify-center text-white/60 hover:border-gold hover:text-gold transition-all duration-200">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" viewBox="0 0 24 24">
+                        <polyline points="15 18 9 12 15 6" />
+                    </svg>
+                </button>
+                <div data-hero-dots class="flex items-center gap-2"></div>
+                <button data-hero-next aria-label="Next slide"
+                    class="w-9 h-9 rounded-full border border-white/25 flex items-center justify-center text-white/60 hover:border-gold hover:text-gold transition-all duration-200">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" viewBox="0 0 24 24">
+                        <polyline points="9 18 15 12 9 6" />
+                    </svg>
+                </button>
             </div>
         </div>
     </section>
@@ -487,6 +551,86 @@
 @endsection
 
 @push('scripts')
+    <script>
+        (function() {
+            'use strict';
+
+            var slider = document.querySelector('[data-hero-slider]');
+            if (!slider) return;
+
+            var bgs = Array.from(slider.querySelectorAll('[data-hero-bg]'));
+            var contents = Array.from(slider.querySelectorAll('[data-hero-content]'));
+            var dotsWrap = slider.querySelector('[data-hero-dots]');
+            var prevBtn = slider.querySelector('[data-hero-prev]');
+            var nextBtn = slider.querySelector('[data-hero-next]');
+            var total = bgs.length;
+            if (total === 0) return;
+
+            var cur = 0;
+            var timer = null;
+
+            var DOT_ACTIVE = 'h-1.5 rounded-full bg-gold transition-all duration-300 w-6';
+            var DOT_INACTIVE = 'h-1.5 rounded-full bg-white/25 transition-all duration-300 w-1.5';
+
+            for (var i = 0; i < total; i++) {
+                (function(i) {
+                    var d = document.createElement('button');
+                    d.setAttribute('aria-label', 'Go to slide ' + (i + 1));
+                    d.className = i === 0 ? DOT_ACTIVE : DOT_INACTIVE;
+                    d.addEventListener('click', function() {
+                        go(i);
+                        resetAutoplay();
+                    });
+                    dotsWrap && dotsWrap.appendChild(d);
+                }(i));
+            }
+
+            function syncDots() {
+                if (!dotsWrap) return;
+                Array.from(dotsWrap.children).forEach(function(d, i) {
+                    d.className = i === cur ? DOT_ACTIVE : DOT_INACTIVE;
+                });
+            }
+
+            function go(index) {
+                cur = ((index % total) + total) % total;
+                bgs.forEach(function(bg, i) {
+                    bg.classList.toggle('opacity-100', i === cur);
+                    bg.classList.toggle('opacity-0', i !== cur);
+                });
+                contents.forEach(function(c, i) {
+                    var active = i === cur;
+                    c.classList.toggle('opacity-100', active);
+                    c.classList.toggle('opacity-0', !active);
+                    c.classList.toggle('pointer-events-none', !active);
+                });
+                syncDots();
+            }
+
+            function resetAutoplay() {
+                clearInterval(timer);
+                timer = setInterval(function() {
+                    go(cur + 1);
+                }, 6000);
+            }
+
+            prevBtn && prevBtn.addEventListener('click', function() {
+                go(cur - 1);
+                resetAutoplay();
+            });
+            nextBtn && nextBtn.addEventListener('click', function() {
+                go(cur + 1);
+                resetAutoplay();
+            });
+
+            resetAutoplay();
+            slider.addEventListener('mouseenter', function() {
+                clearInterval(timer);
+            });
+            slider.addEventListener('mouseleave', resetAutoplay);
+        }());
+    </script>
+
     <script>
         (function() {
             'use strict';
