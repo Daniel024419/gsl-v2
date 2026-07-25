@@ -123,6 +123,50 @@
         </div>
     </section>
 
+    {{-- ══ FILTER BAR ═══════════════════════════════════════════════════ --}}
+    @php $categories = collect($articles)->pluck('cat')->unique()->values(); @endphp
+    <section class="px-[5%] pt-10 bg-white">
+        <div class="max-w-6xl mx-auto">
+            <div data-news-filter class="rounded-xl bg-gray-50 border border-gray-200 overflow-hidden">
+                <button type="button" data-news-filter-toggle aria-expanded="false"
+                    class="w-full flex items-center justify-between gap-2 px-6 py-5 text-left">
+                    <span class="flex items-center gap-2 text-[13px] font-bold text-gold tracking-[2px] uppercase">
+                        <svg class="w-4 h-4 stroke-gold fill-none shrink-0" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" viewBox="0 0 24 24">
+                            <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3" />
+                        </svg>
+                        Filter by Category
+                        <span data-news-filter-count
+                            class="hidden items-center justify-center min-w-5 h-5 px-1.5 rounded-full bg-gold text-navy text-[10px] font-bold"></span>
+                    </span>
+                    <svg data-news-filter-chevron
+                        class="w-4 h-4 stroke-gray-500 fill-none shrink-0 transition-transform duration-300"
+                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                        <polyline points="6 9 12 15 18 9" />
+                    </svg>
+                </button>
+                <div data-news-filter-panel class="grid grid-rows-[0fr] transition-all duration-300 ease-in-out">
+                    <div class="overflow-hidden">
+                        <div class="flex flex-wrap gap-3 items-center px-6 pb-6">
+                            @foreach ($categories as $cat)
+                                <label
+                                    class="inline-flex items-center gap-2 px-4 py-2 bg-white border border-gray-300 rounded-full text-[13px] font-medium text-navy cursor-pointer hover:border-gold/50 transition-colors has-[:checked]:bg-gold has-[:checked]:text-navy has-[:checked]:border-gold">
+                                    <input type="checkbox" data-news-filter-input value="{{ $cat }}"
+                                        class="sr-only">
+                                    {{ $cat }}
+                                </label>
+                            @endforeach
+                            <button type="button" data-news-filter-reset
+                                class="px-5 py-2 text-[13px] font-semibold text-gold border border-gold/30 rounded-lg hover:bg-gold hover:text-navy active:scale-95 transition-all duration-150">
+                                Reset
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     {{-- ══ MAIN CONTENT GRID (light section) ═══════════════════════════ --}}
     <section class="bg-white">
         <div class="max-w-6xl mx-auto px-[5%] py-16">
@@ -131,104 +175,15 @@
                 {{-- ── Centre Feed ─────────────────────────────────────────── --}}
                 <div class="lg:col-span-8">
 
-                    {{-- Tab Bar --}}
-                    <div class="flex gap-8 border-b border-gray-200 mb-10" data-news-tabs>
-                        <button type="button" data-news-tab="recent"
-                            class="text-[10px] font-bold tracking-[3px] uppercase text-navy py-4 border-b-2 border-gold -mb-px">RECENT
-                            POSTS</button>
-                        <button type="button" data-news-tab="all"
-                            class="text-[10px] font-bold tracking-[3px] uppercase text-gray-400 py-4 border-b-2 border-transparent -mb-px hover:text-navy/60 transition-colors">ALL
-                            CATEGORIES</button>
-                    </div>
-
-                    <div data-news-panel="recent" class="space-y-12">
-
-                        {{-- Feed: horizontal article cards (articles 3 & 5) --}}
-                        @foreach ([$articles[3], $articles[5]] as $fa)
-                            <a href="{{ route('news.show', $fa['slug']) }}"
-                                class="flex flex-col md:flex-row gap-6 group p-4 -mx-4 hover:bg-gray-50 rounded-xl transition-colors duration-200">
-                                <div class="md:w-1/3 aspect-[4/3] overflow-hidden rounded-lg flex-shrink-0">
-                                    @if (!empty($fa['image']))
-                                        <img src="{{ asset($fa['image']) }}" alt="{{ $fa['title'] }}" loading="lazy"
-                                            class="w-full h-full object-cover">
-                                    @else
-                                        <div class="w-full h-full flex items-center justify-center"
-                                            style="background:linear-gradient(135deg,#071e2f,#0c4a6e)">
-                                            <svg class="w-10 h-10 stroke-gold/25 fill-none" stroke-width="1"
-                                                stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
-                                                {!! $fa['icon'] !!}
-                                            </svg>
-                                        </div>
-                                    @endif
-                                </div>
-                                <div class="md:w-2/3 flex flex-col justify-center">
-                                    <span
-                                        class="text-[10px] font-bold tracking-[3px] uppercase text-gold mb-2">{{ $fa['cat'] }}</span>
-                                    <h3
-                                        class="font-serif font-semibold text-[18px] text-navy leading-snug mb-3 group-hover:text-gold transition-colors duration-200">
-                                        {{ $fa['title'] }}
-                                    </h3>
-                                    <p class="text-[14px] text-gray-600 leading-[1.7] mb-4">{{ $fa['excerpt'] }}</p>
-                                    <div class="flex items-center gap-4 border-t border-gray-200 pt-3">
-                                        <span
-                                            class="text-[14px] text-gray-400 uppercase tracking-[1px]">{{ $fa['date'] }}</span>
-                                        <span
-                                            class="text-[14px] text-gray-400 uppercase tracking-[1px]">{{ $fa['read'] }}</span>
-                                        <span
-                                            class="ml-auto text-[10px] font-bold tracking-[2px] uppercase text-gold group-hover:underline">
-                                            READ MORE &rarr;
-                                        </span>
-                                    </div>
-                                </div>
-                            </a>
-                        @endforeach
-
-                        {{-- Bento: 2-col mini-cards (articles 0 & 1) --}}
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 border-t border-gray-200 pt-12">
-                            @foreach ([$articles[0], $articles[1]] as $bc)
-                                <a href="{{ route('news.show', $bc['slug']) }}" class="group block">
-                                    <div class="w-full aspect-video rounded-lg overflow-hidden mb-4">
-                                        @if (!empty($bc['image']))
-                                            <img src="{{ asset($bc['image']) }}" alt="{{ $bc['title'] }}"
-                                                loading="lazy" class="w-full h-full object-cover">
-                                        @else
-                                            <div class="w-full h-full flex items-center justify-center"
-                                                style="background:linear-gradient(135deg,#051b2c,#0c4a6e)">
-                                                <svg class="w-8 h-8 stroke-gold/20 fill-none" stroke-width="1"
-                                                    stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
-                                                    {!! $bc['icon'] !!}
-                                                </svg>
-                                            </div>
-                                        @endif
-                                    </div>
-                                    <span
-                                        class="text-[10px] font-bold tracking-[3px] uppercase text-gold mb-1.5 block">{{ $bc['cat'] }}</span>
-                                    <h3
-                                        class="font-serif font-semibold text-[15px] text-navy leading-snug group-hover:text-gold transition-colors duration-200">
-                                        {{ $bc['title'] }}
-                                    </h3>
-                                    <p class="mt-2 text-[14px] text-gray-500 leading-[1.65] line-clamp-2">
-                                        {{ $bc['excerpt'] }}
-                                    </p>
-                                    <div class="mt-3 flex items-center justify-between">
-                                        <span
-                                            class="text-[14px] text-gray-400 uppercase tracking-[1px]">{{ $bc['date'] }}
-                                            &bull; {{ $bc['read'] }}</span>
-                                        <span
-                                            class="text-[10px] font-bold tracking-[2px] uppercase text-gold group-hover:underline">READ
-                                            &rarr;</span>
-                                    </div>
-                                </a>
-                            @endforeach
-                        </div>
-
-                    </div>
-
-                    {{-- All Categories: every article --}}
-                    <div data-news-panel="all" class="hidden">
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    {{-- All articles --}}
+                    <div>
+                        <p data-news-empty class="hidden text-center text-[15px] text-gray-500 py-16">
+                            No articles match the selected categories.
+                        </p>
+                        <div data-news-grid class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         @foreach ($articles as $a)
-                            <a href="{{ route('news.show', $a['slug']) }}"
+                            <a href="{{ route('news.show', $a['slug']) }}" data-news-card
+                                data-news-cat="{{ $a['cat'] }}"
                                 class="group block p-4 -mx-4 rounded-xl hover:bg-gray-50 transition-colors duration-200">
                                 <div class="w-full aspect-video rounded-lg overflow-hidden mb-4">
                                     @if (!empty($a['image']))
@@ -301,29 +256,7 @@
                             VIEW ALL ANNOUNCEMENTS
                         </button>
                     </div>
-
-                    {{-- Admissions CTA --}}
-                    <div class="relative border border-gold/18 rounded-xl overflow-hidden aspect-square flex items-center justify-center"
-                        style="background:linear-gradient(135deg,#030f1a 0%,#071e2f 60%,#051b2c 100%)">
-                        <div class="absolute inset-0 opacity-20"
-                            style="background:radial-gradient(ellipse at 30% 70%,#b8960c,transparent 55%),radial-gradient(ellipse at 75% 25%,#0c4a6e,transparent 55%)">
-                        </div>
-                        <div class="relative z-10 text-center p-8">
-                            <p class="text-[10px] font-bold tracking-[3px] uppercase text-gold/55 mb-3">APPLY NOW</p>
-                            <h3 class="font-serif font-semibold text-white leading-[1.25] mb-4"
-                                style="font-size:clamp(18px,2vw,22px)">
-                                Pre-Bar Course<br>2026 &ndash; 2027
-                            </h3>
-                            <p class="text-[14px] text-cloud/50 mb-6 leading-[1.65]">
-                                Applications open.<br>Deadline: July 2026.
-                            </p>
-                            <a href="https://forms.gslaw.school/surveys/23"
-                                class="inline-block bg-gold text-navy px-6 py-2.5 text-[10px] font-bold tracking-[2px] uppercase rounded hover:bg-gold-light transition-colors">
-                                APPLY NOW
-                            </a>
-                        </div>
-                    </div>
-
+                    
                     {{-- Trending at GSL --}}
                     <div class="bg-gray-50 p-6 rounded-xl border border-gray-200">
                         <h3 class="text-[10px] font-bold tracking-[3px] uppercase text-gold mb-5">TRENDING AT GSL</h3>
@@ -351,25 +284,61 @@
         (function() {
             'use strict';
 
-            const ACTIVE = 'text-[10px] font-bold tracking-[3px] uppercase text-navy py-4 border-b-2 border-gold -mb-px';
-            const INACTIVE = 'text-[10px] font-bold tracking-[3px] uppercase text-gray-400 py-4 border-b-2 border-transparent -mb-px hover:text-navy/60 transition-colors';
+            document.querySelectorAll('[data-news-filter]').forEach(function(filter) {
+                const inputs = Array.from(filter.querySelectorAll('[data-news-filter-input]'));
+                const resetBtn = filter.querySelector('[data-news-filter-reset]');
+                const count = filter.querySelector('[data-news-filter-count]');
 
-            document.querySelectorAll('[data-news-tabs]').forEach(function(tabs) {
-                const buttons = Array.from(tabs.querySelectorAll('[data-news-tab]'));
-                const panels = Array.from(document.querySelectorAll('[data-news-panel]'));
+                const toggleBtn = filter.querySelector('[data-news-filter-toggle]');
+                const panel = filter.querySelector('[data-news-filter-panel]');
+                const chevron = filter.querySelector('[data-news-filter-chevron]');
 
-                buttons.forEach(function(btn) {
-                    btn.addEventListener('click', function() {
-                        const target = btn.getAttribute('data-news-tab');
+                toggleBtn && toggleBtn.addEventListener('click', function() {
+                    const isOpen = panel.classList.contains('grid-rows-[1fr]');
+                    panel.classList.toggle('grid-rows-[1fr]', !isOpen);
+                    panel.classList.toggle('grid-rows-[0fr]', isOpen);
+                    chevron.classList.toggle('rotate-180', !isOpen);
+                    toggleBtn.setAttribute('aria-expanded', String(!isOpen));
+                });
 
-                        buttons.forEach(function(b) {
-                            b.className = b === btn ? ACTIVE : INACTIVE;
-                        });
+                const grid = document.querySelector('[data-news-grid]');
+                const emptyMsg = document.querySelector('[data-news-empty]');
+                if (!grid) return;
+                const cards = Array.from(grid.querySelectorAll('[data-news-card]'));
 
-                        panels.forEach(function(p) {
-                            p.classList.toggle('hidden', p.getAttribute('data-news-panel') !== target);
-                        });
+                function apply() {
+                    const active = inputs.filter(function(i) {
+                        return i.checked;
+                    }).map(function(i) {
+                        return i.value;
                     });
+
+                    if (count) {
+                        count.textContent = active.length;
+                        count.classList.toggle('hidden', active.length === 0);
+                        count.classList.toggle('inline-flex', active.length > 0);
+                    }
+
+                    let visible = 0;
+
+                    cards.forEach(function(card) {
+                        const show = active.length === 0 || active.indexOf(card.getAttribute('data-news-cat')) !== -1;
+                        card.classList.toggle('hidden', !show);
+                        if (show) visible++;
+                    });
+
+                    if (emptyMsg) emptyMsg.classList.toggle('hidden', visible !== 0);
+                }
+
+                inputs.forEach(function(input) {
+                    input.addEventListener('change', apply);
+                });
+
+                resetBtn && resetBtn.addEventListener('click', function() {
+                    inputs.forEach(function(input) {
+                        input.checked = false;
+                    });
+                    apply();
                 });
             });
         }());
