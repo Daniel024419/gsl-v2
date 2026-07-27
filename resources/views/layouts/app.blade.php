@@ -625,19 +625,6 @@
                 @endforeach
             </ul>
 
-            <div class="mt-6 pt-5 border-t border-gold/10">
-                <a href="https://forms.gslaw.school/surveys/23" target="_blank" rel="noopener"
-                    class="mob-link flex items-center justify-center gap-2 w-full py-3.5 text-[14px] font-semibold
-                      bg-gold text-navy rounded hover:bg-gold-light transition-colors duration-200">
-                    Apply Now - September 2026
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2"
-                        stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
-                        <line x1="5" y1="12" x2="19" y2="12" />
-                        <polyline points="12 5 19 12 12 19" />
-                    </svg>
-                </a>
-            </div>
-
             <div class="mt-5 pt-5 border-t border-gold/10">
                 <p class="text-[9px] font-bold text-gold/40 tracking-[2px] uppercase mb-3">Portals</p>
                 <div class="flex flex-col gap-2">
@@ -747,7 +734,7 @@
                 <div>
                     <h4 class="text-[14px] font-bold text-gold tracking-[2px] uppercase mb-5">Quick Links</h4>
                     <ul class="space-y-2.5">
-                        @foreach ([['https://sms.gslaw.school/portal', 'Student Portal'], ['https://sms.gslaw.school/faculty', 'Lecturer Portal'], ['https://sms.gslaw.school/admin', 'Staff Portal'], ['/admissions/instructions', 'Buy Admission Voucher'] , ['https://en.wikipedia.org/wiki/Ghana_School_of_Law' ,'GSL Wikipedia']] as $l)
+                        @foreach ([['https://sms.gslaw.school/portal', 'Student Portal'], ['https://sms.gslaw.school/faculty', 'Lecturer Portal'], ['https://sms.gslaw.school/admin', 'Staff Portal'], ['/admissions/instructions', 'Buy Admission Voucher'] , ['https://en.wikipedia.org/wiki/Ghana_School_of_Law' ,'GSL Wikipedia'],['/notices' , 'Notices']] as $l)
                             <li><a href="{{ $l[0] }}" target="_blank" rel="noopener"
                                     class="text-[14px] text-cloud/55 hover:text-gold transition-colors">{{ $l[1] }}</a>
                             </li>
