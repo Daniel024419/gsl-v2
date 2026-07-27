@@ -20,11 +20,6 @@ class Event extends Model
         ];
     }
 
-    public function getRouteKeyName(): string
-    {
-        return 'slug';
-    }
-
     protected function startTime(): Attribute
     {
         return Attribute::make(

@@ -115,6 +115,25 @@
                         </div>
                     </div>
 
+                    {{-- Latest News CTA --}}
+                    @if ($latestNews)
+                        <div class="relative border border-gold/18 rounded-xl overflow-hidden p-6"
+                            style="background:linear-gradient(135deg,#030f1a 0%,#071e2f 60%,#051b2c 100%)">
+                            <p class="text-[10px] font-bold tracking-[3px] uppercase text-gold/55 mb-3">Latest News</p>
+                            <h3 class="font-serif font-semibold text-white leading-snug mb-3"
+                                style="font-size:clamp(16px,2vw,19px)">
+                                {{ $latestNews->title }}
+                            </h3>
+                            <p class="text-[14px] text-cloud/55 mb-6 leading-[1.65] line-clamp-3">
+                                {{ $latestNews->excerpt }}
+                            </p>
+                            <a href="{{ route('news.show', $latestNews) }}"
+                                class="inline-block bg-gold text-navy px-6 py-2.5 text-[10px] font-bold tracking-[2px] uppercase rounded hover:bg-gold-light transition-colors">
+                                Read More
+                            </a>
+                        </div>
+                    @endif
+
                 </aside>
             </div>
         </div>

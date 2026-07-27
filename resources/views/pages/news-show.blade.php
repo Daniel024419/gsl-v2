@@ -1,6 +1,6 @@
 @extends('layouts.app')
-@section('title', $article['title'].' – Ghana School of Law')
-@section('description', $article['excerpt'])
+@section('title', $article->title.' – Ghana School of Law')
+@section('description', $article->excerpt)
 @section('content')
 
     {{-- ══ ARTICLE HERO ══════════════════════════════════════════════════ --}}
@@ -15,10 +15,10 @@
             Back to News
         </a>
 
-        <span class="text-[10px] font-bold tracking-[3px] uppercase text-gold block mb-3">{{ $article['cat'] }}</span>
+        <span class="text-[10px] font-bold tracking-[3px] uppercase text-gold block mb-3">{{ $article->cat }}</span>
         <h1 class="font-serif font-semibold text-white leading-[1.2] mb-6 max-w-3xl"
             style="font-size:clamp(28px,4vw,48px)">
-            {{ $article['title'] }}
+            {{ $article->title }}
         </h1>
         <div class="flex items-center gap-3.5 mb-10">
             <div
@@ -30,15 +30,15 @@
                 </svg>
             </div>
             <div>
-                <p class="text-[14px] font-medium text-cloud/75">{{ $article['author'] }}</p>
-                <p class="text-[14px] text-cloud/35 uppercase tracking-[1px] mt-0.5">{{ $article['date'] }} &bull;
-                    {{ $article['read'] }}</p>
+                <p class="text-[14px] font-medium text-cloud/75">{{ $article->author }}</p>
+                <p class="text-[14px] text-cloud/35 uppercase tracking-[1px] mt-0.5">{{ $article->date }} &bull;
+                    {{ $article->read }}</p>
             </div>
         </div>
 
         <div class="aspect-[16/9] w-full overflow-hidden rounded-xl relative">
-            @if (!empty($article['image']))
-                <img src="{{ asset($article['image']) }}" alt="{{ $article['title'] }}" loading="lazy"
+            @if ($article->image_url)
+                <img src="{{ $article->image_url }}" alt="{{ $article->title }}" loading="lazy"
                     class="absolute inset-0 w-full h-full object-cover">
             @else
                 <div class="absolute inset-0 flex items-center justify-center"
@@ -56,7 +56,7 @@
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
 
                 <div class="lg:col-span-8 space-y-6">
-                    @foreach ($article['body'] as $paragraph)
+                    @foreach ($article->body as $paragraph)
                         <p class="text-[16px] text-gray-600 leading-[1.85]">{{ $paragraph }}</p>
                     @endforeach
                 </div>
@@ -69,27 +69,27 @@
                             class="text-[10px] font-bold tracking-[3px] uppercase text-gray-500 pb-3 mb-5 border-b border-gray-200">
                             MORE NEWS</h3>
                         <div class="space-y-5">
-                            @foreach (collect($articles)->reject(fn($a) => $a['slug'] === $article['slug'])->take(4) as $other)
-                                <a href="{{ route('news.show', $other['slug']) }}" class="group flex gap-3 items-start">
+                            @foreach ($articles->reject(fn($a) => $a->slug === $article->slug)->take(4) as $other)
+                                <a href="{{ route('news.show', $other) }}" class="group flex gap-3 items-start">
                                     <div class="w-16 h-16 rounded-lg overflow-hidden shrink-0">
-                                        @if (!empty($other['image']))
-                                            <img src="{{ asset($other['image']) }}" alt="{{ $other['title'] }}"
+                                        @if ($other->image_url)
+                                            <img src="{{ $other->image_url }}" alt="{{ $other->title }}"
                                                 loading="lazy" class="w-full h-full object-cover">
                                         @else
                                             <div class="w-full h-full flex items-center justify-center"
                                                 style="background:linear-gradient(135deg,#071e2f,#0c4a6e)">
                                                 <svg class="w-5 h-5 stroke-gold/40 fill-none" stroke-width="1"
                                                     stroke-linecap="round" stroke-linejoin="round"
-                                                    viewBox="0 0 24 24">{!! $other['icon'] !!}</svg>
+                                                    viewBox="0 0 24 24">{!! $other->icon !!}</svg>
                                             </div>
                                         @endif
                                     </div>
                                     <div>
                                         <p
                                             class="text-[14px] font-medium text-navy leading-snug group-hover:text-gold transition-colors duration-200">
-                                            {{ $other['title'] }}</p>
+                                            {{ $other->title }}</p>
                                         <p class="text-[10px] font-bold tracking-[2px] uppercase text-gray-400 mt-1">
-                                            {{ $other['cat'] }}</p>
+                                            {{ $other->cat }}</p>
                                     </div>
                                 </a>
                             @endforeach

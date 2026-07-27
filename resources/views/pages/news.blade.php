@@ -5,32 +5,21 @@
     announcements.')
 @section('content')
 
-    {{-- ══ BREAKING TICKER ══════════════════════════════════════════════ --}}
-    <div class="bg-navy-dark border-y border-gold/15 py-2.5 overflow-hidden mt-[72px]">
-        <div class="max-w-6xl mx-auto px-[5%] flex items-center gap-4">
-            <span
-                class="text-[10px] font-bold tracking-[3px] uppercase bg-gold text-navy px-2.5 py-1 flex-shrink-0 rounded-sm">BREAKING</span>
-            <div class="overflow-hidden flex-1">
-                <span class="animate-marquee text-[14px] italic text-cloud/60 whitespace-nowrap">
-                    Pre-Bar Course 2026/2027 applications now open &nbsp;&mdash;&nbsp;
-                    961 lawyers called to the Ghana Bar in 2025 - 513 female, a historic milestone &nbsp;&mdash;&nbsp;
-                    GSL formally transitions under CLET Act 1170 &nbsp;&mdash;&nbsp;
-                    CLET inaugural Board officially constituted &nbsp;&mdash;&nbsp;
-                    Bar Examination results to be published - check gslaw.edu.gh for updates
-                </span>
-            </div>
-        </div>
-    </div>
 
     {{-- ══ HERO ══════════════════════════════════════════════════════════ --}}
-    <section class="max-w-6xl mx-auto px-[5%] py-16">
+   <section class="max-w-6xl mx-auto px-[5%] py-25 mt-20">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
 
             {{-- Featured Article --}}
-            <a href="{{ route('news.show', $articles[2]['slug']) }}" class="lg:col-span-8 group block">
+            <a href="{{ route('news.show', $featured) }}" class="lg:col-span-8 group block">
                 <div class="aspect-[16/9] w-full overflow-hidden rounded-xl relative">
-                    <img src="{{ asset('assets/images/homehero.png') }}" alt="Ghana School of Law campus"
-                        loading="lazy" class="absolute inset-0 w-full h-full object-cover">
+                    @if ($featured->image_url)
+                        <img src="{{ $featured->image_url }}" alt="{{ $featured->title }}"
+                            loading="lazy" class="absolute inset-0 w-full h-full object-cover">
+                    @else
+                        <img src="{{ asset('assets/images/homehero.png') }}" alt="Ghana School of Law campus"
+                            loading="lazy" class="absolute inset-0 w-full h-full object-cover">
+                    @endif
                     <div class="absolute inset-0"
                         style="background:linear-gradient(135deg,rgba(3,15,26,0.75) 0%,rgba(7,30,47,0.55) 45%,rgba(12,74,110,0.3) 100%)">
                     </div>
@@ -42,14 +31,13 @@
                         style="background:linear-gradient(to top,#030f1a,transparent)"></div>
                 </div>
                 <div class="mt-7">
-                    <span class="text-[10px] font-bold tracking-[3px] uppercase text-gold block mb-3">Academic</span>
+                    <span class="text-[10px] font-bold tracking-[3px] uppercase text-gold block mb-3">{{ $featured->cat }}</span>
                     <h1 class="font-serif font-semibold text-white leading-[1.2] mb-5 group-hover:text-gold transition-colors duration-200"
                         style="font-size:clamp(24px,3.5vw,40px)">
-                        Act 1170 Transformation: GSL Enters a New Era Under CLET
+                        {{ $featured->title }}
                     </h1>
                     <p class="text-[15px] text-cloud/62 leading-[1.75] mb-7 max-w-2xl">
-                        GSL formally transitions to its new role as a Directorate of CLET under the Legal Education Act,
-                        2026 (Act 1170) - reshaping professional legal education governance in Ghana.
+                        {{ $featured->excerpt }}
                     </p>
                     <div class="flex items-center gap-3.5 border-t border-white/6 pt-5">
                         <div
@@ -61,9 +49,9 @@
                             </svg>
                         </div>
                         <div>
-                            <p class="text-[14px] font-medium text-cloud/75">GSL Communications</p>
-                            <p class="text-[14px] text-cloud/35 uppercase tracking-[1px] mt-0.5">January 2026 &bull; 7 Min
-                                Read</p>
+                            <p class="text-[14px] font-medium text-cloud/75">{{ $featured->author }}</p>
+                            <p class="text-[14px] text-cloud/35 uppercase tracking-[1px] mt-0.5">{{ $featured->date }} &bull;
+                                {{ $featured->read }}</p>
                         </div>
                         <span
                             class="ml-auto text-[14px] font-bold tracking-[2px] uppercase text-gold border border-gold/25 px-4 py-2 rounded group-hover:bg-gold/8 transition-colors">
@@ -84,17 +72,17 @@
                             READ</span>
                     </div>
                     <div class="space-y-6">
-                        @foreach ([$articles[0], $articles[1], $articles[4]] as $mr)
+                        @foreach ($mustRead as $mr)
                             <article class="group">
-                                <a href="{{ route('news.show', $mr['slug']) }}">
+                                <a href="{{ route('news.show', $mr) }}">
                                     <h4
                                         class="font-serif font-semibold text-[15px] text-white leading-snug group-hover:text-gold transition-colors duration-200">
-                                        {{ $mr['title'] }}
+                                        {{ $mr->title }}
                                     </h4>
                                     <p class="text-[13px] text-cloud/45 leading-[1.6] mt-1.5 line-clamp-2">
-                                        {{ $mr['excerpt'] }}</p>
+                                        {{ $mr->excerpt }}</p>
                                     <p class="text-[10px] font-bold tracking-[2px] uppercase text-cloud/30 mt-2">
-                                        {{ $mr['cat'] }}</p>
+                                        {{ $mr->cat }}</p>
                                 </a>
                             </article>
                         @endforeach
@@ -124,9 +112,18 @@
     </section>
 
     {{-- ══ FILTER BAR ═══════════════════════════════════════════════════ --}}
-    @php $categories = collect($articles)->pluck('cat')->unique()->values(); @endphp
     <section class="px-[5%] pt-10 bg-white">
         <div class="max-w-6xl mx-auto">
+        <div data-news-toolbar class="space-y-4">
+            <div class="relative">
+                <svg class="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 stroke-gray-400 fill-none pointer-events-none"
+                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                    <circle cx="11" cy="11" r="7" />
+                    <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                </svg>
+                <input type="search" data-news-search-input placeholder="Search articles by title, excerpt, or author…"
+                    class="w-full pl-11 pr-4 py-3.5 bg-gray-50 border border-gray-200 rounded-xl text-[14px] text-navy placeholder:text-gray-400 focus:outline-none focus:border-gold/60 focus:bg-white transition-colors">
+            </div>
             <div data-news-filter class="rounded-xl bg-gray-50 border border-gray-200 overflow-hidden">
                 <button type="button" data-news-filter-toggle aria-expanded="false"
                     class="w-full flex items-center justify-between gap-2 px-6 py-5 text-left">
@@ -165,6 +162,7 @@
                 </div>
             </div>
         </div>
+        </div>
     </section>
 
     {{-- ══ MAIN CONTENT GRID (light section) ═══════════════════════════ --}}
@@ -178,39 +176,40 @@
                     {{-- All articles --}}
                     <div>
                         <p data-news-empty class="hidden text-center text-[15px] text-gray-500 py-16">
-                            No articles match the selected categories.
+                            No articles match your search or filters.
                         </p>
                         <div data-news-grid class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         @foreach ($articles as $a)
-                            <a href="{{ route('news.show', $a['slug']) }}" data-news-card
-                                data-news-cat="{{ $a['cat'] }}"
+                            <a href="{{ route('news.show', $a) }}" data-news-card
+                                data-news-cat="{{ $a->cat }}"
+                                data-news-search="{{ strtolower($a->title.' '.$a->excerpt.' '.$a->author.' '.$a->cat) }}"
                                 class="group block p-4 -mx-4 rounded-xl hover:bg-gray-50 transition-colors duration-200">
                                 <div class="w-full aspect-video rounded-lg overflow-hidden mb-4">
-                                    @if (!empty($a['image']))
-                                        <img src="{{ asset($a['image']) }}" alt="{{ $a['title'] }}" loading="lazy"
+                                    @if ($a->image_url)
+                                        <img src="{{ $a->image_url }}" alt="{{ $a->title }}" loading="lazy"
                                             class="w-full h-full object-cover">
                                     @else
                                         <div class="w-full h-full flex items-center justify-center"
                                             style="background:linear-gradient(135deg,#051b2c,#0c4a6e)">
                                             <svg class="w-8 h-8 stroke-gold/20 fill-none" stroke-width="1"
                                                 stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
-                                                {!! $a['icon'] !!}
+                                                {!! $a->icon !!}
                                             </svg>
                                         </div>
                                     @endif
                                 </div>
                                 <span
-                                    class="text-[10px] font-bold tracking-[3px] uppercase text-gold mb-1.5 block">{{ $a['cat'] }}</span>
+                                    class="text-[10px] font-bold tracking-[3px] uppercase text-gold mb-1.5 block">{{ $a->cat }}</span>
                                 <h3
                                     class="font-serif font-semibold text-[15px] text-navy leading-snug group-hover:text-gold transition-colors duration-200">
-                                    {{ $a['title'] }}
+                                    {{ $a->title }}
                                 </h3>
                                 <p class="mt-2 text-[14px] text-gray-500 leading-[1.65] line-clamp-2">
-                                    {{ $a['excerpt'] }}
+                                    {{ $a->excerpt }}
                                 </p>
                                 <div class="mt-3 flex items-center justify-between">
-                                    <span class="text-[14px] text-gray-400 uppercase tracking-[1px]">{{ $a['date'] }}
-                                        &bull; {{ $a['read'] }}</span>
+                                    <span class="text-[14px] text-gray-400 uppercase tracking-[1px]">{{ $a->date }}
+                                        &bull; {{ $a->read }}</span>
                                     <span
                                         class="text-[10px] font-bold tracking-[2px] uppercase text-gold group-hover:underline">READ
                                         &rarr;</span>
@@ -218,6 +217,36 @@
                             </a>
                         @endforeach
                         </div>
+
+                        @if ($articles->hasPages())
+                            <div class="flex items-center justify-center gap-2 mt-14">
+                                @if ($articles->onFirstPage())
+                                    <span
+                                        class="px-4 py-2 text-[13px] font-semibold text-gray-300 border border-gray-200 rounded-lg cursor-not-allowed">Previous</span>
+                                @else
+                                    <a href="{{ $articles->previousPageUrl() }}"
+                                        class="px-4 py-2 text-[13px] font-semibold text-navy border border-gray-200 rounded-lg hover:border-gold hover:text-gold transition-colors">Previous</a>
+                                @endif
+
+                                @foreach ($articles->getUrlRange(1, $articles->lastPage()) as $page => $url)
+                                    @if ($page === $articles->currentPage())
+                                        <span
+                                            class="w-9 h-9 flex items-center justify-center text-[13px] font-bold bg-gold text-navy rounded-lg">{{ $page }}</span>
+                                    @else
+                                        <a href="{{ $url }}"
+                                            class="w-9 h-9 flex items-center justify-center text-[13px] font-semibold text-navy border border-gray-200 rounded-lg hover:border-gold hover:text-gold transition-colors">{{ $page }}</a>
+                                    @endif
+                                @endforeach
+
+                                @if ($articles->hasMorePages())
+                                    <a href="{{ $articles->nextPageUrl() }}"
+                                        class="px-4 py-2 text-[13px] font-semibold text-navy border border-gray-200 rounded-lg hover:border-gold hover:text-gold transition-colors">Next</a>
+                                @else
+                                    <span
+                                        class="px-4 py-2 text-[13px] font-semibold text-gray-300 border border-gray-200 rounded-lg cursor-not-allowed">Next</span>
+                                @endif
+                            </div>
+                        @endif
                     </div>
                 </div>
 
@@ -284,14 +313,15 @@
         (function() {
             'use strict';
 
-            document.querySelectorAll('[data-news-filter]').forEach(function(filter) {
-                const inputs = Array.from(filter.querySelectorAll('[data-news-filter-input]'));
-                const resetBtn = filter.querySelector('[data-news-filter-reset]');
-                const count = filter.querySelector('[data-news-filter-count]');
+            document.querySelectorAll('[data-news-toolbar]').forEach(function(toolbar) {
+                const inputs = Array.from(toolbar.querySelectorAll('[data-news-filter-input]'));
+                const searchInput = toolbar.querySelector('[data-news-search-input]');
+                const resetBtn = toolbar.querySelector('[data-news-filter-reset]');
+                const count = toolbar.querySelector('[data-news-filter-count]');
 
-                const toggleBtn = filter.querySelector('[data-news-filter-toggle]');
-                const panel = filter.querySelector('[data-news-filter-panel]');
-                const chevron = filter.querySelector('[data-news-filter-chevron]');
+                const toggleBtn = toolbar.querySelector('[data-news-filter-toggle]');
+                const panel = toolbar.querySelector('[data-news-filter-panel]');
+                const chevron = toolbar.querySelector('[data-news-filter-chevron]');
 
                 toggleBtn && toggleBtn.addEventListener('click', function() {
                     const isOpen = panel.classList.contains('grid-rows-[1fr]');
@@ -312,6 +342,7 @@
                     }).map(function(i) {
                         return i.value;
                     });
+                    const search = searchInput ? searchInput.value.trim().toLowerCase() : '';
 
                     if (count) {
                         count.textContent = active.length;
@@ -322,7 +353,11 @@
                     let visible = 0;
 
                     cards.forEach(function(card) {
-                        const show = active.length === 0 || active.indexOf(card.getAttribute('data-news-cat')) !== -1;
+                        const haystack = card.getAttribute('data-news-search') || '';
+
+                        let show = active.length === 0 || active.indexOf(card.getAttribute('data-news-cat')) !== -1;
+                        if (search && haystack.indexOf(search) === -1) show = false;
+
                         card.classList.toggle('hidden', !show);
                         if (show) visible++;
                     });
@@ -330,11 +365,14 @@
                     if (emptyMsg) emptyMsg.classList.toggle('hidden', visible !== 0);
                 }
 
+                searchInput && searchInput.addEventListener('input', apply);
+
                 inputs.forEach(function(input) {
                     input.addEventListener('change', apply);
                 });
 
                 resetBtn && resetBtn.addEventListener('click', function() {
+                    if (searchInput) searchInput.value = '';
                     inputs.forEach(function(input) {
                         input.checked = false;
                     });

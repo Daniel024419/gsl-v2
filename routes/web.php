@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\NewsController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/',           fn() => view('welcome'))->name('home');
@@ -29,18 +30,8 @@ Route::get('/student-life', fn() => view('pages.student-life'))->name('student-l
 Route::get('/events', [EventController::class, 'index'])->name('events');
 Route::get('/events/{event:slug}', [EventController::class, 'show'])->name('events.show');
 
-Route::get('/news', function () {
-    return view('pages.news', ['articles' => config('news.articles')]);
-})->name('news');
-
-Route::get('/news/{slug}', function (string $slug) {
-    $articles = config('news.articles');
-    $article = collect($articles)->firstWhere('slug', $slug);
-
-    abort_unless($article, 404);
-
-    return view('pages.news-show', ['article' => $article, 'articles' => $articles]);
-})->name('news.show');
+Route::get('/news', [NewsController::class, 'index'])->name('news');
+Route::get('/news/{article:slug}', [NewsController::class, 'show'])->name('news.show');
 
 Route::get('/alumni',     fn() => view('pages.alumni'))->name('alumni');
 Route::get('/contact',    fn() => view('pages.contact'))->name('contact');
