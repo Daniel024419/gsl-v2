@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\EventController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/',           fn() => view('welcome'))->name('home');
@@ -25,18 +26,8 @@ Route::get('/notices', function () {
 })->name('notices');
 Route::get('/student-life', fn() => view('pages.student-life'))->name('student-life');
 
-Route::get('/events', function () {
-    return view('pages.events', ['events' => config('events.events')]);
-})->name('events');
-
-Route::get('/events/{slug}', function (string $slug) {
-    $events = config('events.events');
-    $event = collect($events)->firstWhere('slug', $slug);
-
-    abort_unless($event, 404);
-
-    return view('pages.events-show', ['event' => $event, 'events' => $events]);
-})->name('events.show');
+Route::get('/events', [EventController::class, 'index'])->name('events');
+Route::get('/events/{event:slug}', [EventController::class, 'show'])->name('events.show');
 
 Route::get('/news', function () {
     return view('pages.news', ['articles' => config('news.articles')]);

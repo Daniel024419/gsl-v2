@@ -32,6 +32,16 @@
     {{-- ══ FILTER BAR ═══════════════════════════════════════════════════ --}}
     <section class="px-[5%] pt-10 bg-white">
         <div class="max-w-6xl mx-auto">
+        <div data-events-toolbar class="space-y-4">
+            <div class="relative">
+                <svg class="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 stroke-gray-400 fill-none pointer-events-none"
+                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                    <circle cx="11" cy="11" r="7" />
+                    <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                </svg>
+                <input type="search" data-events-search-input placeholder="Search events by title, description, or location…"
+                    class="w-full pl-11 pr-4 py-3.5 bg-gray-50 border border-gray-200 rounded-xl text-[14px] text-navy placeholder:text-gray-400 focus:outline-none focus:border-gold/60 focus:bg-white transition-colors">
+            </div>
             <div data-events-filter class="rounded-xl bg-gray-50 border border-gray-200 overflow-hidden">
                 <button type="button" data-events-filter-toggle aria-expanded="false"
                     class="w-full flex items-center justify-between gap-2 px-6 py-5 text-left">
@@ -93,37 +103,39 @@
                 </div>
             </div>
         </div>
+        </div>
     </section>
 
     {{-- ══ EVENTS GRID ════════════════════════════════════════════════════ --}}
     <section class="px-[5%] pt-10 pb-28 bg-white">
         <div class="max-w-6xl mx-auto">
             <p data-events-empty class="hidden text-center text-[15px] text-gray-500 py-16">
-                No events match your selected date and time range.
+                No events match your search or filters.
             </p>
             <div data-events-grid class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 @foreach ($events as $ev)
-                    <a href="{{ route('events.show', $ev['slug']) }}" data-events-card
-                        data-event-date="{{ $ev['date'] }}" data-event-start="{{ $ev['start_time'] }}"
-                        data-event-end="{{ $ev['end_time'] }}"
+                    <a href="{{ route('events.show', $ev) }}" data-events-card
+                        data-event-date="{{ $ev->date->format('Y-m-d') }}" data-event-start="{{ $ev->start_time }}"
+                        data-event-end="{{ $ev->end_time }}"
+                        data-event-search="{{ strtolower($ev->title.' '.$ev->desc.' '.$ev->location) }}"
                         class="group flex flex-col bg-gray-50 border border-gray-200 rounded-xl overflow-hidden hover:bg-white hover:shadow-lg transition-all duration-500">
 
                         {{-- Thumbnail with calendar badge --}}
                         <div
                             class="relative aspect-4/3 overflow-hidden border-t-2 border-gold/0 group-hover:border-gold transition-all duration-500">
-                            <img src="{{ asset($ev['image']) }}" alt="{{ $ev['title'] }}" loading="lazy"
+                            <img src="{{ $ev->image_url }}" alt="{{ $ev->title }}" loading="lazy"
                                 class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
                             <div class="absolute top-4 left-4 w-14 rounded-lg overflow-hidden shadow-lg">
                                 <div
                                     class="bg-gold text-navy text-[10px] font-bold uppercase tracking-wide text-center py-1">
-                                    {{ strtoupper(substr($ev['month'], 0, 3)) }}</div>
+                                    {{ strtoupper(substr($ev->month, 0, 3)) }}</div>
                                 <div
                                     class="bg-white text-navy font-serif font-bold text-[22px] text-center py-1.5 leading-none">
-                                    {{ $ev['day'] }}</div>
+                                    {{ $ev->day }}</div>
                             </div>
                             <span
                                 class="absolute top-4 right-4 text-[10px] font-bold tracking-[2px] uppercase text-white bg-black/40 backdrop-blur-sm px-2.5 py-1 rounded-full">
-                                {{ $ev['year'] }}</span>
+                                {{ $ev->year }}</span>
                         </div>
 
                         <div class="p-8 flex flex-col flex-1">
@@ -136,21 +148,21 @@
                                     <circle cx="12" cy="12" r="10" />
                                     <polyline points="12 6 12 12 16 14" />
                                 </svg>
-                                {{ $ev['time'] }}
+                                {{ $ev->time }}
                             </p>
 
                             {{-- Title --}}
                             <h3
                                 class="font-serif font-semibold text-[19px] text-navy leading-snug mb-5 group-hover:translate-x-1 transition-transform duration-300">
-                                {{ $ev['title'] }}
+                                {{ $ev->title }}
                             </h3>
 
                             {{-- Description --}}
-                            <p class="text-[14px] text-gray-600 leading-[1.75] flex-grow mb-10">{{ $ev['desc'] }}</p>
+                            <p class="text-[14px] text-gray-600 leading-[1.75] flex-grow mb-10">{{ $ev->desc }}</p>
 
                             {{-- Location --}}
                             <div class="flex items-center gap-2.5 text-gray-400 pt-5 border-t border-gray-200">
-                                @if ($ev['location'] === 'Online Portal')
+                                @if ($ev->is_online)
                                     <svg class="w-3.5 h-3.5 stroke-gold/70 fill-none flex-shrink-0" stroke-width="1.5"
                                         stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
                                         <circle cx="12" cy="12" r="10" />
@@ -166,13 +178,43 @@
                                     </svg>
                                 @endif
                                 <span
-                                    class="text-[14px] font-bold tracking-[2px] uppercase text-gray-500">{{ $ev['location'] }}</span>
+                                    class="text-[14px] font-bold tracking-[2px] uppercase text-gray-500">{{ $ev->location }}</span>
                             </div>
 
                         </div>
                     </a>
                 @endforeach
             </div>
+
+            @if ($events->hasPages())
+                <div class="flex items-center justify-center gap-2 mt-14">
+                    @if ($events->onFirstPage())
+                        <span
+                            class="px-4 py-2 text-[13px] font-semibold text-gray-300 border border-gray-200 rounded-lg cursor-not-allowed">Previous</span>
+                    @else
+                        <a href="{{ $events->previousPageUrl() }}"
+                            class="px-4 py-2 text-[13px] font-semibold text-navy border border-gray-200 rounded-lg hover:border-gold hover:text-gold transition-colors">Previous</a>
+                    @endif
+
+                    @foreach ($events->getUrlRange(1, $events->lastPage()) as $page => $url)
+                        @if ($page === $events->currentPage())
+                            <span
+                                class="w-9 h-9 flex items-center justify-center text-[13px] font-bold bg-gold text-navy rounded-lg">{{ $page }}</span>
+                        @else
+                            <a href="{{ $url }}"
+                                class="w-9 h-9 flex items-center justify-center text-[13px] font-semibold text-navy border border-gray-200 rounded-lg hover:border-gold hover:text-gold transition-colors">{{ $page }}</a>
+                        @endif
+                    @endforeach
+
+                    @if ($events->hasMorePages())
+                        <a href="{{ $events->nextPageUrl() }}"
+                            class="px-4 py-2 text-[13px] font-semibold text-navy border border-gray-200 rounded-lg hover:border-gold hover:text-gold transition-colors">Next</a>
+                    @else
+                        <span
+                            class="px-4 py-2 text-[13px] font-semibold text-gray-300 border border-gray-200 rounded-lg cursor-not-allowed">Next</span>
+                    @endif
+                </div>
+            @endif
         </div>
     </section>
 
@@ -183,17 +225,18 @@
         (function() {
             'use strict';
 
-            document.querySelectorAll('[data-events-filter]').forEach(function(filter) {
+            document.querySelectorAll('[data-events-toolbar]').forEach(function(toolbar) {
                 const inputs = {};
-                filter.querySelectorAll('[data-events-filter-input]').forEach(function(input) {
+                toolbar.querySelectorAll('[data-events-filter-input]').forEach(function(input) {
                     inputs[input.getAttribute('data-events-filter-input')] = input;
                 });
-                const resetBtn = filter.querySelector('[data-events-filter-reset]');
-                const count = filter.querySelector('[data-events-filter-count]');
+                const searchInput = toolbar.querySelector('[data-events-search-input]');
+                const resetBtn = toolbar.querySelector('[data-events-filter-reset]');
+                const count = toolbar.querySelector('[data-events-filter-count]');
 
-                const toggleBtn = filter.querySelector('[data-events-filter-toggle]');
-                const panel = filter.querySelector('[data-events-filter-panel]');
-                const chevron = filter.querySelector('[data-events-filter-chevron]');
+                const toggleBtn = toolbar.querySelector('[data-events-filter-toggle]');
+                const panel = toolbar.querySelector('[data-events-filter-panel]');
+                const chevron = toolbar.querySelector('[data-events-filter-chevron]');
 
                 toggleBtn && toggleBtn.addEventListener('click', function() {
                     const isOpen = panel.classList.contains('grid-rows-[1fr]');
@@ -213,6 +256,7 @@
                     const dateTo = inputs.dateTo && inputs.dateTo.value;
                     const timeFrom = inputs.timeFrom && inputs.timeFrom.value;
                     const timeTo = inputs.timeTo && inputs.timeTo.value;
+                    const search = searchInput ? searchInput.value.trim().toLowerCase() : '';
 
                     const activeCount = [dateFrom, dateTo, timeFrom, timeTo].filter(Boolean).length;
                     if (count) {
@@ -227,12 +271,14 @@
                         const date = card.getAttribute('data-event-date');
                         const start = card.getAttribute('data-event-start');
                         const end = card.getAttribute('data-event-end');
+                        const haystack = card.getAttribute('data-event-search') || '';
 
                         let show = true;
                         if (dateFrom && date < dateFrom) show = false;
                         if (dateTo && date > dateTo) show = false;
                         if (timeFrom && end < timeFrom) show = false;
                         if (timeTo && start > timeTo) show = false;
+                        if (search && haystack.indexOf(search) === -1) show = false;
 
                         card.classList.toggle('hidden', !show);
                         if (show) visible++;
@@ -241,12 +287,15 @@
                     if (emptyMsg) emptyMsg.classList.toggle('hidden', visible !== 0);
                 }
 
+                searchInput && searchInput.addEventListener('input', apply);
+
                 Object.values(inputs).forEach(function(input) {
                     input.addEventListener('input', apply);
                     input.addEventListener('change', apply);
                 });
 
                 resetBtn && resetBtn.addEventListener('click', function() {
+                    if (searchInput) searchInput.value = '';
                     Object.values(inputs).forEach(function(input) {
                         input.value = '';
                     });

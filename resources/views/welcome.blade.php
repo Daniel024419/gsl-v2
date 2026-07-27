@@ -531,21 +531,6 @@
         <h2 class="font-serif font-semibold text-white mb-4" style="font-size:clamp(28px,3.5vw,44px)">
             Ready to Join Ghana's Legal Profession?
         </h2>
-        <p class="text-[17px] text-cloud/65 max-w-[500px] mx-auto leading-[1.7] mb-9">
-            Applications for the September 2026 intake are open now. Take the first step toward your Call to the Bar.
-        </p>
-        <div class="flex gap-4 flex-wrap justify-center">
-            <a href="https://forms.gslaw.school/surveys/23" target="_blank" rel="noopener"
-                class="inline-flex items-center gap-2 px-8 py-4 text-[15px] font-semibold
-                  bg-gold text-navy rounded hover:bg-gold-light hover:-translate-y-0.5 transition-all duration-200">
-                Apply for September 2026
-            </a>
-            <a href="{{ route('about') }}"
-                class="inline-flex items-center gap-2 px-8 py-[15px] text-[15px] font-medium
-                  border border-cloud/25 text-cloud rounded hover:border-gold hover:text-gold transition-all duration-200">
-                Learn About GSL
-            </a>
-        </div>
     </section>
 
 @endsection

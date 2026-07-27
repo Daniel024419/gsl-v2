@@ -18,6 +18,17 @@ use Illuminate\Foundation\Http\Middleware\PreventRequestForgery;
 use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
+use Filament\Support\Enums\Platform;
+use CharrafiMed\GlobalSearchModal\GlobalSearchModalPlugin;
+use Filament\View\PanelsRenderHook;
+use Illuminate\Contracts\View\View;
+use Filament\Support\Facades\FilamentView;
+
+FilamentView::registerRenderHook(
+    PanelsRenderHook::FOOTER,
+    fn (): View => view('footer'),
+
+);
 
 class CpPanelProvider extends PanelProvider
 {
@@ -28,6 +39,7 @@ class CpPanelProvider extends PanelProvider
             ->id('cp')
             ->path('cp')
             ->login()
+            ->sidebarFullyCollapsibleOnDesktop()
             ->colors([
                 'primary' => Color::Amber,
             ])
@@ -52,6 +64,15 @@ class CpPanelProvider extends PanelProvider
                 DisableBladeIconComponents::class,
                 DispatchServingFilamentEvent::class,
             ])
+            ->globalSearchFieldSuffix(fn (): ?string => match (Platform::detect()) {
+                Platform::Windows, Platform::Linux => 'CTRL+K',
+                Platform::Mac => '⌘K',
+                default => null,
+            })->spa()
+            ->plugins([
+                GlobalSearchModalPlugin::make()
+            ])
+            ->maxContentWidth('full')
             ->authMiddleware([
                 Authenticate::class,
             ]);

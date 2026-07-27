@@ -96,28 +96,6 @@
                         </div>
                     </div>
 
-                    {{-- Admissions CTA --}}
-                    <div class="relative border border-gold/18 rounded-xl overflow-hidden aspect-square flex items-center justify-center"
-                        style="background:linear-gradient(135deg,#030f1a 0%,#071e2f 60%,#051b2c 100%)">
-                        <div class="absolute inset-0 opacity-20"
-                            style="background:radial-gradient(ellipse at 30% 70%,#b8960c,transparent 55%),radial-gradient(ellipse at 75% 25%,#0c4a6e,transparent 55%)">
-                        </div>
-                        <div class="relative z-10 text-center p-8">
-                            <p class="text-[10px] font-bold tracking-[3px] uppercase text-gold/55 mb-3">APPLY NOW</p>
-                            <h3 class="font-serif font-semibold text-white leading-tight mb-4"
-                                style="font-size:clamp(18px,2vw,22px)">
-                                Pre-Bar Course<br>2026 &ndash; 2027
-                            </h3>
-                            <p class="text-[14px] text-cloud/50 mb-6 leading-[1.65]">
-                                Applications open.<br>Deadline: July 2026.
-                            </p>
-                            <a href="https://forms.gslaw.school/surveys/23"
-                                class="inline-block bg-gold text-navy px-6 py-2.5 text-[10px] font-bold tracking-[2px] uppercase rounded hover:bg-gold-light transition-colors">
-                                APPLY NOW
-                            </a>
-                        </div>
-                    </div>
-
                 </aside>
             </div>
         </div>
