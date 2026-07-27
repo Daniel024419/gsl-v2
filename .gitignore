@@ -33,7 +33,6 @@ coverage/
 
 # PHP (future services)
 vendor/
-composer.lock
 storage/logs/*
 storage/framework/cache/*
 storage/framework/sessions/*
