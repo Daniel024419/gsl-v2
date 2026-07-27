@@ -6,47 +6,6 @@
 @section('content')
 
     {{-- HERO SLIDER --}}
-    @php
-        $heroSlides = [
-            [
-                'eyebrow' => 'Ghana School of Law',
-                'heading' => 'Your Journey to<br> <span class="text-gold">The Bar</span><br> Starts Here',
-                'text' =>
-                    "Statutory administration, professional legal training, and the official pathway to Ghana's Bar, now under the CLET framework (Act 1170).",
-                'image' => '/GSL.png',
-                'buttons' => [
-                    ['label' => 'Explore Our Mandate', 'route' => 'programmes', 'style' => 'primary'],
-                    ['label' => 'Apply Now', 'route' => 'admissions', 'style' => 'secondary'],
-                ],
-            ],
-            [
-                'eyebrow' => 'Campus & Community',
-                'heading' => 'Experience<br> <span class="text-gold">Student Life</span><br> at GSL',
-                'text' =>
-                    'From mock courtrooms to moot competitions and student associations, life at GSL builds the community and character behind every call to the Bar.',
-                'image' => 'assets/images/homepage/campuslife.png',
-                'buttons' => [
-                    ['label' => 'Explore Student Life', 'route' => 'student-life', 'style' => 'primary'],
-                ],
-            ],
-            [
-                'eyebrow' => 'Events Calendar',
-                'heading' => 'Join Our<br> <span class="text-gold">Signature Events</span><br> & Ceremonies',
-                'text' =>
-                    'Inductions, orientations, and the annual Call to the Bar - see what\'s coming up across our Accra and Kumasi campuses.',
-                'image' => 'assets/images/news/call_to_bar.png',
-                'buttons' => [['label' => 'View Events', 'route' => 'events', 'style' => 'primary']],
-            ],
-            [
-                'eyebrow' => 'Latest Updates',
-                'heading' => 'Stay Informed<br> <span class="text-gold">With GSL News</span>',
-                'text' =>
-                    'Institutional news, academic milestones, and updates on our transformation as a Directorate of CLET.',
-                'image' => 'assets/images/news/orientation.png',
-                'buttons' => [['label' => 'Read Latest News', 'route' => 'news', 'style' => 'primary']],
-            ],
-        ];
-    @endphp
     <section id="hero-slider" data-hero-slider
         class="relative min-h-screen overflow-hidden bg-navy-dark">
 
@@ -54,7 +13,7 @@
         @foreach ($heroSlides as $i => $slide)
             <div data-hero-bg
                 class="absolute inset-0 transition-opacity duration-1000 ease-in-out {{ $i === 0 ? 'opacity-100' : 'opacity-0' }}"
-                style="background:url('{{ str_starts_with($slide['image'], '/') ? $slide['image'] : asset($slide['image']) }}') center/cover no-repeat;
+                style="background:url('{{ $slide->image_url }}') center/cover no-repeat;
                        filter: blur(1px) brightness(0.4);">
             </div>
         @endforeach
@@ -82,17 +41,17 @@
                     <div data-hero-content
                         class="[grid-area:1/1] min-w-0 transition-opacity duration-1000 ease-in-out {{ $i === 0 ? 'opacity-100' : 'opacity-0 pointer-events-none' }}">
                         <p class="text-[14px] text-gold/90 tracking-[3px] uppercase mb-3 font-light">
-                            {{ $slide['eyebrow'] }}</p>
+                            {{ $slide->eyebrow }}</p>
                         <h1 class="font-serif font-semibold text-white leading-[1.08] mb-6 max-w-[860px]"
                             style="font-size:clamp(44px,7vw,88px)">
-                            {!! $slide['heading'] !!}
+                            {!! $slide->heading !!}
                         </h1>
                         <p class="font-light text-cloud/80 leading-[1.75] max-w-[560px] mb-11"
                             style="font-size:clamp(16px,1.8vw,20px)">
-                            {{ $slide['text'] }}
+                            {{ $slide->text }}
                         </p>
                         <div class="flex gap-4 flex-wrap items-center">
-                            @foreach ($slide['buttons'] as $btn)
+                            @foreach ($slide->buttons as $btn)
                                 <a href="{{ route($btn['route']) }}"
                                     class="inline-flex items-center gap-2 px-7 py-[13px] text-[15px]
                                       {{ $btn['style'] === 'primary'

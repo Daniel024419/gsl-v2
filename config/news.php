@@ -16,7 +16,7 @@ return [
             'date' => 'June 2025',
             'read' => '5 min read',
             'author' => 'GSL Communications',
-            'image' => 'placeholder/360_F_671923740_x0zOL3OIuUAnSF6sr7PuznCI5bQFKhI0.jpg',
+            'image' => '/files/assets/images/news/orientation.png',
             'icon' =>
                 '<path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>',
         ],
@@ -34,7 +34,7 @@ return [
             'date' => 'November 2025',
             'read' => '3 min read',
             'author' => 'GSL Communications',
-            'image' => 'placeholder/360_F_671923740_x0zOL3OIuUAnSF6sr7PuznCI5bQFKhI0.jpg',
+            'image' => '/files/assets/images/news/call_to_bar.png',
             'icon' => '<circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/>',
         ],
         [
@@ -52,7 +52,7 @@ return [
             'date' => 'January 2026',
             'read' => '7 min read',
             'author' => 'GSL Communications',
-            'image' => 'placeholder/360_F_671923740_x0zOL3OIuUAnSF6sr7PuznCI5bQFKhI0.jpg',
+            'image' => '/files/assets/images/homehero.png',
             'icon' => '<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>',
         ],
         [
@@ -69,7 +69,7 @@ return [
             'date' => 'June 2026',
             'read' => '2 min read',
             'author' => 'GSL Admissions Office',
-            'image' => 'placeholder/360_F_671923740_x0zOL3OIuUAnSF6sr7PuznCI5bQFKhI0.jpg',
+            'image' => '/files/assets/professional_course.png',
             'icon' =>
                 '<path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/>',
         ],
@@ -87,7 +87,7 @@ return [
             'date' => 'March 2026',
             'read' => '4 min read',
             'author' => 'GSL Communications',
-            'image' => 'placeholder/360_F_671923740_x0zOL3OIuUAnSF6sr7PuznCI5bQFKhI0.jpg',
+            'image' => null,
             'icon' =>
                 '<rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>',
         ],
@@ -105,7 +105,7 @@ return [
             'date' => 'September 2025',
             'read' => '3 min read',
             'author' => 'GSL Communications',
-            'image' => 'placeholder/360_F_671923740_x0zOL3OIuUAnSF6sr7PuznCI5bQFKhI0.jpg',
+            'image' => '/files/assets/images/homepage/induction.png',
             'icon' =>
                 '<path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>',
         ],
