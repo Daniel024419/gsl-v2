@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\NewsController;
+use App\Http\Controllers\NewsletterSubscriptionController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/',           fn() => view('welcome'))->name('home');
@@ -32,6 +33,8 @@ Route::get('/events/{event:slug}', [EventController::class, 'show'])->name('even
 
 Route::get('/news', [NewsController::class, 'index'])->name('news');
 Route::get('/news/{article:slug}', [NewsController::class, 'show'])->name('news.show');
+
+Route::post('/newsletter/subscribe', [NewsletterSubscriptionController::class, 'store'])->name('newsletter.subscribe');
 
 Route::get('/alumni',     fn() => view('pages.alumni'))->name('alumni');
 Route::get('/contact',    fn() => view('pages.contact'))->name('contact');

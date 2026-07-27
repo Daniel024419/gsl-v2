@@ -95,14 +95,26 @@
                     <h3 class="font-serif font-semibold text-[17px] text-white leading-snug mb-5">
                         Stay ahead of GSL news &amp; announcements.
                     </h3>
-                    <div class="w-full flex">
-                        <input type="email" placeholder="Your email address"
-                            class="flex-grow min-w-0 bg-white/5 border border-gold/20 border-r-0 text-white placeholder-cloud/30 px-4 py-3 text-[14px] rounded-l focus:outline-none focus:border-gold/40" />
-                        <button
-                            class="bg-gold text-navy px-4 py-3 text-[10px] font-bold tracking-[2px] uppercase rounded-r hover:bg-gold-light transition-colors flex-shrink-0">
-                            JOIN
-                        </button>
-                    </div>
+
+                    @if (session('newsletter_status'))
+                        <p class="mb-4 text-[13px] font-semibold text-gold">{{ session('newsletter_status') }}</p>
+                    @endif
+
+                    <form method="POST" action="{{ route('newsletter.subscribe') }}" class="w-full">
+                        @csrf
+                        <div class="w-full flex">
+                            <input type="email" name="email" value="{{ old('email') }}" placeholder="Your email address" required
+                                class="flex-grow min-w-0 bg-white/5 border border-gold/20 border-r-0 text-white placeholder-cloud/30 px-4 py-3 text-[14px] rounded-l focus:outline-none focus:border-gold/40" />
+                            <button type="submit"
+                                class="bg-gold text-navy px-4 py-3 text-[10px] font-bold tracking-[2px] uppercase rounded-r hover:bg-gold-light transition-colors flex-shrink-0">
+                                JOIN
+                            </button>
+                        </div>
+                        @error('email')
+                            <p class="mt-3 text-[13px] text-red-400">{{ $message }}</p>
+                        @enderror
+                    </form>
+
                     <p class="mt-4 text-[14px] text-cloud/30 leading-snug">By subscribing you agree to our privacy policy.
                     </p>
                 </div>
