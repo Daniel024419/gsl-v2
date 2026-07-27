@@ -414,21 +414,21 @@
 
             {{-- Track --}}
             <div data-carousel-track class="flex gap-5 overflow-x-auto hide-scrollbar snap-x snap-mandatory pb-2">
-                @foreach ([['day' => '14', 'month' => 'Jan', 'time' => '10:00 – 12:00', 'title' => 'Induction Ceremony', 'desc' => 'New student induction for the 2026/2027 academic year.', 'image' => 'assets/images/homepage/induction.png'], ['day' => '07', 'month' => 'Nov', 'time' => '10:00 – 12:00', 'title' => 'Orientation – Kumasi', 'desc' => 'Orientation session for students at the Kumasi campus.', 'image' => 'assets/images/news/orientation.png'], ['day' => '10', 'month' => 'Nov', 'time' => '10:00 – 12:00', 'title' => 'Call to the Bar', 'desc' => 'Annual ceremony calling qualified lawyers to the Ghana Bar.', 'image' => 'assets/images/news/call_to_bar.png']] as $ev)
-                    <div data-carousel-slide
-                        class="bg-white rounded-xl overflow-hidden border border-gray-100 hover:border-gold/35 hover:shadow-md transition-all duration-300
+                @foreach ($upcomingEvents as $ev)
+                    <a href="{{ route('events.show', $ev) }}" data-carousel-slide
+                        class="block bg-white rounded-xl overflow-hidden border border-gray-100 hover:border-gold/35 hover:shadow-md transition-all duration-300
                         flex-shrink-0 snap-start w-[80vw] sm:w-[55vw] md:w-[42vw] lg:w-[calc(33.333%-14px)]">
                         <div class="relative aspect-[4/3] overflow-hidden">
-                            <img src="{{ asset($ev['image']) }}" alt="{{ $ev['title'] }}" loading="lazy"
+                            <img src="{{ $ev->image_url }}" alt="{{ $ev->title }}" loading="lazy"
                                 class="w-full h-full object-cover">
                             {{-- Calendar date badge --}}
                             <div class="absolute top-4 left-4 w-14 rounded-lg overflow-hidden shadow-lg">
                                 <div
                                     class="bg-gold text-navy text-[10px] font-bold uppercase tracking-wide text-center py-1">
-                                    {{ $ev['month'] }}</div>
+                                    {{ substr($ev->month, 0, 3) }}</div>
                                 <div
                                     class="bg-white text-navy font-serif font-bold text-[22px] text-center py-1.5 leading-none">
-                                    {{ $ev['day'] }}</div>
+                                    {{ $ev->day }}</div>
                             </div>
                         </div>
                         <div class="p-5">
@@ -439,12 +439,12 @@
                                     <circle cx="12" cy="12" r="10" />
                                     <polyline points="12 6 12 12 16 14" />
                                 </svg>
-                                {{ $ev['time'] }}
+                                {{ $ev->time }}
                             </p>
-                            <h4 class="font-serif font-semibold text-[16px] text-navy mb-2">{{ $ev['title'] }}</h4>
-                            <p class="text-[14px] text-navy/55 leading-[1.6]">{{ $ev['desc'] }}</p>
+                            <h4 class="font-serif font-semibold text-[16px] text-navy mb-2">{{ $ev->title }}</h4>
+                            <p class="text-[14px] text-navy/55 leading-[1.6]">{{ $ev->desc }}</p>
                         </div>
-                    </div>
+                    </a>
                 @endforeach
             </div>
 
@@ -491,13 +491,13 @@
 
             {{-- Track --}}
             <div data-carousel-track class="flex gap-5 overflow-x-auto hide-scrollbar snap-x snap-mandatory pb-2">
-                @foreach ([['Institutional', 'Orientation 2025', 'The Ghana School of Law successfully held its 2025/2026 orientation for new students across all three campuses.', 'June 2025', 'assets/images/news/orientation.png'], ['Events', 'Call to the Bar 2025', '961 lawyers were called to the Ghana Bar in 2025 - 513 female, marking a historic milestone for gender inclusion.', 'November 2025', 'assets/images/news/call_to_bar.png'], ['Academic', 'Act 1170 Transformation', 'GSL formally transitions to its new role as a Directorate of CLET under the Legal Education Act, 2026 (Act 1170).', '2026', null]] as $art)
-                    <div data-carousel-slide
+                @foreach ($latestArticles as $art)
+                    <a href="{{ route('news.show', $art) }}" data-carousel-slide
                         class="bg-white rounded-xl overflow-hidden border border-gray-100 hover:border-gold/35 hover:-translate-y-1 hover:shadow-md transition-all duration-300
                         flex-shrink-0 snap-start w-[80vw] sm:w-[55vw] md:w-[42vw] lg:w-[calc(33.333%-14px)] flex flex-col">
                         <div class="h-44 shrink-0 overflow-hidden">
-                            @if ($art[4])
-                                <img src="{{ asset($art[4]) }}" alt="{{ $art[1] }}" loading="lazy"
+                            @if ($art->image_url)
+                                <img src="{{ $art->image_url }}" alt="{{ $art->title }}" loading="lazy"
                                     class="w-full h-full object-cover">
                             @else
                                 <div class="h-full flex items-center justify-center"
@@ -508,14 +508,14 @@
                             @endif
                         </div>
                         <div class="p-5 flex flex-col flex-1">
-                            <p class="text-[10px] font-bold text-gold tracking-[2px] uppercase mb-2.5">{{ $art[0] }}
+                            <p class="text-[10px] font-bold text-gold tracking-[2px] uppercase mb-2.5">{{ $art->cat }}
                             </p>
                             <h4 class="font-serif font-semibold text-[16px] text-navy leading-snug mb-2 flex-1">
-                                {{ $art[1] }}</h4>
-                            <p class="text-[14px] text-navy/55 leading-[1.65] mb-3">{{ $art[2] }}</p>
-                            <p class="text-[13px] text-navy/35">{{ $art[3] }}</p>
+                                {{ $art->title }}</h4>
+                            <p class="text-[14px] text-navy/55 leading-[1.65] mb-3">{{ $art->excerpt }}</p>
+                            <p class="text-[13px] text-navy/35">{{ $art->date }}</p>
                         </div>
-                    </div>
+                    </a>
                 @endforeach
             </div>
 

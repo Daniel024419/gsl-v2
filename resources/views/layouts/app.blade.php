@@ -723,9 +723,9 @@
                 <div>
                     <h4 class="text-[14px] font-bold text-gold tracking-[2px] uppercase mb-5">Latest News</h4>
                     <ul class="space-y-2.5">
-                        @foreach (collect(config('news.articles'))->take(5) as $n)
-                            <li><a href="{{ route('news.show', $n['slug']) }}"
-                                    class="text-[14px] text-cloud/55 hover:text-gold transition-colors line-clamp-1">{{ $n['title'] }}</a>
+                        @foreach ($footerLatestNews as $n)
+                            <li><a href="{{ route('news.show', $n) }}"
+                                    class="text-[14px] text-cloud/55 hover:text-gold transition-colors line-clamp-1">{{ $n->title }}</a>
                             </li>
                         @endforeach
                     </ul>

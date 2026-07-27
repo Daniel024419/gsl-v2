@@ -1,11 +1,12 @@
 <?php
 
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\NewsletterSubscriptionController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/',           fn() => view('welcome'))->name('home');
+Route::get('/',           [HomeController::class, 'index'])->name('home');
 
 Route::redirect('/about', '/about/overview')->name('about');
 Route::get('/about/gsl-clet',   fn() => view('pages.about.gsl-clet'))->name('about.gsl-clet');
