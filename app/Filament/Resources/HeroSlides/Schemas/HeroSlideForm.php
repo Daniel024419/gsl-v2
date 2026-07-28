@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\HeroSlides\Schemas;
 
+use App\Support\SiteRoutes;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\Select;
@@ -13,21 +14,6 @@ use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
 
 class HeroSlideForm
 {
-    public const ROUTE_OPTIONS = [
-        'home' => 'Home',
-        'programmes' => 'Programmes',
-        'admissions' => 'Admissions',
-        'student-life' => 'Student Life',
-        'events' => 'Events',
-        'news' => 'News',
-        'about' => 'About',
-        'examinations' => 'Examinations',
-        'academic-calendar' => 'Academic Calendar',
-        'alumni' => 'Alumni',
-        'contact' => 'Contact',
-        'notices' => 'Notices',
-    ];
-
     public static function configure(Schema $schema): Schema
     {
         return $schema
@@ -54,7 +40,7 @@ class HeroSlideForm
                         TextInput::make('label')
                             ->required(),
                         Select::make('route')
-                            ->options(self::ROUTE_OPTIONS)
+                            ->options(SiteRoutes::OPTIONS)
                             ->required(),
                         Select::make('style')
                             ->options(['primary' => 'Primary', 'secondary' => 'Secondary'])

@@ -65,128 +65,8 @@
 
 <body class="bg-navy text-white font-sans antialiased">
 
+    {{-- $navItems is injected by the layouts.app view composer in AppServiceProvider, sourced from NavItem::tree() --}}
     @php
-        $navItems = [
-            ['route' => 'home', 'label' => 'Home', 'desc' => 'Welcome & overview'],
-            [
-                'label' => 'About',
-                'children' => [
-                    [
-                        'route' => 'about.gsl-clet',
-                        'label' => 'GSL & CLET',
-                        'desc' => 'About the Ghana School of Law and CLET',
-                    ],
-                    ['route' => 'about.overview', 'label' => 'Overview', 'desc' => 'Institutional overview'],
-                    ['route' => 'about.history', 'label' => 'History', 'desc' => 'History of the Ghana School of Law'],
-                    [
-                        'route' => 'about.management',
-                        'label' => 'Management',
-                        'desc' => 'Leadership and management team',
-                    ],
-                ],
-            ],
-            [
-                'route' => 'programmes',
-                'label' => 'Programmes',
-                'desc' => 'All GSL programmes at a glance',
-                'children' => [
-                    [
-                        'route' => 'programmes.pre-bar-course',
-                        'label' => 'Pre-Bar Course',
-                        'desc' => 'Transitional preparatory course for LLB graduates',
-                    ],
-                    [
-                        'route' => 'programmes.law-practice-training',
-                        'label' => 'Law Practice Training (LPT)',
-                        'desc' => 'The 1-year professional training programme',
-                    ],
-                    [
-                        'route' => 'programmes.post-call-law-course',
-                        'label' => 'Post-Call Law Course',
-                        'desc' => 'For lawyers called to the Bar in other Common Law jurisdictions',
-                    ],
-                ],
-            ],
-            [
-                'label' => 'Academics',
-                'desc' => 'Examinations, calendar, and legal research resources',
-                'children' => [
-                    [
-                        'route' => 'examinations',
-                        'label' => 'Examinations',
-                        'desc' => 'Entrance and Bar Examination information',
-                    ],
-                    [
-                        'route' => 'academic-calendar',
-                        'label' => 'Academic Calendar',
-                        'desc' => 'Key dates for the 2026/2027 academic year',
-                    ],
-                    [
-                        'route' => 'notices',
-                        'label' => 'Notices',
-                        'desc' => 'Official notices and announcements',
-                    ],
-                    [
-                        'href' => 'https://en.wikipedia.org/wiki/Ghana_School_of_Law',
-                        'label' => 'GSL Wikipedia',
-                        'target' => '_blank',
-                        'desc' => 'Ghana School of Law on Wikipedia',
-                    ],
-                    [
-                        'label' => 'Library & Books',
-                        'desc' => 'Legal research and library resources',
-                        'children' => [
-                            [
-                                'href' => 'https://library.gslaw.school/',
-                                'label' => 'GSL Library',
-                                'target' => '_blank',
-                                'desc' => 'Ghana School of Law library catalogue',
-                            ],
-                            [
-                                'href' => 'https://app.judy.legal/account/login',
-                                'label' => 'Judy Legal',
-                                'target' => '_blank',
-                                'desc' => 'Legal research platform',
-                            ],
-                            [
-                                'href' => 'https://app.dennislawgh.com/login',
-                                'label' => 'Dennis Law',
-                                'target' => '_blank',
-                                'desc' => 'Legal research platform',
-                            ],
-                        ],
-                    ],
-                ],
-            ],
-            [
-                'label' => 'Admissions',
-                'desc' => 'Entry requirements and how to apply',
-                'children' => [
-                    [
-                        'href' => '/admissions/instructions',
-                        'label' => 'Buy Admission Voucher',
-                        'desc' => 'Online application code',
-                    ],
-                    [
-                        'href' => 'https://sms.gslaw.school/applicant',
-                        'label' => 'Applicant Portal',
-                        'target' => '_blank',
-                        'desc' => 'Submit and track your application',
-                    ],
-                    [
-                        'route' => 'admissions',
-                        'label' => 'Entry Requirements',
-                        'desc' => 'Admission entry requirements',
-                    ],
-                ],
-            ],
-            ['route' => 'student-life', 'label' => 'Student Life', 'desc' => 'Campus life, community, and student experience'],
-            ['route' => 'events', 'label' => 'Events', 'desc' => 'Upcoming GSL events and ceremonies'],
-            ['route' => 'news', 'label' => 'News', 'desc' => 'Latest institutional news and updates'],
-            ['route' => 'alumni', 'label' => 'Alumni', 'desc' => 'GSL alumni network and community'],
-            ['route' => 'contact', 'label' => 'Contact', 'desc' => 'Get in touch with GSL'],
-        ];
-
         $navIsActive = function ($node) use (&$navIsActive) {
             if (isset($node['route']) && request()->routeIs($node['route'])) {
                 return true;
@@ -274,7 +154,7 @@
             <div class="hidden sm:block leading-tight">
                 <span class="block text-[13px] font-black text-navy tracking-[2px] uppercase">CLET GHANA</span>
                 <span class="block text-[13px] font-black text-navy tracking-[2px] uppercase">Ghana School of Law</span>
-                <span class="block text-[14px] text-navy/60">A Directorate of CLET</span>
+                {{--  <span class="block text-[14px] text-navy/60">A Directorate of CLET</span>  --}}
             </div>
         </a>
 
@@ -373,11 +253,17 @@
                     </li>
                 @else
                     <li>
-                        <a href="{{ route($item['route']) }}"
-                            class="nav-link hover-sleek text-[15px] font-medium tracking-wide transition-colors duration-200
-                          {{ request()->routeIs($item['route']) ? 'text-navy active' : 'text-navy/60 hover:text-navy' }}">
-                            {{ $item['label'] }}
-                        </a>
+                        @if (isset($item['route']))
+                            <a href="{{ route($item['route']) }}"
+                                class="nav-link hover-sleek text-[15px] font-medium tracking-wide transition-colors duration-200
+                              {{ request()->routeIs($item['route']) ? 'text-navy active' : 'text-navy/60 hover:text-navy' }}">
+                                {{ $item['label'] }}
+                            </a>
+                        @else
+                            <span class="text-[15px] font-medium tracking-wide text-navy/40">
+                                {{ $item['label'] }}
+                            </span>
+                        @endif
                     </li>
                 @endif
             @endforeach
@@ -609,17 +495,24 @@
                         </li>
                     @else
                         <li>
-                            <a href="{{ route($item['route']) }}"
-                                class="mob-link flex items-center gap-3 px-4 py-3 rounded-lg text-[14px] font-medium
-                              transition-all duration-200
-                              {{ request()->routeIs($item['route'])
-                                  ? 'bg-gold/10 text-gold border border-gold/25'
-                                  : 'text-cloud/70 hover:bg-white/5 hover:text-white border border-transparent' }}">
-                                <span
-                                    class="w-1.5 h-1.5 rounded-full flex-shrink-0
-                                     {{ request()->routeIs($item['route']) ? 'bg-gold' : 'bg-cloud/25' }}"></span>
-                                {{ $item['label'] }}
-                            </a>
+                            @if (isset($item['route']))
+                                <a href="{{ route($item['route']) }}"
+                                    class="mob-link flex items-center gap-3 px-4 py-3 rounded-lg text-[14px] font-medium
+                                  transition-all duration-200
+                                  {{ request()->routeIs($item['route'])
+                                      ? 'bg-gold/10 text-gold border border-gold/25'
+                                      : 'text-cloud/70 hover:bg-white/5 hover:text-white border border-transparent' }}">
+                                    <span
+                                        class="w-1.5 h-1.5 rounded-full flex-shrink-0
+                                         {{ request()->routeIs($item['route']) ? 'bg-gold' : 'bg-cloud/25' }}"></span>
+                                    {{ $item['label'] }}
+                                </a>
+                            @else
+                                <span class="flex items-center gap-3 px-4 py-3 rounded-lg text-[14px] font-medium text-cloud/40 border border-transparent">
+                                    <span class="w-1.5 h-1.5 rounded-full flex-shrink-0 bg-cloud/25"></span>
+                                    {{ $item['label'] }}
+                                </span>
+                            @endif
                         </li>
                     @endif
                 @endforeach
