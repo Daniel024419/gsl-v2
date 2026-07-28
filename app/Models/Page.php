@@ -12,6 +12,7 @@ class Page extends Model
     {
         return [
             'is_published' => 'boolean',
+            'content' => 'array'
         ];
     }
 }

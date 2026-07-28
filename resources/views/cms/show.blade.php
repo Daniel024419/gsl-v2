@@ -22,7 +22,11 @@
             [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:mb-5 [&_ol]:list-decimal [&_ol]:pl-6 [&_ol]:mb-5
             [&_a]:text-gold [&_a]:underline [&_a]:hover:text-gold-light
             [&_strong]:text-navy [&_strong]:font-semibold">
-            {!! $page->content !!}
+            <div class="prose dark:prose-invert">
+                {{ \Filament\Forms\Components\RichEditor\RichContentRenderer::make($page->content)
+                    ->fileAttachmentsDisk(config('filesystems.disks.r2.disk'))
+                    ->fileAttachmentsVisibility('private') }}
+            </div>
         </div>
     </section>
 
