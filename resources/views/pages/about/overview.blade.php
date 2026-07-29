@@ -67,7 +67,7 @@
         </div>
     </section>
 
-    {{-- Objectives --}}
+    {{-- Objectives full --}}
     <section class="py-20 px-[5%] bg-navy">
         <div class="max-w-6xl mx-auto">
             <div class="text-center mb-14">
