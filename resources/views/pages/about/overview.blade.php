@@ -110,7 +110,7 @@
     {{-- Welcome from the Director --}}
     <section class="py-20 px-[5%] bg-white" id="msg-from-director">
         <div class="max-w-4xl mx-auto">
-            <img src="{{ asset('assets/images/management/director.png') }}" alt="Prof. Raymond Akongburo Atuguba"
+            <img src="{{ \App\Support\R2::url('assets/images/management/director.png') }}" alt="Prof. Raymond Akongburo Atuguba"
                 loading="lazy" class="float-right ml-6 mb-4 w-40 h-40 rounded-full object-cover border-2 border-gold">
             <p class="text-[14px] font-bold text-gold tracking-[3px] uppercase mb-3">A Message</p>
             <h2 class="font-serif font-semibold text-navy text-[30px] leading-[1.2] mb-6">Welcome from the Director
@@ -145,7 +145,7 @@
     {{-- Message from the Registrar --}}
     <section class="py-20 px-[5%] bg-gray-50" id="msg-from-registrar">
         <div class="max-w-4xl mx-auto">
-            <img src="{{ asset('assets/images/management/image 42.png') }}" alt="Mrs. Julliet Adu-Adjei" loading="lazy"
+            <img src="{{ \App\Support\R2::url('assets/images/management/image 42.png') }}" alt="Mrs. Julliet Adu-Adjei" loading="lazy"
                 class="float-right ml-6 mb-4 w-40 h-40 rounded-full object-cover border-2 border-gold">
             <p class="text-[14px] font-bold text-gold tracking-[3px] uppercase mb-3">A Message</p>
             <h2 class="font-serif font-semibold text-navy text-[30px] leading-[1.2] mb-6">Message from the Registrar

@@ -29,7 +29,7 @@
                     ['assets/images/management/campus-cordinator.png', 'Mr. Michael Gyang Owusu', 'Campus Coordinator'],
                 ] as $m)
                     <div class="p-8 rounded-xl border border-gray-200 bg-gray-50 text-center">
-                        <img src="{{ asset($m[0]) }}" alt="{{ $m[1] }}" loading="lazy"
+                        <img src="{{ \App\Support\R2::url($m[0]) }}" alt="{{ $m[1] }}" loading="lazy"
                             class="w-28 h-28 mx-auto rounded-full object-cover border-2 border-gold mb-5">
                         <h3 class="font-serif font-semibold text-[18px] text-navy mb-1">{{ $m[1] }}</h3>
                         <p class="text-[13px] text-gray-500 leading-[1.6]">{{ $m[2] }}</p>
@@ -62,7 +62,7 @@
                     ['assets/images/management/judiciary-secretary.png', 'Mr. Issah Ahmed', 'Judicial Secretary and Secretary, GLC'],
                 ] as $m)
                     <div class="flex flex-col items-center text-center gap-2">
-                        <img src="{{ asset($m[0]) }}" alt="{{ $m[1] }}" loading="lazy"
+                        <img src="{{ \App\Support\R2::url($m[0]) }}" alt="{{ $m[1] }}" loading="lazy"
                             class="w-24 h-24 rounded-full object-cover border-2 border-gold/60">
                         <p class="text-[13px] font-semibold text-white leading-[1.4]">{{ $m[1] }}</p>
                         <p class="text-[11px] text-cloud/62 leading-[1.4]">{{ $m[2] }}</p>
@@ -99,7 +99,7 @@
                     ['assets/images/management/arku-korsah.png', 'Hon. Justice Sir Arku Korsah', '1958-1963'],
                 ] as $m)
                     <div class="flex flex-col items-center text-center gap-2">
-                        <img src="{{ asset($m[0]) }}" alt="{{ $m[1] }}" loading="lazy"
+                        <img src="{{ \App\Support\R2::url($m[0]) }}" alt="{{ $m[1] }}" loading="lazy"
                             class="w-20 h-20 rounded-full object-cover border-2 border-gold/40">
                         <p class="text-[12px] font-semibold text-navy leading-[1.4]">{{ $m[1] }}</p>
                         <p class="text-[11px] text-gold font-bold">{{ $m[2] }}</p>
@@ -128,7 +128,7 @@
                     ['assets/images/management/georgina-awuku-apaw.png', 'Miss Georgina Awuku-Apaw', 'Principal Administrative Officer, GLC, Member'],
                 ] as $m)
                     <div class="p-6 rounded-xl border border-gray-200 bg-gray-50 text-center">
-                        <img src="{{ asset($m[0]) }}" alt="{{ $m[1] }}" loading="lazy"
+                        <img src="{{ \App\Support\R2::url($m[0]) }}" alt="{{ $m[1] }}" loading="lazy"
                             class="w-20 h-20 mx-auto rounded-full object-cover border-2 border-gold mb-4">
                         <h3 class="font-serif font-semibold text-[15px] text-navy mb-1">{{ $m[1] }}</h3>
                         <p class="text-[12px] text-gray-500 leading-[1.5]">{{ $m[2] }}</p>
@@ -158,7 +158,7 @@
                     ['assets/whatsapp-image-2026-05-27-at-5.30.25-pm(1).jpeg', 'Francisca Kakra Forson', 'Corporate Affairs'],
                 ] as $m)
                     <div class="p-8 rounded-xl border border-gray-200 bg-white text-center">
-                        <img src="{{ asset($m[0]) }}" alt="{{ $m[1] }}" loading="lazy"
+                        <img src="{{ \App\Support\R2::url($m[0]) }}" alt="{{ $m[1] }}" loading="lazy"
                             class="w-28 h-28 mx-auto rounded-full object-cover border-2 border-gold mb-5">
                         <h3 class="font-serif font-semibold text-[18px] text-navy mb-1">{{ $m[1] }}</h3>
                         <p class="text-[13px] font-bold text-gold uppercase tracking-[1px]">{{ $m[2] }}</p>

@@ -113,7 +113,7 @@
                         <p class="text-[11px] font-bold text-gold/60 tracking-[2px] uppercase mb-4">
                             {{ str_pad($i + 1, 2, '0', STR_PAD_LEFT) }}</p>
                         @if ($d[2])
-                            <img src="{{ asset($d[2]) }}" alt="{{ $d[1] }}" loading="lazy"
+                            <img src="{{ \App\Support\R2::url($d[2]) }}" alt="{{ $d[1] }}" loading="lazy"
                                 class="w-24 h-24 mx-auto rounded-full object-cover border-2 border-gold mb-4">
                         @else
                             <div
