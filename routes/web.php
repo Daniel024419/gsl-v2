@@ -5,6 +5,11 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\NewsletterSubscriptionController;
 use App\Http\Controllers\PageController;
+use App\Models\DepartmentHead;
+use App\Models\EnrollmentCommitteeMember;
+use App\Models\GoverningBodyMember;
+use App\Models\InstitutionalMemoryMember;
+use App\Models\LeadershipMember;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/',           [HomeController::class, 'index'])->name('home');
@@ -13,7 +18,15 @@ Route::redirect('/about', '/about/overview')->name('about');
 Route::get('/about/gsl-clet',   fn() => view('pages.about.gsl-clet'))->name('about.gsl-clet');
 Route::get('/about/overview',   fn() => view('pages.about.overview'))->name('about.overview');
 Route::get('/about/history',    fn() => view('pages.about.history'))->name('about.history');
-Route::get('/about/management', fn() => view('pages.about.management'))->name('about.management');
+Route::get('/about/management', function () {
+    return view('pages.about.management', [
+        'leadership' => LeadershipMember::with(['person', 'role'])->visible()->ordered()->get(),
+        'governingBody' => GoverningBodyMember::with(['person', 'role'])->visible()->ordered()->get(),
+        'institutionalMemory' => InstitutionalMemoryMember::with('person')->visible()->ordered()->get(),
+        'enrollmentCommittee' => EnrollmentCommitteeMember::with(['person', 'role'])->visible()->ordered()->get(),
+        'departmentHeads' => DepartmentHead::with(['person', 'role'])->visible()->ordered()->get(),
+    ]);
+})->name('about.management');
 
 Route::get('/programmes',                      fn() => view('pages.programmes'))->name('programmes');
 Route::get('/programmes/pre-bar-course',        fn() => view('pages.programmes.pre-bar-course'))->name('programmes.pre-bar-course');
