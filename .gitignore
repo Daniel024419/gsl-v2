@@ -40,4 +40,7 @@ storage/framework/views/*
 
 # Laravel / Vite
 /public/hot
+hot
+.hot
+/hot
 /public/storage
