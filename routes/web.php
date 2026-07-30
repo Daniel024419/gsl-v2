@@ -6,18 +6,37 @@ use App\Http\Controllers\NewsController;
 use App\Http\Controllers\NewsletterSubscriptionController;
 use App\Http\Controllers\PageController;
 use App\Models\DepartmentHead;
+use App\Models\Directorate;
 use App\Models\EnrollmentCommitteeMember;
 use App\Models\GoverningBodyMember;
 use App\Models\InstitutionalMemoryMember;
 use App\Models\LeadershipMember;
+use App\Models\NotableAlumnus;
+use App\Models\OverviewMessage;
+use App\Models\OverviewObjective;
+use App\Models\OverviewPillar;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/',           [HomeController::class, 'index'])->name('home');
 
 Route::redirect('/about', '/about/overview')->name('about');
-Route::get('/about/gsl-clet',   fn() => view('pages.about.gsl-clet'))->name('about.gsl-clet');
-Route::get('/about/overview',   fn() => view('pages.about.overview'))->name('about.overview');
-Route::get('/about/history',    fn() => view('pages.about.history'))->name('about.history');
+Route::get('/about/gsl-clet', function () {
+    return view('pages.about.gsl-clet', [
+        'directorates' => Directorate::with('person')->visible()->ordered()->get(),
+    ]);
+})->name('about.gsl-clet');
+Route::get('/about/overview', function () {
+    return view('pages.about.overview', [
+        'pillars' => OverviewPillar::visible()->ordered()->get(),
+        'objectives' => OverviewObjective::visible()->ordered()->get(),
+        'messages' => OverviewMessage::with('person')->visible()->ordered()->get(),
+    ]);
+})->name('about.overview');
+Route::get('/about/history', function () {
+    return view('pages.about.history', [
+        'notableAlumni' => NotableAlumnus::with('person')->visible()->ordered()->get(),
+    ]);
+})->name('about.history');
 Route::get('/about/management', function () {
     return view('pages.about.management', [
         'leadership' => LeadershipMember::with(['person', 'role'])->visible()->ordered()->get(),

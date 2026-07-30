@@ -16,6 +16,8 @@ class EventsTable
     {
         return $table
             ->columns([
+                ImageColumn::make('image')->width(90)->height(90)
+                ->defaultImageUrl(asset('placeholder.png')),
                 TextColumn::make('slug')
                     ->searchable(),
                 TextColumn::make('title')
@@ -27,7 +29,6 @@ class EventsTable
                 IconColumn::make('is_online')
                     ->label('Online')
                     ->boolean(),
-                ImageColumn::make('image'),
                 TextColumn::make('date')
                     ->date()
                     ->sortable(),

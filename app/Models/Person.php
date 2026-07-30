@@ -41,4 +41,19 @@ class Person extends Model
     {
         return $this->hasMany(DepartmentHead::class);
     }
+
+    public function notableAlumniMemberships()
+    {
+        return $this->hasMany(NotableAlumnus::class);
+    }
+
+    public function overviewMessages()
+    {
+        return $this->hasMany(OverviewMessage::class);
+    }
+
+    public function directorates()
+    {
+        return $this->hasMany(Directorate::class);
+    }
 }

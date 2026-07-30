@@ -31,5 +31,10 @@ class DatabaseSeeder extends Seeder
         $this->call(InstitutionalMemoryMemberSeeder::class);
         $this->call(EnrollmentCommitteeMemberSeeder::class);
         $this->call(DepartmentHeadSeeder::class);
+        $this->call(NotableAlumnusSeeder::class);
+        $this->call(OverviewPillarSeeder::class);
+        $this->call(OverviewObjectiveSeeder::class);
+        $this->call(OverviewMessageSeeder::class);
+        $this->call(DirectorateSeeder::class);
     }
 }

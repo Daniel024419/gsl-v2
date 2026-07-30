@@ -147,11 +147,11 @@
                     </p>
                 </div>
                 <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
-                    @foreach ([['assets/images/history/justice_brobbey 1.png', 'Justice S.A Brobbey'], ['assets/images/history/President-Atta-Mills 1.png', 'Pres. J.E.A Mills'], ['assets/images/history/Former-finance-minister-Kwesi-Botchwey-is-dead 1.png', 'Dr. Kwesi Botchway'], ['assets/images/history/placeholder.png', 'H.E. Prof. Turkson'], ['assets/images/history/tawia-modibo-ocran-b5fc758c-8c5d-4016-be56-d61b1c3a6f7-resize-750 1.png', 'Justice Modibo Ocran'], ['assets/images/history/placeholder.png', 'Justice Adjabeng'], ['assets/images/history/placeholder.png', 'Major General Donkor'], ['assets/images/history/placeholder.png', 'Dr Bimpong Buta'], ['assets/images/history/placeholder.png', 'Prof. Ofori Amankwah'], ['assets/images/history/placeholder.png', 'Ignatius De Paul'], ['assets/images/history/placeholder.png', 'Mrs. Kokovi Tay']] as $p)
+                    @foreach ($notableAlumni as $p)
                         <div class="flex flex-col items-center text-center gap-2">
-                            <img src="{{ \App\Support\R2::url($p[0]) }}" alt="{{ $p[1] }}" loading="lazy"
+                            <img src="{{ $p->image_url }}" alt="{{ $p->name }}" loading="lazy"
                                 class="w-20 h-20 rounded-full object-cover border-4 border-gold/50">
-                            <span class="text-[12px] text-gray-600 leading-[1.4]">{{ $p[1] }}</span>
+                            <span class="text-[12px] text-gray-600 leading-[1.4]">{{ $p->name }}</span>
                         </div>
                     @endforeach
                 </div>
