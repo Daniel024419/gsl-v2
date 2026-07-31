@@ -36,5 +36,8 @@ class DatabaseSeeder extends Seeder
         $this->call(OverviewObjectiveSeeder::class);
         $this->call(OverviewMessageSeeder::class);
         $this->call(DirectorateSeeder::class);
+        $this->call(ProgrammeSeeder::class);
+        $this->call(FooterLinkSeeder::class);
+        $this->call(FooterContactItemSeeder::class);
     }
 }

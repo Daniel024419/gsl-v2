@@ -1,0 +1,53 @@
+<?php
+
+namespace App\Filament\Clusters\Footer\Resources\FooterLinks;
+
+use App\Filament\Clusters\Footer\FooterCluster;
+use App\Filament\Clusters\Footer\Resources\FooterLinks\Pages\ListFooterLinks;
+use App\Filament\Clusters\Footer\Resources\FooterLinks\Schemas\FooterLinkForm;
+use App\Filament\Clusters\Footer\Resources\FooterLinks\Tables\FooterLinksTable;
+use App\Models\FooterLink;
+use BackedEnum;
+use Filament\Resources\Resource;
+use Filament\Schemas\Schema;
+use Filament\Support\Icons\Heroicon;
+use Filament\Tables\Table;
+
+class FooterLinkResource extends Resource
+{
+    protected static ?string $model = FooterLink::class;
+
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedLink;
+
+    protected static ?string $navigationLabel = 'Quick Links';
+
+    protected static ?int $navigationSort = 2;
+
+    protected static ?string $cluster = FooterCluster::class;
+
+    protected static ?string $recordTitleAttribute = 'label';
+
+    public static function form(Schema $schema): Schema
+    {
+        return FooterLinkForm::configure($schema);
+    }
+
+    public static function table(Table $table): Table
+    {
+        return FooterLinksTable::configure($table);
+    }
+
+    public static function getRelations(): array
+    {
+        return [
+            //
+        ];
+    }
+
+    public static function getPages(): array
+    {
+        return [
+            'index' => ListFooterLinks::route('/'),
+        ];
+    }
+}

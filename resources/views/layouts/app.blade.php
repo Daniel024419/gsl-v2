@@ -605,9 +605,9 @@
                 <div>
                     <h4 class="text-[14px] font-bold text-gold tracking-[2px] uppercase mb-5">Programmes</h4>
                     <ul class="space-y-2.5">
-                        @foreach ([['programmes.pre-bar-course', 'Pre-Bar Course'], ['programmes.law-practice-training', 'Law Practice Training (LPT)'], ['programmes.post-call-law-course', 'Post-Call Law Course'], ['programmes', 'Bar Exam Remedial'], ['programmes', 'Specialised Development']] as $l)
-                            <li><a href="{{ route($l[0]) }}"
-                                    class="text-[14px] text-cloud/55 hover:text-gold transition-colors">{{ $l[1] }}</a>
+                        @foreach ($footerProgrammes as $p)
+                            <li><a href="{{ $p->url }}"
+                                    class="text-[14px] text-cloud/55 hover:text-gold transition-colors">{{ $p->title }}</a>
                             </li>
                         @endforeach
                     </ul>
@@ -627,9 +627,9 @@
                 <div>
                     <h4 class="text-[14px] font-bold text-gold tracking-[2px] uppercase mb-5">Quick Links</h4>
                     <ul class="space-y-2.5">
-                        @foreach ([['https://sms.gslaw.school/portal', 'Student Portal'], ['https://sms.gslaw.school/faculty', 'Lecturer Portal'], ['https://sms.gslaw.school/admin', 'Staff Portal'], ['/admissions/instructions', 'Buy Admission Voucher'] , ['https://en.wikipedia.org/wiki/Ghana_School_of_Law' ,'GSL Wikipedia'],['/notices' , 'Notices']] as $l)
-                            <li><a href="{{ $l[0] }}" target="_blank" rel="noopener"
-                                    class="text-[14px] text-cloud/55 hover:text-gold transition-colors">{{ $l[1] }}</a>
+                        @foreach ($footerQuickLinks as $l)
+                            <li><a href="{{ $l->href }}" @if ($l->target === '_blank') target="_blank" rel="noopener" @endif
+                                    class="text-[14px] text-cloud/55 hover:text-gold transition-colors">{{ $l->label }}</a>
                             </li>
                         @endforeach
                     </ul>
@@ -638,38 +638,16 @@
                 <div>
                     <h4 class="text-[14px] font-bold text-gold tracking-[2px] uppercase mb-5">Contact</h4>
                     <ul class="space-y-3 text-[14px] text-cloud/55">
-                        <li class="flex items-start gap-2.5 leading-snug">
-                            <svg class="w-3.5 h-3.5 flex-shrink-0 mt-0.5 stroke-gold fill-none" stroke-width="1.5"
-                                stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
-                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
-                                <circle cx="12" cy="10" r="3" />
-                            </svg>
-                            Independence Avenue, Makola, Accra
-                        </li>
-                        <li class="flex items-start gap-2.5">
-                            <svg class="w-3.5 h-3.5 flex-shrink-0 mt-0.5 stroke-gold fill-none" stroke-width="1.5"
-                                stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
-                                <path
-                                    d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.63 3.4 2 2 0 0 1 3.6 1.21h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.84a16 16 0 0 0 6 6l.95-.95a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 21.73 16.92z" />
-                            </svg>
-                            +233 307 003 231
-                        </li>
-                        <li class="flex items-start gap-2.5">
-                            <svg class="w-3.5 h-3.5 flex-shrink-0 mt-0.5 stroke-gold fill-none" stroke-width="1.5"
-                                stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
-                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
-                                <polyline points="22,6 12,13 2,6" />
-                            </svg>
-                            enquiries@gslaw.edu.gh
-                        </li>
-                        <li class="flex items-start gap-2.5">
-                            <svg class="w-3.5 h-3.5 flex-shrink-0 mt-0.5 stroke-gold fill-none" stroke-width="1.5"
-                                stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
-                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
-                                <polyline points="22,6 12,13 2,6" />
-                            </svg>
-                            admissions@gslaw.edu.gh
-                        </li>
+                        @foreach ($footerContactItems as $c)
+                            <li class="flex items-start gap-2.5 leading-snug">
+                                @svg($c->icon, 'w-3.5 h-3.5 flex-shrink-0 mt-0.5 stroke-gold fill-none', ['stroke-width' => '1.5', 'stroke-linecap' => 'round', 'stroke-linejoin' => 'round'])
+                                @if ($c->link)
+                                    <a href="{{ $c->link }}" class="hover:text-gold transition-colors">{{ $c->label }}</a>
+                                @else
+                                    {{ $c->label }}
+                                @endif
+                            </li>
+                        @endforeach
                     </ul>
                 </div>
 
