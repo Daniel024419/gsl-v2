@@ -40,6 +40,7 @@ class CpPanelProvider extends PanelProvider
             ->path('cp')
             ->login()
             ->sidebarFullyCollapsibleOnDesktop()
+            ->viteTheme('resources/css/filament/cp/theme.css')
             ->colors([
                 'primary' => Color::Amber,
             ])
