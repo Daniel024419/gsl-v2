@@ -10,6 +10,7 @@ use App\Models\Programme;
 use App\Services\CloudflareStorageService;
 use App\Services\GoogleDriveService;
 use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\RichEditor;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
@@ -33,6 +34,15 @@ class AppServiceProvider extends ServiceProvider
             /** @var \Filament\Forms\Components\FileUpload $this */
             return $this->hint(fn () => view('filament.components.file-picker-trigger', [
                 'statePath' => $this->getStatePath(),
+                'mode' => 'fileUpload',
+            ]));
+        });
+
+        RichEditor::macro('withDrivePicker', function () {
+            /** @var \Filament\Forms\Components\RichEditor $this */
+            return $this->hint(fn () => view('filament.components.file-picker-trigger', [
+                'statePath' => $this->getStatePath(),
+                'mode' => 'richEditor',
             ]));
         });
 

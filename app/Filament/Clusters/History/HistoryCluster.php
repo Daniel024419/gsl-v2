@@ -10,5 +10,7 @@ class HistoryCluster extends Cluster
 {
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedClock;
 
+    protected static string|\UnitEnum|null $navigationGroup = 'Institution';
+
     protected static ?string $navigationLabel = 'History';
 }

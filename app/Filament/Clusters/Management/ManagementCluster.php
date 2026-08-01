@@ -10,5 +10,7 @@ class ManagementCluster extends Cluster
 {
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedUserGroup;
 
+    protected static string|\UnitEnum|null $navigationGroup = 'Institution';
+
     protected static ?string $navigationLabel = 'Management';
 }

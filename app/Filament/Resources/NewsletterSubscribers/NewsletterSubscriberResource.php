@@ -22,6 +22,8 @@ class NewsletterSubscriberResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedEnvelope;
 
+    protected static string|\UnitEnum|null $navigationGroup = 'Marketing';
+
     protected static ?string $recordTitleAttribute = 'email';
 
     public static function form(Schema $schema): Schema

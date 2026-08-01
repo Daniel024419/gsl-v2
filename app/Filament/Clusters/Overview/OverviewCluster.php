@@ -10,5 +10,7 @@ class OverviewCluster extends Cluster
 {
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedDocumentText;
 
+    protected static string|\UnitEnum|null $navigationGroup = 'Institution';
+
     protected static ?string $navigationLabel = 'Overview';
 }

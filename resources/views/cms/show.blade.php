@@ -2,6 +2,7 @@
 @section('title', $page->title.' – Ghana School of Law')
 @section('description', $page->meta_description ?? '')
 @section('content')
+@use(Illuminate\Support\HtmlString)
 
     {{-- ══ PAGE HERO ═══════════════════════════════════════════════════ --}}
     <section class="max-w-4xl mx-auto px-[5%] pt-[97px] md:pt-[133px] pb-16">
@@ -23,7 +24,7 @@
             [&_a]:text-gold [&_a]:underline [&_a]:hover:text-gold-light
             [&_strong]:text-navy [&_strong]:font-semibold">
             <div class="prose dark:prose-invert">
-                {{ \Filament\Forms\Components\RichEditor\RichContentRenderer::make($page->content)
+                {{ \Filament\Forms\Components\RichEditor\RichContentRenderer::make(new HtmlString($page->content))
                     ->fileAttachmentsDisk(config('filesystems.disks.r2.disk'))
                     ->fileAttachmentsVisibility('private') }}
             </div>

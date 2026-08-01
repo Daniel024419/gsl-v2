@@ -27,6 +27,7 @@ class PageForm
                     ->fileAttachmentsMaxSize(5120)
                     ->resizableImages()
                     ->columnSpanFull()
+                    ->withDrivePicker()
                     ->floatingToolbars([
                         'paragraph' => [
                             'bold',

@@ -10,5 +10,7 @@ class FooterCluster extends Cluster
 {
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleGroup;
 
+    protected static string|\UnitEnum|null $navigationGroup = 'Institution';
+
     protected static ?string $navigationLabel = 'Footer';
 }

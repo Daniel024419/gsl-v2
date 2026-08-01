@@ -20,6 +20,8 @@ class NavItemResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedBars3;
 
+    protected static string|\UnitEnum|null $navigationGroup = 'Content';
+
     protected static ?string $navigationLabel = 'Navigation Menu';
 
     protected static ?string $recordTitleAttribute = 'label';
