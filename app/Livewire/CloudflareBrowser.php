@@ -5,6 +5,7 @@ namespace App\Livewire;
 use App\Exceptions\CloudflareStorageException;
 use App\Services\CloudflareStorageService;
 use App\Support\FileDisplay;
+use App\Support\SimplePaginator;
 use Filament\Notifications\Notification;
 use Illuminate\Support\Facades\Log;
 use Livewire\Attributes\Url;
@@ -14,9 +15,13 @@ class CloudflareBrowser extends Component
 {
     protected const MAX_PREVIEW_BYTES = 8 * 1024 * 1024;
 
+    protected const PER_PAGE = 24;
+
     public string $search = '';
 
     public array $files = [];
+
+    public int $page = 1;
 
     public ?string $error = null;
 
@@ -85,6 +90,33 @@ class CloudflareBrowser extends Component
             $this->error = $e->getMessage();
             Log::error($this->error);
         }
+
+        $this->page = 1;
+    }
+
+    public function paginatedFiles(): array
+    {
+        return SimplePaginator::slice($this->files, $this->page, self::PER_PAGE);
+    }
+
+    public function totalPages(): int
+    {
+        return SimplePaginator::totalPages($this->files, self::PER_PAGE);
+    }
+
+    public function goToPage(int $page): void
+    {
+        $this->page = max(1, min($page, $this->totalPages()));
+    }
+
+    public function previousPage(): void
+    {
+        $this->goToPage($this->page - 1);
+    }
+
+    public function nextPage(): void
+    {
+        $this->goToPage($this->page + 1);
     }
 
     public function updatedSearch(): void

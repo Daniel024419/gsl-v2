@@ -2,12 +2,9 @@
 
 namespace App\Filament\Clusters\Management\Resources\People\Tables;
 
-use Filament\Actions\BulkActionGroup;
-use Filament\Actions\DeleteBulkAction;
-use Filament\Actions\EditAction;
-use Filament\Tables\Columns\ImageColumn;
-use Filament\Tables\Columns\TextColumn;
+use Filament\Actions\{BulkActionGroup, DeleteAction, DeleteBulkAction, EditAction};
 use Filament\Tables\Table;
+use Filament\Tables\Columns\{ImageColumn, TextColumn};
 
 class PeopleTable
 {
@@ -27,6 +24,7 @@ class PeopleTable
             ])
             ->recordActions([
                 EditAction::make(),
+                DeleteAction::make(),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([

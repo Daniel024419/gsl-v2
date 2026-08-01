@@ -134,7 +134,7 @@
     <div class="hidden md:flex fixed inset-x-0 top-0 z-[60] h-9 bg-navy items-center justify-between px-[5%]">
         <span class="text-[11px] font-semibold tracking-[2px] uppercase text-white/50">Ghana School of Law</span>
         <nav class="flex items-center gap-5">
-            @foreach ([['https://sms.gslaw.school/portal', 'Students'], ['https://sms.gslaw.school/faculty', 'Lecturers'], ['https://sms.gslaw.school/admin', 'Staff'], ['https://sms.gslaw.school/applicant', 'Applicant Portal']] as $u)
+            @foreach ([['https://sms.gslaw.school/portal', 'Students Portal'], ['https://sms.gslaw.school/faculty', 'Faculty Portal'], ['https://sms.gslaw.school/admin', 'Staff Portal'], ['https://sms.gslaw.school/applicant', 'Applicant Portal'],['/cp','GSL-CP']] as $u)
                 <a href="{{ $u[0] }}" target="_blank" rel="noopener"
                     class="text-[11px] font-medium text-white/60 hover:text-white transition-colors duration-150">
                     {{ $u[1] }}
@@ -611,6 +611,14 @@
                             </li>
                         @endforeach
                     </ul>
+                    <a href="{{ route('programmes') }}"
+                        class="inline-flex items-center gap-1 mt-4 text-[13px] font-semibold text-gold hover:text-gold-light transition-colors">
+                        View All Programmes
+                        <svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" viewBox="0 0 24 24">
+                            <path d="M5 12h14M13 6l6 6-6 6" />
+                        </svg>
+                    </a>
                 </div>
 
                 <div>

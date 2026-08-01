@@ -34,6 +34,7 @@ class HeroSlideForm
                     ->visibility('private')
                     ->disk(config('filesystems.disks.r2.disk'))
                     ->directory(config('filesystems.disks.r2.dir'))
+                    ->withDrivePicker()
                     ->required(),
                 Repeater::make('buttons')
                     ->schema([

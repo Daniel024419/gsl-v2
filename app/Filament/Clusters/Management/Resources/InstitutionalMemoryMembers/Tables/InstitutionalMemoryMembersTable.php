@@ -3,6 +3,7 @@
 namespace App\Filament\Clusters\Management\Resources\InstitutionalMemoryMembers\Tables;
 
 use Filament\Actions\BulkActionGroup;
+use Filament\Actions\DeleteAction;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Tables\Columns\ToggleColumn;
@@ -41,6 +42,7 @@ class InstitutionalMemoryMembersTable
             ])
             ->recordActions([
                 EditAction::make(),
+                DeleteAction::make(),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([

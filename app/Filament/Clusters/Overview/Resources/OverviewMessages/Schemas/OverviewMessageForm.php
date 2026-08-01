@@ -31,7 +31,8 @@ class OverviewMessageForm
                             )
                             ->visibility('private')
                             ->disk(config('filesystems.disks.r2.disk'))
-                            ->directory(config('filesystems.disks.r2.dir')),
+                            ->directory(config('filesystems.disks.r2.dir'))
+                            ->withDrivePicker(),
                     ])
                     ->required(),
                 TextInput::make('slug')

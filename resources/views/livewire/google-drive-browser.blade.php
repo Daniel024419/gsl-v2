@@ -56,6 +56,17 @@
         </div>
     </div>
 
+    @if (! $error && ! empty($files))
+        <div class="mb-4">
+            @include('livewire.partials.pagination', [
+                'page' => $page,
+                'totalPages' => $this->totalPages(),
+                'previousAction' => 'previousPage',
+                'nextAction' => 'nextPage',
+            ])
+        </div>
+    @endif
+
     @if ($error)
         <div class="rounded-lg bg-danger-50 p-4 text-sm text-danger-700 dark:bg-danger-500/10 dark:text-danger-400">
             {{ $error }}
@@ -66,7 +77,7 @@
         </div>
     @elseif ($viewMode === 'grid')
         <div class="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
-            @foreach ($files as $file)
+            @foreach ($this->paginatedFiles() as $file)
                 <div
                     wire:key="drive-grid-{{ $file['id'] }}"
                     class="group flex flex-col overflow-hidden rounded-xl border border-gray-200 bg-white transition hover:shadow-md dark:border-white/10 dark:bg-white/5"
@@ -138,7 +149,7 @@
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-gray-200 dark:divide-white/10">
-                    @foreach ($files as $file)
+                    @foreach ($this->paginatedFiles() as $file)
                         <tr wire:key="drive-file-{{ $file['id'] }}">
                             <td class="px-4 py-3 font-medium text-gray-950 dark:text-white">
                                 <div class="flex items-center gap-2">
@@ -201,6 +212,17 @@
                     @endforeach
                 </tbody>
             </table>
+        </div>
+    @endif
+
+    @if (! $error && ! empty($files))
+        <div class="mt-4">
+            @include('livewire.partials.pagination', [
+                'page' => $page,
+                'totalPages' => $this->totalPages(),
+                'previousAction' => 'previousPage',
+                'nextAction' => 'nextPage',
+            ])
         </div>
     @endif
 

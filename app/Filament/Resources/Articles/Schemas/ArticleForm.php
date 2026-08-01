@@ -50,7 +50,8 @@ class ArticleForm
                     )
                     ->visibility('private')
                     ->disk(config('filesystems.disks.r2.disk'))
-                    ->directory(config('filesystems.disks.r2.dir')),
+                    ->directory(config('filesystems.disks.r2.dir'))
+                    ->withDrivePicker(),
                 Textarea::make('icon')
                     ->label('Fallback Icon (SVG path markup)')
                     ->helperText('Shown in place of the image when none is uploaded, e.g. <path d="..."/>')

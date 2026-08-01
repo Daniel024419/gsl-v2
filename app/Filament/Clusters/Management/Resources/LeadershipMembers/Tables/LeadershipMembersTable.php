@@ -2,7 +2,7 @@
 
 namespace App\Filament\Clusters\Management\Resources\LeadershipMembers\Tables;
 
-use Filament\Actions\{BulkActionGroup, DeleteBulkAction, EditAction};
+use Filament\Actions\{BulkActionGroup, DeleteAction, DeleteBulkAction, EditAction};
 use Filament\Tables\Table;
 use Filament\Tables\Columns\{ ImageColumn, TextColumn, ToggleColumn};
 
@@ -33,6 +33,7 @@ class LeadershipMembersTable
             ])
             ->recordActions([
                 EditAction::make(),
+                DeleteAction::make(),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([
