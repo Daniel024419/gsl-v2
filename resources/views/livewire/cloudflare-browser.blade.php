@@ -1,4 +1,4 @@
-<x-filament-panels::page>
+<div>
     <nav class="mb-4 flex flex-wrap items-center gap-1 text-sm text-gray-500 dark:text-gray-400">
         @foreach ($breadcrumbs as $index => $crumb)
             @if (!$loop->last)
@@ -68,7 +68,7 @@
         <div class="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
             @foreach ($files as $file)
                 <div
-                    wire:key="drive-grid-{{ $file['id'] }}"
+                    wire:key="r2-grid-{{ $file['id'] }}"
                     class="group flex flex-col overflow-hidden rounded-xl border border-gray-200 bg-white transition hover:shadow-md dark:border-white/10 dark:bg-white/5"
                 >
                     <button
@@ -80,16 +80,15 @@
                         @endif
                         class="flex aspect-square w-full items-center justify-center bg-gray-50 dark:bg-white/10"
                     >
-                        @if (! $file['isFolder'] && str_starts_with($file['mimeType'], 'image/') && $file['thumbnailLink'])
+                        @if (! $file['isFolder'] && $file['thumbnailUrl'])
                             <img
-                                src="{{ $file['thumbnailLink'] }}"
+                                src="{{ $file['thumbnailUrl'] }}"
                                 alt="{{ $file['name'] }}"
                                 loading="lazy"
-                                referrerpolicy="no-referrer"
                                 class="h-full w-full object-cover"
-                                onerror="this.remove(); document.getElementById('drive-thumb-fallback-{{ $file['id'] }}')?.classList.remove('hidden')"
+                                onerror="this.remove(); document.getElementById('r2-thumb-fallback-{{ $file['id'] }}')?.classList.remove('hidden')"
                             >
-                            <span id="drive-thumb-fallback-{{ $file['id'] }}" class="hidden">
+                            <span id="r2-thumb-fallback-{{ $file['id'] }}" class="hidden">
                                 <x-filament::icon
                                     :icon="$this->fileIcon($file['mimeType'], false)"
                                     class="h-10 w-10 text-gray-400"
@@ -139,7 +138,7 @@
                 </thead>
                 <tbody class="divide-y divide-gray-200 dark:divide-white/10">
                     @foreach ($files as $file)
-                        <tr wire:key="drive-file-{{ $file['id'] }}">
+                        <tr wire:key="r2-file-{{ $file['id'] }}">
                             <td class="px-4 py-3 font-medium text-gray-950 dark:text-white">
                                 <div class="flex items-center gap-2">
                                     <x-filament::icon
@@ -160,13 +159,13 @@
                                 </div>
                             </td>
                             <td class="px-4 py-3 text-gray-500 dark:text-gray-400">
-                                {{ $file['isFolder'] ? 'Folder' : $file['mimeType'] }}
+                                {{ $file['isFolder'] ? 'Folder' : ($file['mimeType'] ?? 'Unknown') }}
                             </td>
                             <td class="px-4 py-3 text-gray-500 dark:text-gray-400">
                                 {{ $file['isFolder'] ? '—' : static::formatFileSize($file['size'] ?? null) }}
                             </td>
                             <td class="px-4 py-3 text-gray-500 dark:text-gray-400">
-                                {{ $file['modifiedTime'] ? \Illuminate\Support\Carbon::parse($file['modifiedTime'])->format('d M Y, H:i') : '—' }}
+                                {{ $file['modifiedTime'] ? \Illuminate\Support\Carbon::createFromTimestamp($file['modifiedTime'])->format('d M Y, H:i') : '—' }}
                             </td>
                             <td class="px-4 py-3 text-right">
                                 @if ($file['isFolder'])
@@ -205,10 +204,10 @@
     @endif
 
     <x-filament::modal
-        id="drive-preview-modal"
+        id="r2-preview-modal"
         width="4xl"
         :close-by-clicking-away="true"
-        x-on:close-modal.window="if ($event.detail?.id === 'drive-preview-modal') $wire.closePreview()"
+        x-on:close-modal.window="if ($event.detail?.id === 'r2-preview-modal') $wire.closePreview()"
     >
         <x-slot name="heading">
             {{ $previewFile['name'] ?? 'Preview' }}
@@ -217,13 +216,13 @@
         @if ($previewFile)
             @if (str_starts_with($previewFile['mimeType'], 'image/'))
                 <img
-                    src="{{ $previewFile['dataUri'] }}"
+                    src="{{ $previewFile['url'] }}"
                     alt="{{ $previewFile['name'] }}"
                     class="mx-auto max-h-[75vh] rounded-lg"
                 >
             @elseif ($previewFile['mimeType'] === 'application/pdf')
                 <iframe
-                    src="{{ $previewFile['dataUri'] }}"
+                    src="{{ $previewFile['url'] }}"
                     class="h-[75vh] w-full rounded-lg border border-gray-200 dark:border-white/10"
                 ></iframe>
             @elseif (str_starts_with($previewFile['mimeType'], 'text/'))
@@ -231,4 +230,4 @@
             @endif
         @endif
     </x-filament::modal>
-</x-filament-panels::page>
+</div>

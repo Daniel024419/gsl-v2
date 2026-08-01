@@ -7,6 +7,7 @@ use App\Models\FooterContactItem;
 use App\Models\FooterLink;
 use App\Models\NavItem;
 use App\Models\Programme;
+use App\Services\CloudflareStorageService;
 use App\Services\GoogleDriveService;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
@@ -19,6 +20,7 @@ class AppServiceProvider extends ServiceProvider
     public function register(): void
     {
         $this->app->singleton(GoogleDriveService::class);
+        $this->app->singleton(CloudflareStorageService::class);
     }
 
     /**

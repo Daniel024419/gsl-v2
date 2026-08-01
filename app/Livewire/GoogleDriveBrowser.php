@@ -1,27 +1,18 @@
 <?php
 
-namespace App\Filament\Pages;
-
-use Illuminate\Support\Facades\Log;
-use BackedEnum;
+namespace App\Livewire;
 
 use App\Exceptions\GoogleDriveException;
 use App\Services\GoogleDriveService;
+use App\Support\FileDisplay;
 use Filament\Notifications\Notification;
-use Filament\Pages\Page;
+use Illuminate\Support\Facades\Log;
 use Livewire\Attributes\Url;
+use Livewire\Component;
 
-class GoogleDrivePage extends Page
+class GoogleDriveBrowser extends Component
 {
     protected const MAX_PREVIEW_BYTES = 8 * 1024 * 1024;
-
-    protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-folder-open';
-
-    protected static ?string $navigationLabel = 'Drive Files';
-
-    protected static ?string $title = 'Drive Files';
-
-    protected string $view = 'filament.pages.google-drive-page';
 
     public string $search = '';
 
@@ -29,10 +20,10 @@ class GoogleDrivePage extends Page
 
     public ?string $error = null;
 
-    #[Url(as: 'folder')]
+    #[Url(as: 'drive_folder')]
     public ?string $currentFolderId = null;
 
-    #[Url(as: 'view')]
+    #[Url(as: 'drive_view')]
     public string $viewMode = 'grid';
 
     public array $breadcrumbs = [];
@@ -95,7 +86,7 @@ class GoogleDrivePage extends Page
         } catch (GoogleDriveException $e) {
             $this->files = [];
             $this->error = $e->getMessage();
-            logger()->error($this->error);
+            Log::error($this->error);
         }
     }
 
@@ -111,41 +102,7 @@ class GoogleDrivePage extends Page
 
     public function fileIcon(string $mimeType, bool $isFolder): string
     {
-        if ($isFolder) {
-            return 'heroicon-o-folder';
-        }
-
-        return match (true) {
-            str_starts_with($mimeType, 'image/') => 'heroicon-o-photo',
-            str_starts_with($mimeType, 'video/') => 'heroicon-o-film',
-            str_starts_with($mimeType, 'audio/') => 'heroicon-o-musical-note',
-            $mimeType === 'application/pdf',
-            str_starts_with($mimeType, 'text/') => 'heroicon-o-document-text',
-            in_array($mimeType, [
-                'application/vnd.google-apps.spreadsheet',
-                'application/vnd.ms-excel',
-                'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
-                'text/csv',
-            ], true) => 'heroicon-o-table-cells',
-            in_array($mimeType, [
-                'application/vnd.google-apps.presentation',
-                'application/vnd.ms-powerpoint',
-                'application/vnd.openxmlformats-officedocument.presentationml.presentation',
-            ], true) => 'heroicon-o-presentation-chart-bar',
-            in_array($mimeType, [
-                'application/zip',
-                'application/x-rar-compressed',
-                'application/x-7z-compressed',
-                'application/x-tar',
-                'application/gzip',
-            ], true) => 'heroicon-o-archive-box',
-            in_array($mimeType, [
-                'application/json',
-                'application/javascript',
-                'application/x-httpd-php',
-            ], true) => 'heroicon-o-code-bracket',
-            default => 'heroicon-o-document',
-        };
+        return FileDisplay::icon($mimeType, $isFolder);
     }
 
     public function openFolder(string $folderId, string $folderName): void
@@ -237,32 +194,16 @@ class GoogleDrivePage extends Page
 
     public function isPreviewableMimeType(string $mimeType): bool
     {
-        if ($mimeType === 'application/pdf') {
-            return true;
-        }
-
-        foreach (['image/', 'text/'] as $prefix) {
-            if (str_starts_with($mimeType, $prefix)) {
-                return true;
-            }
-        }
-
-        return false;
+        return FileDisplay::isPreviewableMimeType($mimeType);
     }
 
     public static function formatFileSize(?string $bytes): string
     {
-        if (blank($bytes)) {
-            return '—';
-        }
+        return FileDisplay::formatSize($bytes);
+    }
 
-        $bytes = (float) $bytes;
-        $units = ['B', 'KB', 'MB', 'GB', 'TB'];
-
-        for ($i = 0; $bytes >= 1024 && $i < count($units) - 1; $i++) {
-            $bytes /= 1024;
-        }
-
-        return round($bytes, 1).' '.$units[$i];
+    public function render()
+    {
+        return view('livewire.google-drive-browser');
     }
 }
