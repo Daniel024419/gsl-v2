@@ -39,5 +39,7 @@ class DatabaseSeeder extends Seeder
         $this->call(ProgrammeSeeder::class);
         $this->call(FooterLinkSeeder::class);
         $this->call(FooterContactItemSeeder::class);
+        $this->call(GalleryPhotoSeeder::class);
+        $this->call(CampusSeeder::class);
     }
 }

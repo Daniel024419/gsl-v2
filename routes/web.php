@@ -5,9 +5,11 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\NewsletterSubscriptionController;
 use App\Http\Controllers\PageController;
+use App\Models\Campus;
 use App\Models\DepartmentHead;
 use App\Models\Directorate;
 use App\Models\EnrollmentCommitteeMember;
+use App\Models\GalleryPhoto;
 use App\Models\GoverningBodyMember;
 use App\Models\InstitutionalMemoryMember;
 use App\Models\LeadershipMember;
@@ -60,7 +62,12 @@ Route::get('/admissions/instructions', fn() => view('pages.admissions-instructio
 Route::get('/notices', function () {
     return view('pages.notices', ['notices' => config('notices.notices')]);
 })->name('notices');
-Route::get('/student-life', fn() => view('pages.student-life'))->name('student-life');
+Route::get('/student-life', function () {
+    return view('pages.student-life', [
+        'galleryPhotos' => GalleryPhoto::visible()->ordered()->get(),
+        'campuses' => Campus::visible()->ordered()->get(),
+    ]);
+})->name('student-life');
 
 Route::get('/events', [EventController::class, 'index'])->name('events');
 Route::get('/events/{event:slug}', [EventController::class, 'show'])->name('events.show');

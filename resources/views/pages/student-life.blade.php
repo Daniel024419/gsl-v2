@@ -39,81 +39,67 @@
         </div>
     </section>
 
-    {{-- ══ PHOTO GALLERY (advanced carousel) ═══════════════════════════ --}}
-    @php
-        $galleryPhotos = [
-            ['assets/images/homepage/campuslife.png', 'The Ghana School of Law campus'],
-            ['assets/images/homepage/campuslife2.png', 'A newly-called lawyer celebrating with peers'],
-            ['assets/images/homepage/career-series-img.png', 'Students at a GSL ceremony'],
-            ['assets/images/homepage/award.png', 'A student receiving recognition at a GSL ceremony'],
-            ['assets/images/homepage/full roll.png', 'Graduating students seated at a GSL ceremony'],
-            ['assets/images/homepage/test1.png', 'Newly-called lawyers at the Call to the Bar'],
-            ['assets/images/homepage/plc.png', 'GSL students'],
-            ['assets/images/homepage/prgimg.png', 'A student in the law library'],
-        ];
-    @endphp
+    {{-- ══ PHOTO GALLERY (paginated mosaic grid, auto-slider) ═════════════ --}}
     <section class="py-20 px-[5%] bg-gray-50">
         <div class="max-w-6xl mx-auto">
             <p class="text-[14px] font-bold text-gold tracking-[3px] uppercase mb-3 text-center">Moments at GSL</p>
             <h2 class="font-serif font-semibold text-navy text-[34px] leading-[1.2] mb-12 text-center">
                 Campus Life in Pictures</h2>
 
-            <div data-gallery data-gallery-autoplay="4500" class="mt-2">
+            @php $galleryPages = $galleryPhotos->chunk(4)->values(); @endphp
 
-                {{-- Main stage --}}
-                <div data-gallery-stage
-                    class="relative rounded-xl overflow-hidden bg-navy aspect-video shadow-lg select-none">
-                    @foreach ($galleryPhotos as $i => $g)
-                        <div data-gallery-slide
-                            class="absolute inset-0 transition-opacity duration-700 ease-in-out {{ $i === 0 ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none' }}">
-                            <img src="{{ asset($g[0]) }}" alt="{{ $g[1] }}" loading="{{ $i === 0 ? 'eager' : 'lazy' }}"
-                                class="w-full h-full object-cover" draggable="false">
-                            <div class="absolute inset-0"
-                                style="background:linear-gradient(to top,rgba(3,15,26,0.8) 0%,rgba(3,15,26,0.1) 50%,transparent 70%)">
-                            </div>
-                            <div class="absolute bottom-0 left-0 right-0 p-5 sm:p-7">
-                                <p class="text-gold text-[11px] font-bold tracking-[2px] uppercase mb-1.5">
-                                    {{ str_pad($i + 1, 2, '0', STR_PAD_LEFT) }} / {{ str_pad(count($galleryPhotos), 2, '0', STR_PAD_LEFT) }}
-                                </p>
-                                <p class="text-white text-[15px] sm:text-[18px] font-medium leading-snug max-w-lg">
-                                    {{ $g[1] }}</p>
-                            </div>
+            <div data-mosaic-gallery data-mosaic-autoplay="6000">
+                <div data-mosaic-pages class="relative">
+                    @foreach ($galleryPages as $pageIndex => $page)
+                        <div data-mosaic-page
+                            class="{{ $pageIndex === 0 ? '' : 'hidden' }} grid grid-cols-2 sm:grid-cols-4 auto-rows-[160px] sm:auto-rows-[220px] grid-flow-dense gap-3">
+                            @foreach ($page as $g)
+                                <div class="group relative overflow-hidden rounded-xl shadow-sm {{ $g->span_classes }}">
+                                    <img src="{{ $g->image_url }}" alt="{{ $g->caption }}" loading="lazy"
+                                        class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-110">
+                                    <div class="absolute inset-0"
+                                        style="background:linear-gradient(to top,rgba(3,15,26,0.85) 0%,rgba(3,15,26,0.05) 45%,transparent 65%)">
+                                    </div>
+                                    <div
+                                        class="absolute inset-0 bg-navy/40 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                                    </div>
+                                    @if ($g->caption)
+                                        <p
+                                            class="absolute bottom-0 left-0 right-0 p-3 sm:p-4 text-white text-[12px] sm:text-[14px] font-medium leading-snug">
+                                            {{ $g->caption }}</p>
+                                    @endif
+                                </div>
+                            @endforeach
                         </div>
                     @endforeach
-
-                    {{-- Prev / Next --}}
-                    <button type="button" data-gallery-prev aria-label="Previous photo"
-                        class="absolute left-3 top-1/2 -translate-y-1/2 z-20 w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-black/30 hover:bg-gold text-white hover:text-navy flex items-center justify-center backdrop-blur-sm transition-all duration-200">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                            stroke-linejoin="round" viewBox="0 0 24 24">
-                            <polyline points="15 18 9 12 15 6" />
-                        </svg>
-                    </button>
-                    <button type="button" data-gallery-next aria-label="Next photo"
-                        class="absolute right-3 top-1/2 -translate-y-1/2 z-20 w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-black/30 hover:bg-gold text-white hover:text-navy flex items-center justify-center backdrop-blur-sm transition-all duration-200">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                            stroke-linejoin="round" viewBox="0 0 24 24">
-                            <polyline points="9 18 15 12 9 6" />
-                        </svg>
-                    </button>
-
-                    {{-- Autoplay progress --}}
-                    <div class="absolute top-0 left-0 right-0 h-0.75 bg-white/15 z-20">
-                        <div data-gallery-progress class="h-full bg-gold" style="width:0%"></div>
-                    </div>
                 </div>
 
-                {{-- Thumbnail rail --}}
-                <div data-gallery-thumbs class="mt-4 flex gap-3 overflow-x-auto hide-scrollbar pb-1">
-                    @foreach ($galleryPhotos as $i => $g)
-                        <button type="button" data-gallery-thumb data-index="{{ $i }}"
-                            aria-label="Show photo {{ $i + 1 }}"
-                            class="relative shrink-0 w-20 h-16 sm:w-24 sm:h-18 rounded-lg overflow-hidden border-2 transition-all duration-200
-                                {{ $i === 0 ? 'border-gold' : 'border-transparent opacity-55 hover:opacity-90' }}">
-                            <img src="{{ asset($g[0]) }}" alt="" loading="lazy" class="w-full h-full object-cover">
+                @if ($galleryPages->count() > 1)
+                    <div class="flex items-center justify-center gap-4 mt-8">
+                        <button type="button" data-mosaic-prev aria-label="Previous page"
+                            class="w-10 h-10 rounded-full bg-white border border-gray-200 flex items-center justify-center text-navy/50 hover:border-gold hover:text-gold shadow-sm transition-all duration-200">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                                <polyline points="15 18 9 12 15 6" />
+                            </svg>
                         </button>
-                    @endforeach
-                </div>
+                        <div data-mosaic-dots class="flex items-center gap-2">
+                            @foreach ($galleryPages as $pageIndex => $page)
+                                <button type="button" data-mosaic-dot data-index="{{ $pageIndex }}"
+                                    aria-label="Go to page {{ $pageIndex + 1 }}"
+                                    class="h-1.5 rounded-full transition-all duration-300 {{ $pageIndex === 0 ? 'w-6 bg-gold' : 'w-1.5 bg-navy/20' }}">
+                                </button>
+                            @endforeach
+                        </div>
+                        <button type="button" data-mosaic-next aria-label="Next page"
+                            class="w-10 h-10 rounded-full bg-white border border-gray-200 flex items-center justify-center text-navy/50 hover:border-gold hover:text-gold shadow-sm transition-all duration-200">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                                <polyline points="9 18 15 12 9 6" />
+                            </svg>
+                        </button>
+                    </div>
+                @endif
             </div>
         </div>
     </section>
@@ -129,15 +115,11 @@
                 operates across three campuses.
             </p>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                @foreach ([
-                    ['Accra (Main Campus)', 'Independence Avenue, Makola, Accra', 'The main campus and seat of the Ghana School of Law.'],
-                    ['Kumasi Campus', 'Kwame Nkrumah University of Science and Technology (KNUST)', 'Serving students in the Ashanti Region and beyond.'],
-                    ['Greenhill Legon Campus', 'Ghana Institute of Management and Public Administration (GIMPA) and UPSA', 'Serving students in the Greater Accra Region.'],
-                ] as $c)
+                @foreach ($campuses as $c)
                     <div class="p-8 rounded-xl border border-gray-200 bg-gray-50">
-                        <h3 class="font-serif font-semibold text-[18px] text-navy mb-2">{{ $c[0] }}</h3>
-                        <p class="text-[13px] font-bold text-gold uppercase tracking-[1px] mb-3">{{ $c[1] }}</p>
-                        <p class="text-[14px] text-gray-600 leading-[1.7]">{{ $c[2] }}</p>
+                        <h3 class="font-serif font-semibold text-[18px] text-navy mb-2">{{ $c->name }}</h3>
+                        <p class="text-[13px] font-bold text-gold uppercase tracking-[1px] mb-3">{{ $c->location }}</p>
+                        <p class="text-[14px] text-gray-600 leading-[1.7]">{{ $c->description }}</p>
                     </div>
                 @endforeach
             </div>
@@ -172,7 +154,7 @@
                 </ul>
             </div>
             <div class="order-1 lg:order-2 rounded-xl overflow-hidden aspect-[4/3]">
-                <img src="{{ asset('assets/images/homepage/prgimg.png') }}" alt="A student in the law library"
+                <img src="{{ \App\Support\R2::url('assets/images/homepage/prgimg.png') }}" alt="A student in the law library"
                     loading="lazy" class="w-full h-full object-cover">
             </div>
         </div>
@@ -185,66 +167,41 @@
         (function() {
             'use strict';
 
-            document.querySelectorAll('[data-gallery]').forEach(function(gallery) {
-                const stage = gallery.querySelector('[data-gallery-stage]');
-                const slides = Array.from(gallery.querySelectorAll('[data-gallery-slide]'));
-                const thumbs = Array.from(gallery.querySelectorAll('[data-gallery-thumb]'));
-                const thumbRail = gallery.querySelector('[data-gallery-thumbs]');
-                const prevBtn = gallery.querySelector('[data-gallery-prev]');
-                const nextBtn = gallery.querySelector('[data-gallery-next]');
-                const progress = gallery.querySelector('[data-gallery-progress]');
-                const autoplayMs = parseInt(gallery.getAttribute('data-gallery-autoplay'), 10) || 0;
+            const DOT_ACTIVE = 'h-1.5 rounded-full bg-gold transition-all duration-300 w-6';
+            const DOT_INACTIVE = 'h-1.5 rounded-full bg-navy/20 transition-all duration-300 w-1.5';
 
-                if (!stage || slides.length === 0) return;
+            document.querySelectorAll('[data-mosaic-gallery]').forEach(function(gallery) {
+                const pages = Array.from(gallery.querySelectorAll('[data-mosaic-page]'));
+                const dots = Array.from(gallery.querySelectorAll('[data-mosaic-dot]'));
+                const prevBtn = gallery.querySelector('[data-mosaic-prev]');
+                const nextBtn = gallery.querySelector('[data-mosaic-next]');
+                const autoplayMs = parseInt(gallery.getAttribute('data-mosaic-autoplay'), 10) || 0;
+
+                if (pages.length <= 1) return;
 
                 let cur = 0;
                 let timer = null;
                 let paused = false;
 
                 function render() {
-                    slides.forEach(function(s, i) {
-                        const active = i === cur;
-                        s.classList.toggle('opacity-100', active);
-                        s.classList.toggle('z-10', active);
-                        s.classList.toggle('opacity-0', !active);
-                        s.classList.toggle('z-0', !active);
-                        s.classList.toggle('pointer-events-none', !active);
+                    pages.forEach(function(p, i) {
+                        p.classList.toggle('hidden', i !== cur);
                     });
-                    thumbs.forEach(function(t, i) {
-                        const active = i === cur;
-                        t.classList.toggle('border-gold', active);
-                        t.classList.toggle('opacity-100', active);
-                        t.classList.toggle('border-transparent', !active);
-                        t.classList.toggle('opacity-55', !active);
-                        if (active) {
-                            t.scrollIntoView({
-                                behavior: 'smooth',
-                                inline: 'center',
-                                block: 'nearest'
-                            });
-                        }
+                    dots.forEach(function(d, i) {
+                        d.className = i === cur ? DOT_ACTIVE : DOT_INACTIVE;
                     });
                 }
 
                 function go(index) {
-                    const n = slides.length;
+                    const n = pages.length;
                     cur = ((index % n) + n) % n;
                     render();
                     restartAutoplay();
                 }
 
                 function restartAutoplay() {
-                    if (!progress) return;
-                    progress.style.transition = 'none';
-                    progress.style.width = '0%';
                     clearTimeout(timer);
                     if (!autoplayMs || paused) return;
-                    requestAnimationFrame(function() {
-                        requestAnimationFrame(function() {
-                            progress.style.transition = 'width ' + autoplayMs + 'ms linear';
-                            progress.style.width = '100%';
-                        });
-                    });
                     timer = setTimeout(function() {
                         go(cur + 1);
                     }, autoplayMs);
@@ -256,50 +213,20 @@
                 nextBtn && nextBtn.addEventListener('click', function() {
                     go(cur + 1);
                 });
-                thumbs.forEach(function(t) {
-                    t.addEventListener('click', function() {
-                        go(parseInt(t.getAttribute('data-index'), 10) || 0);
+                dots.forEach(function(d) {
+                    d.addEventListener('click', function() {
+                        go(parseInt(d.getAttribute('data-index'), 10) || 0);
                     });
                 });
 
-                /* pause on hover / focus, resume on leave */
-                [stage, thumbRail].forEach(function(el) {
-                    if (!el) return;
-                    el.addEventListener('mouseenter', function() {
-                        paused = true;
-                        clearTimeout(timer);
-                        if (progress) progress.style.transition = 'none';
-                    });
-                    el.addEventListener('mouseleave', function() {
-                        paused = false;
-                        restartAutoplay();
-                    });
+                /* pause on hover, resume on leave */
+                gallery.addEventListener('mouseenter', function() {
+                    paused = true;
+                    clearTimeout(timer);
                 });
-
-                /* keyboard navigation while gallery is hovered/focused */
-                gallery.setAttribute('tabindex', '0');
-                gallery.addEventListener('keydown', function(e) {
-                    if (e.key === 'ArrowLeft') {
-                        e.preventDefault();
-                        go(cur - 1);
-                    } else if (e.key === 'ArrowRight') {
-                        e.preventDefault();
-                        go(cur + 1);
-                    }
-                });
-
-                /* swipe support on the main stage */
-                let startX = null;
-                stage.addEventListener('pointerdown', function(e) {
-                    startX = e.clientX;
-                });
-                stage.addEventListener('pointerup', function(e) {
-                    if (startX === null) return;
-                    const delta = e.clientX - startX;
-                    if (Math.abs(delta) > 40) {
-                        go(delta < 0 ? cur + 1 : cur - 1);
-                    }
-                    startX = null;
+                gallery.addEventListener('mouseleave', function() {
+                    paused = false;
+                    restartAutoplay();
                 });
 
                 render();
