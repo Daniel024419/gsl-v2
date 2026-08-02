@@ -46,7 +46,7 @@
             <h2 class="font-serif font-semibold text-navy text-[34px] leading-[1.2] mb-12 text-center">
                 Campus Life in Pictures</h2>
 
-            @php $galleryPages = $galleryPhotos->chunk(4)->values(); @endphp
+            @php $galleryPages = $galleryPhotos->chunk(8)->values(); @endphp
 
             <div data-mosaic-gallery data-mosaic-autoplay="6000">
                 <div data-mosaic-pages class="relative">
