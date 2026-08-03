@@ -8,6 +8,15 @@
     "src": "resources/css/app.css",
     "isEntry": true
   },
+  "resources/css/filament/cp/theme.css": {
+    "file": "assets/theme-mOvrRg5b.css",
+    "name": "theme",
+    "names": [
+      "theme.css"
+    ],
+    "src": "resources/css/filament/cp/theme.css",
+    "isEntry": true
+  },
   "resources/js/app.js": {
     "file": "assets/app-BvRk9kiK.js",
     "name": "app",

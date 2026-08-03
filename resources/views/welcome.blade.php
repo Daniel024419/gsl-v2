@@ -495,20 +495,6 @@
 @endsection
 
 @push('scripts')
-    <style>
-        [data-hero-content] h1 .text-gold[data-typing="true"]::after {
-            content: '|';
-            display: inline-block;
-            margin-left: 2px;
-            animation: hero-cursor-blink 0.8s step-end infinite;
-        }
-
-        @keyframes hero-cursor-blink {
-            50% {
-                opacity: 0;
-            }
-        }
-    </style>
     <script>
         (function() {
             'use strict';
@@ -550,43 +536,7 @@
                 });
             }
 
-            /* ── typewriter reveal for the gold-highlighted words in each heading ── */
-            var goldSpans = contents.map(function(c) {
-                return c.querySelector('h1 .text-gold');
-            });
-            var goldTexts = goldSpans.map(function(span) {
-                return span ? span.textContent : '';
-            });
-            var typeTimers = new Array(goldSpans.length).fill(null);
-
-            function resetGoldSpan(i) {
-                clearInterval(typeTimers[i]);
-                var span = goldSpans[i];
-                if (!span) return;
-                span.textContent = '';
-                span.removeAttribute('data-typing');
-            }
-
-            function typeGoldSpan(i) {
-                var span = goldSpans[i];
-                if (!span) return;
-                clearInterval(typeTimers[i]);
-                var text = goldTexts[i];
-                var idx = 0;
-                span.textContent = '';
-                span.setAttribute('data-typing', 'true');
-                typeTimers[i] = setInterval(function() {
-                    idx++;
-                    span.textContent = text.slice(0, idx);
-                    if (idx >= text.length) {
-                        clearInterval(typeTimers[i]);
-                        span.removeAttribute('data-typing');
-                    }
-                }, 70);
-            }
-
             function go(index) {
-                var prev = cur;
                 cur = ((index % total) + total) % total;
                 bgs.forEach(function(bg, i) {
                     bg.classList.toggle('opacity-100', i === cur);
@@ -599,8 +549,6 @@
                     c.classList.toggle('pointer-events-none', !active);
                 });
                 syncDots();
-                resetGoldSpan(prev);
-                typeGoldSpan(cur);
             }
 
             function resetAutoplay() {
@@ -618,11 +566,6 @@
                 go(cur + 1);
                 resetAutoplay();
             });
-
-            goldSpans.forEach(function(_, i) {
-                resetGoldSpan(i);
-            });
-            typeGoldSpan(cur);
 
             resetAutoplay();
             slider.addEventListener('mouseenter', function() {
